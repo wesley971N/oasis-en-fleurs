@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Palette OKLCH — Herboristerie, fond beige sablé ─────────────────────── */
+:root {
+  /* Fond principal : beige sablé chaud */
+  --bg:             oklch(0.96 0.018 82);
+  --surface:        oklch(0.92 0.022 80);
+  --surface-raised: oklch(0.87 0.026 78);
+
+  /* Amber doré — l'or des flacons */
+  --primary:        oklch(0.62 0.115 77);
+  --primary-dim:    oklch(0.52 0.095 76);
+
+  /* Texte sur fond clair */
+  --ink:            oklch(0.20 0.022 60);
+  --ink-muted:      oklch(0.44 0.018 65);
+
+  /* Vert forêt — accent naturel */
+  --forest:         oklch(0.42 0.085 150);
+  --forest-light:   oklch(0.56 0.078 148);
+  --forest-dark:    oklch(0.28 0.068 152);
+
+  /* Sections claires (alternance) */
+  --lt-bg:          oklch(0.98 0.008 86);
+  --lt-surface:     oklch(0.94 0.014 84);
+  --lt-ink:         oklch(0.20 0.022 60);
+  --lt-ink-muted:   oklch(0.44 0.018 65);
+
+  /* Aliases rétrocompatibles */
+  --cream:          oklch(0.96 0.018 82);
+  --cream-dark:     oklch(0.92 0.022 80);
+  --gold:           oklch(0.62 0.115 77);
+  --gold-light:     oklch(0.72 0.100 77);
+  --brown:          oklch(0.20 0.022 60);
+  --brown-light:    oklch(0.44 0.018 65);
+  --moss:           oklch(0.42 0.085 150);
+  --moss-light:     oklch(0.56 0.078 148);
+  --moss-dark:      oklch(0.28 0.068 152);
+}
+
+/* ─── Reset & base ───────────────────────────────────────────────────────── */
+* { cursor: none !important; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  color-scheme: light;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Vollkorn', Georgia, serif;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p { margin: 0; }
+
+/* ─── Curseur personnalisé ──────────────────────────────────────────────── */
+#cursor-dot {
+  position: fixed; width: 7px; height: 7px;
+  background: var(--primary); border-radius: 50%;
+  pointer-events: none; z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+}
+#cursor-ring {
+  position: fixed; width: 28px; height: 28px;
+  border: 1px solid oklch(0.42 0.085 150 / 0.5); border-radius: 50%;
+  pointer-events: none; z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: all 0.12s ease-out;
+}
+body.cursor-hover #cursor-dot { width: 12px; height: 12px; background: var(--forest); }
+body.cursor-hover #cursor-ring { width: 42px; height: 42px; border-color: oklch(0.42 0.085 150 / 0.7); }
+
+/* ─── Navbar ─────────────────────────────────────────────────────────────── */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000; transition: all 0.5s ease; padding: 24px 0;
+}
+.navbar.scrolled {
+  padding: 12px 0;
+  background: oklch(0.97 0.014 84 / 0.97);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 oklch(0.42 0.085 150 / 0.12);
+}
+
+/* ─── Typographie ────────────────────────────────────────────────────────── */
+/* Barlow 300 pour le corps long, 400 labels, 500-600 emphase */
+
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+.fade-left {
+  opacity: 0; transform: translateX(-32px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-left.visible { opacity: 1; transform: translateX(0); }
+
+.fade-right {
+  opacity: 0; transform: translateX(32px);
+  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-right.visible { opacity: 1; transform: translateX(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up, .fade-left, .fade-right {
+    opacity: 1 !important; transform: none !important; transition: none !important;
+  }
+  .mobile-nav-link {
+    opacity: 1 !important; transform: none !important; transition: color 0.2s !important;
+  }
+  .cart-badge { animation: none !important; }
+  @keyframes badgePop { from { transform: scale(1); } to { transform: scale(1); } }
+}
+
+/* ─── Hero plein-cadre ──────────────────────────────────────────────────── */
+.hero-fullbleed {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+}
+.hero-fullbleed-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Ancien hero split — conservé pour rétrocompatibilité */
+.hero-section {
+  min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; overflow: hidden;
+}
+.hero-text-side { background: var(--bg); display: flex; align-items: center; padding: 120px 60px 80px; }
+.hero-plant-side { background: var(--forest); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+
+/* ─── Grille produits ───────────────────────────────────────────────────── */
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; background: transparent; padding: 0 0 8px; }
+@media (max-width: 1200px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 900px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-section { grid-template-columns: 1fr; }
+  .hero-plant-side { min-height: 50vh; }
+}
+@media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
+
+/* ─── Drawer / panier ───────────────────────────────────────────────────── */
+.drawer-overlay { position: fixed; inset: 0; background: oklch(0.12 0.018 65 / 0.7); z-index: 1100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+.drawer-panel { position: fixed; right: 0; top: 0; bottom: 0; width: min(520px, 95vw); background: var(--lt-bg); z-index: 1101; transform: translateX(100%); transition: transform 0.45s cubic-bezier(0.4,0,0.2,1); overflow-y: auto; border-radius: 20px 0 0 20px; }
+.drawer-panel.open { transform: translateX(0); }
+
+/* ─── Modal ─────────────────────────────────────────────────────────────── */
+.modal-overlay { position: fixed; inset: 0; background: oklch(0.12 0.018 65 / 0.75); z-index: 600; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box { background: var(--lt-bg); max-width: 560px; width: 95%; max-height: 90vh; overflow-y: auto; transform: translateY(24px) scale(0.97); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); border-radius: 20px; overflow: hidden; }
+.modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+
+/* ─── Toast ─────────────────────────────────────────────────────────────── */
+.toast-container { position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%); z-index: 700; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.toast-item { background: var(--forest); color: var(--ink); padding: 12px 28px; font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.3px; animation: toastIn 0.4s cubic-bezier(0.16,1,0.3,1) forwards; box-shadow: 0 8px 40px oklch(0.42 0.085 150 / 0.35); }
+@keyframes toastIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ─── Boutons ───────────────────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--primary); color: var(--lt-ink); border: none;
+  padding: 14px 32px; font-family: 'Barlow', sans-serif; font-size: 12px;
+  font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1); display: inline-block;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 32px oklch(0.72 0.110 77 / 0.28); }
+
+.btn-outline {
+  background: transparent; color: var(--ink);
+  border: 1px solid oklch(0.93 0.008 78 / 0.45);
+  padding: 13px 32px; font-family: 'Barlow', sans-serif; font-size: 12px;
+  font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase;
+  transition: all 0.3s; display: inline-block;
+}
+.btn-outline:hover { background: oklch(0.93 0.008 78 / 0.10); border-color: var(--ink); }
+
+.btn-moss {
+  background: var(--forest); color: var(--ink); border: none;
+  padding: 14px 32px; font-family: 'Barlow', sans-serif; font-size: 12px;
+  font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase;
+  transition: all 0.3s; display: inline-block;
+}
+.btn-moss:hover { background: var(--forest-light); }
+
+/* ─── Filtre boutique ───────────────────────────────────────────────────── */
+.filter-bar {
+  position: sticky; top: 60px; z-index: 100;
+  background: oklch(0.97 0.005 80 / 0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid oklch(0.42 0.018 68 / 0.12);
+  padding: 12px 0;
+}
+.filter-tab {
+  padding: 8px 18px; font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
+  text-transform: uppercase; border: 1px solid transparent;
+  transition: all 0.2s; white-space: nowrap; color: var(--lt-ink-muted); background: none;
+}
+.filter-tab.active, .filter-tab:hover { border-color: var(--forest); color: var(--forest); }
+
+/* ─── Carte produit ─────────────────────────────────────────────────────── */
+.product-card { background: var(--lt-bg); transition: all 0.3s; overflow: hidden; border-radius: 16px; box-shadow: 0 2px 14px oklch(0.12 0.018 65 / 0.07); }
+.product-card:hover { box-shadow: 0 20px 60px oklch(0.12 0.018 65 / 0.18); transform: translateY(-4px); }
+
+/* ─── Stats ─────────────────────────────────────────────────────────────── */
+.stat-number { font-family: 'Vollkorn', Georgia, serif; font-size: clamp(48px,6vw,80px); font-weight: 400; color: var(--primary); line-height: 1; }
+
+/* ─── Témoignages ───────────────────────────────────────────────────────── */
+/* NOTE: pas de border-left — on utilise le guillemet comme seul marqueur */
+.testimonial-card { background: var(--surface-raised); padding: 40px; }
+
+/* ─── Stage / atelier ───────────────────────────────────────────────────── */
+.stage-card { border: 1px solid oklch(0.42 0.085 150 / 0.20); padding: 32px; transition: all 0.3s; background: var(--surface); }
+.stage-card:hover { border-color: var(--forest); box-shadow: 0 12px 40px oklch(0.12 0.018 65 / 0.35); }
+
+/* ─── Panier ────────────────────────────────────────────────────────────── */
+.qty-btn { width: 36px; height: 36px; border: 1px solid var(--forest); background: transparent; color: var(--forest); font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-family: 'Barlow', sans-serif; border-radius: 8px; }
+.qty-btn:hover { background: var(--forest); color: white; }
+.cart-badge { position: absolute; top: -8px; right: -8px; background: var(--primary); color: var(--lt-ink); width: 20px; height: 20px; border-radius: 50%; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; animation: badgePop 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+@keyframes badgePop { 0% { transform: scale(0.4); opacity: 0.5; } 60% { transform: scale(1.2); } 100% { transform: scale(1); opacity: 1; } }
+
+/* ─── Scrollbar ─────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--forest); border-radius: 2px; }
+
+input, textarea, select { font-family: 'Barlow', sans-serif; font-size: 14px; }
+
+/* ─── Responsive Mobile ─────────────────────────────────────────────────── */
+.navbar-links-desktop { display:flex; align-items:center; gap:32px; }
+.navbar-mobile-right  { display:none; align-items:center; gap:12px; }
+
+.hamburger { display:flex; flex-direction:column; gap:5px; background:none; border:none; padding:8px; cursor:pointer; }
+.hamburger span { display:block; width:22px; height:1.5px; border-radius:1px; background:currentColor; transition:all 0.3s; }
+
+.mobile-nav {
+  position:fixed; inset:0; z-index:1055;
+  background:var(--lt-bg);
+  display:flex; flex-direction:column;
+  padding:88px 40px 48px;
+  transform:translateX(100%);
+  transition:transform 0.42s cubic-bezier(0.4,0,0.2,1);
+  overflow-y:auto;
+}
+.mobile-nav.open { transform:translateX(0); }
+
+/* Stagger des liens du menu mobile */
+.mobile-nav-link {
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 0.32s cubic-bezier(0.22,1,0.36,1), transform 0.32s cubic-bezier(0.22,1,0.36,1), color 0.2s;
+}
+.mobile-nav.open .mobile-nav-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 860px) {
+  .navbar-links-desktop { display:none !important; }
+  .navbar-mobile-right  { display:flex !important; }
+
+  .resp-stats    { grid-template-columns:1fr 1fr !important; gap:24px !important; }
+  .resp-portrait { grid-template-columns:1fr !important; gap:32px !important; }
+  .resp-univers  { grid-template-columns:1fr 1fr !important; }
+  .resp-animals  { grid-template-columns:repeat(2,1fr) !important; }
+  .resp-footer   { grid-template-columns:1fr 1fr !important; gap:32px !important; }
+  .resp-contact  { grid-template-columns:1fr !important; }
+}
+
+@media (max-width: 560px) {
+  .resp-stats   { grid-template-columns:1fr !important; }
+  .resp-univers { grid-template-columns:1fr !important; }
+  .resp-footer  { grid-template-columns:1fr !important; }
+}

@@ -1,0 +1,23 @@
+# L'Oasis en Fleurs
+
+> Ferme phytothérapeutique artisanale en Bresse (Bourgogne), fondée par Agnès Gilliet.
+> Plantes médicinales, soins naturels, miellerie, animaux de ferme et stages immersifs.
+
+## Pages
+
+- /: Page d'accueil — présentation de L'Oasis en Fleurs et d'Agnès Gilliet
+- /boutique: Boutique & Soins — produits de phytothérapie, aromathérapie, savons, baumes, miels
+- /ferme: La Ferme — jardin médicinal, animaux (moutons, abeilles, chevaux PRE), miellerie
+- /stages: Stages & Formations — ateliers et week-ends animés par Agnès Gilliet
+- /consultation: Consultation phytothérapeutique — séances individuelles avec Agnès
+- /contact: Contact — adresse, email, formulaire de contact, carte
+
+## Contact
+
+- Adresse : 320 Les Boulatières, 01560 Curciat-Dongalon (Ain, France)
+- Email : contact@loasisenfleur.com
+
+## À propos d'Agnès Gilliet
+
+Diplômée en psychothérapie, formatrice agréée en herboristerie.
+Propose des consultations individuelles, des soins naturels et des stages en immersion à la ferme.

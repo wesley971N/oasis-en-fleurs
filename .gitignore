@@ -1,0 +1,58 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+.parcel-cache
+*.local
+
+# Secrets (Stripe, Google Sheets, Resend) — ne jamais committer
+.env
+.env.*
+!.env.example
+
+# Photos sources BRUTES non utilisées par le build (le site n'importe que src/assets/photos/).
+# Elles restent sur le disque local, mais alourdiraient le dépôt de ~1,7 Go pour rien.
+src/assets/fleur et paysage/
+src/assets/miellerie/
+src/assets/animaux/
+src/assets/produit/
+src/assets/atelier/
+
+# Vidéos sources (non utilisées par le site, et > 100 Mo = refusées par GitHub)
+*.MOV
+*.mov
+*.mp4
+*.MP4
+*.MTS
+*.avi
+*.AVI
+
+# Artefact généré (Netlify build depuis les sources, pas besoin de committer ce fichier de 19 Mo)
+bundle.html
+
+# Fichiers parasites Windows / page de référence sauvegardée
+desktop.ini
+src/desktop.ini
+Animaux à laine.html
+Animaux à laine_files/
+src/Animaux à laine.html
+src/Animaux à laine_files/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
