@@ -2584,17 +2584,21 @@ export default function App() {
     window.addEventListener('mousemove', trackMouse)
     raf = requestAnimationFrame(animate)
 
-    const addHover = (e: Event) => document.body.classList.add('cursor-hover')
-    const removeHover = (e: Event) => document.body.classList.remove('cursor-hover')
-    document.addEventListener('mouseenter', addHover, true)
-    document.addEventListener('mouseleave', removeHover, true)
-    document.querySelectorAll('a,button,[role="button"]').forEach(el => {
-      el.addEventListener('mouseenter', addHover)
-      el.addEventListener('mouseleave', removeHover)
-    })
+    // Le survol ne s'active que sur les éléments cliquables (délégation, couvre aussi le contenu dynamique)
+    const interactiveSel = 'a, button, [role="button"], input, textarea, select, label, .cursor-pointer'
+    const onOver = (e: Event) => {
+      if ((e.target as Element).closest?.(interactiveSel)) document.body.classList.add('cursor-hover')
+    }
+    const onOut = (e: Event) => {
+      if ((e.target as Element).closest?.(interactiveSel)) document.body.classList.remove('cursor-hover')
+    }
+    document.addEventListener('mouseover', onOver)
+    document.addEventListener('mouseout', onOut)
 
     return () => {
       window.removeEventListener('mousemove', trackMouse)
+      document.removeEventListener('mouseover', onOver)
+      document.removeEventListener('mouseout', onOut)
       cancelAnimationFrame(raf)
     }
   }, [page])
