@@ -1428,18 +1428,22 @@ function PageContact({ addToast, setPage }: { addToast: (m:string)=>void, setPag
             L'Oasis en Fleurs
           </h2>
 
-          {[
+          {([
             { icon:'📍', label:'Adresse', value:'320 chemin des Boulatières\n01560 Curciat-Dongalon' },
             { icon:'📞', label:'Téléphone', value:'06 64 34 86 87' },
             { icon:'✉️', label:'Email', value:'contact@loasisenfleurs.com' },
+            { icon:'📘', label:'Facebook', value:'facebook.com/agnes.gilliet', link:'https://www.facebook.com/agnes.gilliet' },
             { icon:'🕐', label:'Horaires', value:'Lun–Jeu : 9h–18h\nVendredi : 9h–12h' },
-          ].map(({ icon, label, value }) => (
+          ] as Array<{ icon:string; label:string; value:string; link?:string }>).map(({ icon, label, value, link }) => (
             <div key={label} style={{ display:'flex', gap:16, marginBottom:28, alignItems:'flex-start' }}>
               <span style={{ fontSize:22, flexShrink:0, marginTop:2 }}>{icon}</span>
               <div>
                 <p style={{ fontFamily:'Barlow,sans-serif', fontSize:11, letterSpacing:1.5, textTransform:'uppercase',
                   color:'var(--gold)', marginBottom:4 }}>{label}</p>
-                <p style={{ fontSize:15, color:'var(--brown-light)', lineHeight:1.7, whiteSpace:'pre-line' }}>{value}</p>
+                {link
+                  ? <a href={link} target="_blank" rel="noopener noreferrer"
+                      style={{ fontSize:15, color:'var(--moss)', lineHeight:1.7, textDecoration:'underline', textUnderlineOffset:3 }}>{value}</a>
+                  : <p style={{ fontSize:15, color:'var(--brown-light)', lineHeight:1.7, whiteSpace:'pre-line' }}>{value}</p>}
               </div>
             </div>
           ))}
