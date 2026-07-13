@@ -382,11 +382,15 @@ function Navbar({ page, setPage, cartCount, onRdv, onOpenCart }: {
           {/* Logo */}
           <button onClick={() => navigate('accueil')}
             style={{ background:'none', border:'none', cursor:'pointer', display:'flex', alignItems:'center', padding:0 }}>
-            <div style={{ background:'#1C4A3A', borderRadius:14, padding:'8px 18px', display:'flex', alignItems:'center',
-                boxShadow:'0 2px 12px rgba(28,74,58,0.22)', transition:'transform 0.3s', flexShrink:0 }}
+            <div style={{ background:'#fff', borderRadius:14, padding:'8px 16px', display:'flex', alignItems:'center', gap:12,
+                boxShadow:'0 2px 14px rgba(0,0,0,0.10)', border:'1px solid rgba(28,74,58,0.12)', transition:'transform 0.3s', flexShrink:0 }}
               onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
               onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}>
-              <img src={logoNaturels} alt="Les Naturels de la Source" style={{ height:56, width:'auto', display:'block' }}/>
+              <img src={logoNaturels} alt="Les Naturels de la Source" style={{ height:54, width:'auto', display:'block' }}/>
+              <span className="brand-wordmark" style={{ fontFamily:'"Petit Formal Script",cursive', fontSize:22,
+                lineHeight:1.1, color:'#1C4A3A', fontWeight:400, whiteSpace:'nowrap' }}>
+                Les Naturels de la Source
+              </span>
             </div>
           </button>
 

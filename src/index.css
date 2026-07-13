@@ -278,6 +278,7 @@ input, textarea, select { font-family: 'Barlow', sans-serif; font-size: 14px; }
 @media (max-width: 860px) {
   .navbar-links-desktop { display:none !important; }
   .navbar-mobile-right  { display:flex !important; }
+  .brand-wordmark       { display:none !important; }
 
   .resp-stats    { grid-template-columns:1fr 1fr !important; gap:24px !important; }
   .resp-portrait { grid-template-columns:1fr !important; gap:32px !important; }
