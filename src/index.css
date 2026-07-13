@@ -247,7 +247,7 @@ body.cursor-hover #cursor-ring { width: 42px; height: 42px; border-color: oklch(
 input, textarea, select { font-family: 'Barlow', sans-serif; font-size: 14px; }
 
 /* ─── Responsive Mobile ─────────────────────────────────────────────────── */
-.navbar-links-desktop { display:flex; align-items:center; gap:32px; }
+.navbar-links-desktop { display:flex; align-items:center; gap:24px; }
 .navbar-mobile-right  { display:none; align-items:center; gap:12px; }
 
 .hamburger { display:flex; flex-direction:column; gap:5px; background:none; border:none; padding:8px; cursor:pointer; }
@@ -275,10 +275,12 @@ input, textarea, select { font-family: 'Barlow', sans-serif; font-size: 14px; }
   transform: translateX(0);
 }
 
+/* Le wordmark cursive n'apparaît que sur les écrans larges (sinon il chevauche « Accueil ») */
+@media (max-width: 1240px) { .brand-wordmark { display:none !important; } }
+
 @media (max-width: 860px) {
   .navbar-links-desktop { display:none !important; }
   .navbar-mobile-right  { display:flex !important; }
-  .brand-wordmark       { display:none !important; }
 
   .resp-stats    { grid-template-columns:1fr 1fr !important; gap:24px !important; }
   .resp-portrait { grid-template-columns:1fr !important; gap:32px !important; }

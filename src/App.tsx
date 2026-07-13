@@ -387,7 +387,7 @@ function Navbar({ page, setPage, cartCount, onRdv, onOpenCart }: {
               onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.04)')}
               onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')}>
               <img src={logoNaturels} alt="Les Naturels de la Source" style={{ height:54, width:'auto', display:'block' }}/>
-              <span className="brand-wordmark" style={{ fontFamily:'"Petit Formal Script",cursive', fontSize:22,
+              <span className="brand-wordmark" style={{ fontFamily:'"Petit Formal Script",cursive', fontSize:18,
                 lineHeight:1.1, color:'#1C4A3A', fontWeight:400, whiteSpace:'nowrap' }}>
                 Les Naturels de la Source
               </span>
@@ -395,7 +395,7 @@ function Navbar({ page, setPage, cartCount, onRdv, onOpenCart }: {
           </button>
 
           {/* Desktop links */}
-          <div className="navbar-links-desktop" style={{ display:'flex', alignItems:'center', gap:32 }}>
+          <div className="navbar-links-desktop" style={{ display:'flex', alignItems:'center', gap:24 }}>
             {navLinks.map(([id,label]) => (
               <button key={id} onClick={() => navigate(id)}
                 style={{ background:'none', border:'none', fontFamily:'Barlow,sans-serif', fontSize:13,
