@@ -498,11 +498,11 @@ function HeroBanner({ img, tag, title, subtitle, imgPos = 'center' }: {
   return (
     <div ref={wrapRef} style={{ position:'relative', padding:'140px 32px 80px', textAlign:'center', overflow:'hidden' }}>
       <img ref={imgRef} src={img} alt="" style={{ position:'absolute', inset:0, width:'100%', height:'120%', top:'-10%', objectFit:'cover', objectPosition:imgPos }}/>
-      <div style={{ position:'absolute', inset:0, background:'rgba(30,20,10,0.62)' }}/>
+      <div style={{ position:'absolute', inset:0, background:'radial-gradient(ellipse at center, rgba(30,20,10,0.42) 0%, rgba(30,20,10,0.10) 75%)' }}/>
       <div style={{ position:'relative', zIndex:1 }}>
-        <p style={{ fontFamily:'Barlow,sans-serif', fontSize:12, letterSpacing:3, color:'var(--gold)', textTransform:'uppercase', marginBottom:12 }}>{tag}</p>
-        <h1 style={{ fontFamily:'Vollkorn,serif', fontSize:'clamp(40px,5vw,70px)', color:'var(--cream)', fontWeight:300, marginBottom:16 }}>{title}</h1>
-        <p style={{ color:'rgba(245,240,232,0.75)', fontSize:16, maxWidth:520, margin:'0 auto' }}>{subtitle}</p>
+        <p style={{ fontFamily:'Barlow,sans-serif', fontSize:12, letterSpacing:3, color:'var(--gold)', textTransform:'uppercase', marginBottom:12, textShadow:'0 1px 10px rgba(0,0,0,0.6)' }}>{tag}</p>
+        <h1 style={{ fontFamily:'Vollkorn,serif', fontSize:'clamp(40px,5vw,70px)', color:'var(--cream)', fontWeight:300, marginBottom:16, textShadow:'0 2px 18px rgba(0,0,0,0.6)' }}>{title}</h1>
+        <p style={{ color:'rgba(245,240,232,0.92)', fontSize:16, maxWidth:520, margin:'0 auto', textShadow:'0 1px 12px rgba(0,0,0,0.65)' }}>{subtitle}</p>
       </div>
     </div>
   )
@@ -616,7 +616,7 @@ function TestimonialsCarousel() {
 }
 
 // ─── Accroche animée ─────────────────────────────────────────────────────────
-const ACCROCHE = `L'Oasis en Fleurs est un lieu d'accueil thérapeutique et de ressourcement pour toute personne qui souhaite bénéficier d'un temps en pleine nature, de soins de santé au travers de la phytothérapie et de la relation d'aide, d'une nourriture saine avec des fruits et légumes cultivés sur place sans engrais chimique.`
+const ACCROCHE = `Les Naturels de la Source est un lieu d'accueil thérapeutique et de ressourcement pour toute personne qui souhaite bénéficier d'un temps en pleine nature, de soins de santé au travers de la phytothérapie et de la relation d'aide, d'une nourriture saine avec des fruits et légumes cultivés sur place sans engrais chimique.`
 
 function AccrocheSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -725,10 +725,10 @@ function PageAccueil({ setPage, onRdv }: { setPage: (p:string)=>void, onRdv: ()=
               <p data-ha="para" style={{ fontFamily:'Barlow,sans-serif', color:'oklch(0.93 0.008 78 / 0.72)', fontSize:17,
                 lineHeight:1.85, marginBottom:48, maxWidth:440, fontWeight:300, textShadow:'0 1px 12px rgba(0,0,0,0.5)' }}>
                 Agnès Gilliet exerce la phytothérapie depuis plus de 20 ans.
-                Installée en Bresse depuis 3 ans, elle y a fondé L'Oasis en Fleurs.
+                Elle a fondé Les Naturels de la Source il y a 15 ans.
               </p>
               <button data-ha="cta" onClick={() => setPage('boutique')} className="btn-primary">Découvrir la Boutique</button>
-              <button data-ha="cta" onClick={onRdv} className="btn-outline" style={{ marginLeft:14 }}>Consultation Gratuite</button>
+              <button data-ha="cta" onClick={onRdv} className="btn-outline" style={{ marginLeft:14, color:'var(--cream)', borderColor:'rgba(245,240,232,0.9)', background:'rgba(255,255,255,0.12)', backdropFilter:'blur(2px)', textShadow:'0 1px 8px rgba(0,0,0,0.5)' }}>Consultation Gratuite</button>
             </div>
           </div>
         </div>
@@ -846,8 +846,8 @@ function PageAccueil({ setPage, onRdv }: { setPage: (p:string)=>void, onRdv: ()=
           <div style={{ width:36, height:1, background:'var(--primary)', marginBottom:28, opacity:0.7 }}/>
           <p style={{ fontFamily:'Barlow,sans-serif', fontWeight:300, fontSize:16, lineHeight:1.9, color:'var(--lt-ink-muted)', marginBottom:20 }}>
             Formée en phyto-aromathérapie et diplômée en psychothérapie,
-            Agnès exerce depuis plus de 20 ans. Elle a fondé L'Oasis en Fleurs
-            il y a 3 ans, depuis son installation en Bresse, et accompagne
+            Agnès exerce depuis plus de 20 ans. Elle a fondé Les Naturels de la Source
+            il y a 15 ans, et accompagne
             ses clients avec une approche globale, alliant plantes médicinales
             et écoute thérapeutique.
           </p>
@@ -859,6 +859,8 @@ function PageAccueil({ setPage, onRdv }: { setPage: (p:string)=>void, onRdv: ()=
             {[
               'Diplômée en psychothérapie',
               'Formée en phyto-aromathérapie',
+              'Formée en équithérapie',
+              'Formée en apithérapie',
             ].map((t,i)=>(
               <div key={i} style={{ display:'flex', gap:14, alignItems:'center' }}>
                 <div style={{ width:4, height:4, borderRadius:'50%', background:'var(--primary)', flexShrink:0, opacity:0.8 }}/>
@@ -883,7 +885,7 @@ function PageAccueil({ setPage, onRdv }: { setPage: (p:string)=>void, onRdv: ()=
               { title:'Phytothérapie', sub:'Tisanes · Alcoolatures · Macérats' },
               { title:'Huiles & Hydrolats', sub:'HE · Macérats huileux · Eaux florales' },
               { title:'Baumes & Synergies', sub:'Roll-on · Baumes · Crèmes' },
-              { title:'Savonnerie', sub:'Savons cold process artisanaux' },
+              { title:'Savonnerie', sub:'Savons obtenus par saponification à froid' },
               { title:'Miellerie', sub:'Miel toutes fleurs · Cires' },
               { title:'Soins Animaux', sub:'Équins · Canins · Laines' },
             ].map((u: { title: string; sub: string }, i)=>(
@@ -1425,13 +1427,13 @@ function PageContact({ addToast, setPage }: { addToast: (m:string)=>void, setPag
         {/* Infos */}
         <div className="fade-left">
           <h2 style={{ fontFamily:'"Petit Formal Script",cursive', fontSize:44, color:'var(--lt-ink)', fontWeight:400, letterSpacing:'0.01em', marginBottom:32 }}>
-            L'Oasis en Fleurs
+            Les Naturels de la Source
           </h2>
 
           {([
             { icon:'📍', label:'Adresse', value:'320 chemin des Boulatières\n01560 Curciat-Dongalon' },
             { icon:'📞', label:'Téléphone', value:'06 64 34 86 87' },
-            { icon:'✉️', label:'Email', value:'contact@loasisenfleurs.com' },
+            { icon:'✉️', label:'Email', value:'contact@lesnaturelsdelasource.com' },
             { icon:'📘', label:'Facebook', value:'facebook.com/agnes.gilliet', link:'https://www.facebook.com/agnes.gilliet' },
             { icon:'🕐', label:'Horaires', value:'Lun–Jeu : 9h–18h\nVendredi : 9h–12h' },
           ] as Array<{ icon:string; label:string; value:string; link?:string }>).map(({ icon, label, value, link }) => (
@@ -1583,7 +1585,7 @@ function PageConsultation({ onRdv }: { onRdv: ()=>void }) {
               includes:['Anamnèse complète','Bilan énergétique','Protocole phyto sur mesure','Suivi par email 1 mois'] },
             { title:'Consultation de suivi', duration:'30 min', price:'50€',
               desc:'Suivi de séances de phyto-aromathérapie et ajustements selon vos retours.',
-              includes:['Protocole phyto sur mesure','Conseils hygiène de vie','Suivi par email'] },
+              includes:['Protocole phyto sur mesure','Conseils hygiène de vie','Suivi par email 1 mois'] },
           ].map((c,i) => (
             <div key={i} className="fade-up" style={{ transitionDelay:`${i*0.1}s`,
               border: c.highlight ? 'none' : '1px solid rgba(74,103,65,0.15)',
@@ -1681,9 +1683,9 @@ const FERME_SECTIONS: FermeSection[] = [
       'Chaque plante est récoltée à maturité, au moment où sa concentration en principes actifs est la plus forte, puis séchée à l\'air libre ou transformée sur place — en tisanes, macérâts, hydrolats et huiles essentielles.',
     ] },
   { key:'brebis', emoji:'🐑', name:'Brebis Sardes', count:'8 brebis', boutiqueCat:'Laine',
-    desc:'Laine fine utilisée dans nos soins et vendue brute ou filée. Tonte printanière, teinture aux plantes.',
+    desc:'Laine utilisée dans nos soins et vendue brute ou filée. Tonte printanière, teinture aux plantes.',
     long:[
-      'Nous élevons 8 brebis Sardes, une race rustique à la laine fine et soyeuse.',
+      'Nous élevons 8 brebis Sardes, une race rustique.',
       'Leur toison, tondue au printemps, est utilisée dans nos créations en laine et vendue brute ou filée. Nous la teignons avec les plantes du jardin.',
       'Le troupeau est veillé par Ninja, un berger de Bosnie-Herzégovine au poil soyeux, gardien attentif des animaux de la ferme.',
     ] },
@@ -2165,11 +2167,11 @@ function ModalRdv({ open, onClose, addToast }: { open:boolean, onClose:()=>void,
 function PageMentions({ setPage }: { setPage:(p:string)=>void }) {
   useScrollAnimation()
   const sections = [
-    { title:'1. Éditeur du site', content:`L'Oasis en Fleurs\nAgnès Gilliet — Phyto-aromathérapeute\n320 chemin des Boulatières, 01560 Curciat-Dongalon\nTél. : 06 64 34 86 87\nEmail : contact@loasisenfleurs.com` },
+    { title:'1. Éditeur du site', content:`L'Oasis en Fleurs\nAgnès Gilliet — Phyto-aromathérapeute\n320 chemin des Boulatières, 01560 Curciat-Dongalon\nTél. : 06 64 34 86 87\nEmail : contact@lesnaturelsdelasource.com` },
     { title:'2. Hébergement', content:`Ce site est hébergé par Netlify, Inc.\n44 Montgomery Street, Suite 300, San Francisco, CA 94104 — USA\nwww.netlify.com` },
     { title:'3. Propriété intellectuelle', content:`L'ensemble du contenu de ce site (textes, photos, descriptions, visuels) est la propriété exclusive d'Agnès Gilliet — L'Oasis en Fleurs. Toute reproduction, même partielle, est interdite sans autorisation écrite préalable.` },
     { title:'4. Conditions générales de vente', content:`Les produits sont fabriqués artisanalement par Agnès Gilliet à la ferme. Les commandes sont passées via le formulaire en ligne et font l'objet d'une confirmation sous 24 h par email.\n\nLivraison : les produits sont expédiés en Colissimo ou remis en main propre à la ferme. Les frais de port sont communiqués lors de la confirmation de commande.\n\nDroit de rétractation : conformément à la législation en vigueur, vous disposez de 14 jours à compter de la réception pour exercer votre droit de rétractation, sauf pour les produits personnalisés ou les denrées périssables.\n\nRèglement des litiges : en cas de litige, une solution amiable sera recherchée avant tout recours judiciaire.` },
-    { title:'5. Données personnelles (RGPD)', content:`Les données collectées via les formulaires du site (nom, email, téléphone, message) sont utilisées uniquement pour répondre à vos demandes, sur la base de l'intérêt légitime à traiter votre contact. Elles sont conservées 3 ans à compter de notre dernier échange, puis supprimées.\n\nLors d'une commande, votre nom, votre email et votre adresse de livraison sont transmis à nos prestataires techniques, nécessaires à l'exécution du contrat (article 6.1.b du RGPD) :\n— Stripe (paiement en ligne), société américaine certifiée PCI-DSS,\n— Resend (envoi de l'email de confirmation), société américaine.\nCes transferts hors Union Européenne sont encadrés par les clauses contractuelles types de la Commission européenne. Les données de commande sont conservées le temps nécessaire à la gestion de la commande et aux obligations comptables légales (10 ans).\n\nCe site est hébergé par Netlify, Inc. (États-Unis) — voir section 2.\n\nConformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données. Pour exercer ces droits : contact@loasisenfleurs.com. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).\n\nAucun cookie de traçage ou publicitaire n'est utilisé sur ce site. Le panier d'achat utilise le stockage local de votre navigateur, strictement nécessaire au fonctionnement du site.` },
+    { title:'5. Données personnelles (RGPD)', content:`Les données collectées via les formulaires du site (nom, email, téléphone, message) sont utilisées uniquement pour répondre à vos demandes, sur la base de l'intérêt légitime à traiter votre contact. Elles sont conservées 3 ans à compter de notre dernier échange, puis supprimées.\n\nLors d'une commande, votre nom, votre email et votre adresse de livraison sont transmis à nos prestataires techniques, nécessaires à l'exécution du contrat (article 6.1.b du RGPD) :\n— Stripe (paiement en ligne), société américaine certifiée PCI-DSS,\n— Resend (envoi de l'email de confirmation), société américaine.\nCes transferts hors Union Européenne sont encadrés par les clauses contractuelles types de la Commission européenne. Les données de commande sont conservées le temps nécessaire à la gestion de la commande et aux obligations comptables légales (10 ans).\n\nCe site est hébergé par Netlify, Inc. (États-Unis) — voir section 2.\n\nConformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données. Pour exercer ces droits : contact@lesnaturelsdelasource.com. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).\n\nAucun cookie de traçage ou publicitaire n'est utilisé sur ce site. Le panier d'achat utilise le stockage local de votre navigateur, strictement nécessaire au fonctionnement du site.` },
   ]
   return (
     <div style={{ background:'var(--lt-bg)', minHeight:'100vh' }}>
@@ -2213,7 +2215,7 @@ function Footer({ setPage }: { setPage:(p:string)=>void }) {
             </p>
             <p style={{ fontSize:13, color:'var(--gold)', marginTop:20 }}>📍 320 chemin des Boulatières, 01560 Curciat-Dongalon</p>
             <p style={{ fontSize:13, color:'rgba(245,240,232,0.5)', marginTop:4 }}>📞 06 64 34 86 87</p>
-            <p style={{ fontSize:13, color:'rgba(245,240,232,0.5)', marginTop:4 }}>✉️ contact@loasisenfleurs.com</p>
+            <p style={{ fontSize:13, color:'rgba(245,240,232,0.5)', marginTop:4 }}>✉️ contact@lesnaturelsdelasource.com</p>
           </div>
           {[
             { title:'Navigation', links:[['accueil','Accueil'],['boutique','Boutique & Soins'],['ferme','La Ferme'],['stages','Les Stages'],['consultation','Consultation']] },
@@ -2626,7 +2628,7 @@ export default function App() {
                 </p>
                 <div style={{ background:'rgba(28,74,58,0.06)', borderRadius:12, padding:'16px 18px', marginBottom:22 }}>
                   <a href="tel:+33664348687" style={{ display:'block', fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:600, color:'var(--forest, #1C4A3A)', textDecoration:'none', marginBottom:8 }}>📞 06 64 34 86 87</a>
-                  <a href="mailto:contact@loasisenfleurs.com" style={{ display:'block', fontFamily:'Barlow,sans-serif', fontSize:15, color:'var(--forest, #1C4A3A)', textDecoration:'none' }}>✉️ contact@loasisenfleurs.com</a>
+                  <a href="mailto:contact@lesnaturelsdelasource.com" style={{ display:'block', fontFamily:'Barlow,sans-serif', fontSize:15, color:'var(--forest, #1C4A3A)', textDecoration:'none' }}>✉️ contact@lesnaturelsdelasource.com</a>
                 </div>
                 <button onClick={dismissConstruction} className="btn-primary" style={{ width:'100%' }}>
                   Continuer la visite
@@ -2659,7 +2661,7 @@ export default function App() {
                 <p style={{ fontFamily:'Barlow,sans-serif', fontSize:15.5, lineHeight:1.7, color:'var(--brown, #4E4636)', marginBottom:24 }}>
                   Le site est encore en construction et <strong>votre avis compte énormément</strong>. Une suggestion, un détail à améliorer, quelque chose qui manque&nbsp;? Dites-le-nous, ça nous aide à faire mieux.
                 </p>
-                <a href="mailto:contact@loasisenfleurs.com?subject=Mon%20avis%20sur%20le%20site&body=Bonjour%20Agn%C3%A8s%2C%0A%0AVoici%20mes%20suggestions%20pour%20le%20site%20%3A%0A%0A"
+                <a href="mailto:contact@lesnaturelsdelasource.com?subject=Mon%20avis%20sur%20le%20site&body=Bonjour%20Agn%C3%A8s%2C%0A%0AVoici%20mes%20suggestions%20pour%20le%20site%20%3A%0A%0A"
                   className="btn-primary" style={{ display:'block', width:'100%', textDecoration:'none', boxSizing:'border-box', marginBottom:12 }}
                   onClick={() => setShowThanks(false)}>
                   Partager une suggestion
