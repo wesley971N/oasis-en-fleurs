@@ -47,9 +47,9 @@ export const PRODUCTS: Product[] = [
   {...P(22,'Macérât de bourgeons de ronce','Phytembryothérapie',24,'Flacon 30ml','🌿','Régénère et oxygène les tissus défectueux pulmonaires. Contribue à l\'oxygénation des tissus articulaires. Léger effet phyto-œstrogénique.'), ingredients:BOURGEON_INGREDIENTS},
   {...P(23,'Macérât de bourgeons de vigne','Phytembryothérapie',24,'Flacon 30ml','🍇','Propriétés circulatoires, lutte contre les déformations articulaires.'), ingredients:BOURGEON_INGREDIENTS},
   {...P(24,'Macérât de jeunes pousses d\'olivier','Phytembryothérapie',24,'Flacon 30ml','🫒','Permet de diminuer le taux de cholestérol et de triglycérides. Fait baisser la glycémie.'), ingredients:BOURGEON_INGREDIENTS},
-  {...P(25,'Synergie circulatoire','Phytembryothérapie',24,'Flacon 30ml','❤️','À visée circulatoire veineuse et lymphatique.','Synergie'), ingredients:['Macérat de bourgeons de marronnier d\'Inde','Macérat de bourgeons de châtaignier','Macérat de bourgeons de chêne']},
-  {...P(26,'Synergie Immun\'Air','Phytembryothérapie',24,'Flacon 30ml','🛡️','Antivirale : puissante action anti-infectieuse et immunostimulante.','Synergie'), ingredients:['HE de niaouli','HE d\'origan compact','HE de cannelle de Ceylan','HE de tea tree (Melaleuca alternifolia)']},
-  {...P(27,'Synergie\'Air','Phytembryothérapie',24,'Flacon 30ml','🌬️','À visée respiratoire : stimulant, draineur et régénérant pulmonaire.','Synergie'), ingredients:['Macérat de bourgeons de noisetier','Macérat de bourgeons de ronce','Macérat de bourgeons de sapin pectiné','Macérat de bourgeons de pin sylvestre']},
+  {...P(25,'Synergie circulatoire','Synergies',24,'Flacon 30ml','❤️','À visée circulatoire veineuse et lymphatique.','Synergie'), ingredients:['Macérat de bourgeons de marronnier d\'Inde','Macérat de bourgeons de châtaignier','Macérat de bourgeons de chêne']},
+  {...P(26,'Synergie Immun\'Air','Synergies',24,'Flacon 30ml','🛡️','Antivirale : puissante action anti-infectieuse et immunostimulante.','Synergie'), ingredients:['HE de niaouli','HE d\'origan compact','HE de cannelle de Ceylan','HE de tea tree (Melaleuca alternifolia)']},
+  {...P(27,'Synergie\'Air','Synergies',24,'Flacon 30ml','🌬️','À visée respiratoire : stimulant, draineur et régénérant pulmonaire.','Synergie'), ingredients:['Macérat de bourgeons de noisetier','Macérat de bourgeons de ronce','Macérat de bourgeons de sapin pectiné','Macérat de bourgeons de pin sylvestre']},
 
   // ── Huiles Essentielles ───────────────────────────────────────────────────
   {...P(28,'HE Citron','Huiles Essentielles',6.8,'15ml','🍋','Huile essentielle de citron 100% pure et naturelle biologique.'), ingredients:['Huile essentielle 100% de citron'], usage:'Externe et voie orale'},
@@ -108,14 +108,14 @@ export const PRODUCTS: Product[] = [
   // ── Tisanes & Plantes ─────────────────────────────────────────────────────
   P(76,'Achillée millefeuille','Tisanes & Plantes',5,'25g','🌿','Stimule l\'appétit, soulage les troubles digestifs, les douleurs menstruelles et les spasmes abdominaux. Cicatrisant en usage externe.'),
   P(77,'Alchémille','Tisanes & Plantes',5,'25g','🌿','Propriétés dites lutéiniques, proche de la progestérone. Astringente, antihémorragique, cicatrisante, anti-oxydante.'),
-  P(79,'Synergie Articulations','Tisanes & Plantes',6,'25g','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
+  P(79,'Synergie Articulations','Synergies',6,'25g','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
   P(80,'Bourrache','Tisanes & Plantes',5,'25g','🌿','Puissant dépuratif qui nettoie l\'organisme en profondeur en le débarrassant de ses toxines.'),
   P(81,'Camomille allemande','Tisanes & Plantes',5,'25g','🌼','Douce pour le foie et les intestins.'),
   P(82,'Camomille romaine','Tisanes & Plantes',6.5,'25g','🌼','Tonique, stimulante, stomachique, antispasmodique, analgésique et fébrifuge. En externe : antiseptique et anti-inflammatoire.'),
-  {...P(83,'Synergie Détente','Tisanes & Plantes',6,'25g','💫','Mélange de plantes à visée relaxante.','Synergie'), ingredients:['Aubépine','Lavande','Rose de Provins','Tilleul']},
-  {...P(84,'Synergie Détente','Tisanes & Plantes',11,'50g','💫','Synergie de plantes pour favoriser la détente et éliminer le stress.','Synergie'), ingredients:['Aubépine','Lavande','Tilleul','et autres plantes']},
+  {...P(83,'Synergie Détente','Synergies',6,'25g','💫','Mélange de plantes à visée relaxante.','Synergie'), ingredients:['Aubépine','Lavande','Rose de Provins','Tilleul']},
+  {...P(84,'Synergie Détente','Synergies',11,'50g','💫','Synergie de plantes pour favoriser la détente et éliminer le stress.','Synergie'), ingredients:['Aubépine','Lavande','Tilleul','et autres plantes']},
   P(85,'Épilobe à petites fleurs','Tisanes & Plantes',5.9,'25g','🌿','Très efficace pour réguler les problèmes de prostate. Cultivée sur la propriété, sans pesticides. Récolte manuelle, séchage naturel.','Local'),
-  {...P(86,'Synergie Équilibre hormonal','Tisanes & Plantes',6,'25g','🌸','Équilibrant sur le système hormonal.','Synergie'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
+  {...P(86,'Synergie Équilibre hormonal','Synergies',6,'25g','🌸','Équilibrant sur le système hormonal.','Synergie'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
 
   // ── Baumes ────────────────────────────────────────────────────────────────
   {...P(87,'Baume à l\'arnica','Baumes',9.8,'30g','🏺','Apaise les coups, les bosses et les courbatures.'), ingredients:['Macérat oléique d\'arnica biologique','Cire d\'abeille','HE de cyprès biologique','HE de genévrier biologique']},
