@@ -108,7 +108,9 @@ export const PRODUCTS: Product[] = [
   // ── Tisanes & Plantes ─────────────────────────────────────────────────────
   P(76,'Achillée millefeuille','Tisanes & Plantes',5,'25g','🌿','Stimule l\'appétit, soulage les troubles digestifs, les douleurs menstruelles et les spasmes abdominaux. Cicatrisant en usage externe.'),
   P(77,'Alchémille','Tisanes & Plantes',5,'25g','🌿','Propriétés dites lutéiniques, proche de la progestérone. Astringente, antihémorragique, cicatrisante, anti-oxydante.'),
-  P(79,'Synergie Articulations','Synergies',6,'25g','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
+  P(79,'Fluidité articulation','Synergies',19.6,'50ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
+  P(137,'Fluidité articulation','Synergies',48,'200ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
+  P(137,'Fluidité articulation','Synergies',48,'200ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
   P(80,'Bourrache','Tisanes & Plantes',5,'25g','🌿','Puissant dépuratif qui nettoie l\'organisme en profondeur en le débarrassant de ses toxines.'),
   P(81,'Camomille allemande','Tisanes & Plantes',5,'25g','🌼','Douce pour le foie et les intestins.'),
   P(82,'Camomille romaine','Tisanes & Plantes',6.5,'25g','🌼','Tonique, stimulante, stomachique, antispasmodique, analgésique et fébrifuge. En externe : antiseptique et anti-inflammatoire.'),
@@ -133,12 +135,9 @@ export const PRODUCTS: Product[] = [
   {...P(99,'Baume verrue sarcoïde','Baumes',16,'30g','🏺','Très concentré en huiles essentielles. Déconseillé aux femmes enceintes et aux enfants de moins de 7 ans.'), usage:'À appliquer chaque jour sur la verrue jusqu\'à disparition.'},
 
   // ── Savons — Mille Bulles, la savonnerie artisanale des Naturels de la Source ──
-  {...P(100,'Savon au calendula et lavande vraie','Savons',4,'100g','🧼','Savon doux au calendula et à la lavande vraie. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Beurre de coco','Beurre de karité','Huile d\'olive','Macérat de calendula','HE de lavande vraie']},
+  {...P(100,'Savon au calendula et lavande vraie','Savons',5,'100g','🧼','Savon doux au calendula et à la lavande vraie. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Beurre de coco','Beurre de karité','Huile d\'olive','Macérat de calendula','HE de lavande vraie']},
   {...P(101,'Savon citron et romarin','Savons',7,'150g','🧼','Purifiant et rafraîchissant. Mille Bulles, la savonnerie artisanale des Naturels de la Source.'), ingredients:['Beurre de coco bio','Beurre de karité bio','Huile d\'olive bio','Zeste de citron','Feuilles de romarin officinal']},
-  {...P(102,'Savon à l\'écorce d\'orange','Savons',4,'100g','🧼','Très doux pour les peaux sensibles du visage et du corps, peaux acnéiques ou à tendance eczéma. Mille Bulles, la savonnerie artisanale des Naturels de la Source.'), ingredients:['100% huile d\'olive biologique','Zeste d\'orange']},
   {...P(103,'Savon à l\'huile d\'argan et Ylang ylang','Savons',5,'100g','🧼','Actif sur les peaux grasses et acnéiques, anti-inflammatoire et protecteur — savon traitant, très doux. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Huile d\'argan','HE d\'Ylang ylang']},
-  {...P(104,'Savon à l\'huile de carotte','Savons',5,'100g','🧼','Savon bonne mine à la carotte. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Huile de carotte','HE de carotte']},
-  {...P(105,'Savon à l\'huile de coco','Savons',5,'100g','🧼','Savon doux à l\'huile de coco. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Huile de coco']},
   {...P(106,'Savon à l\'huile de jojoba et Ylang ylang','Savons',5,'100g','🧼','Savon nourrissant au jojoba et à l\'Ylang ylang. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Huile de jojoba','Beurre de karité','Beurre de coco','HE d\'Ylang ylang']},
   {...P(107,'Savon à l\'huile de millepertuis','Savons',5,'100g','🧼','Savon apaisant à l\'huile de millepertuis. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Huile d\'olive','Huile de millepertuis']},
   {...P(108,'Savon à l\'huile de rose musquée','Savons',5,'100g','🧼','Savon régénérant à la rose musquée. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Beurre de coco','Huile d\'olive biologique','Huile de rosier muscat','Feuilles de rose de Provins']},

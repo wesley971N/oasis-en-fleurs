@@ -97,7 +97,15 @@ const PELOTE_COLORS = [
 
 // Baume calendula : un seul produit en boutique avec un choix de grammage.
 // Chaque grammage reste un id réel distinct (prix fiable côté paiement) ; du plus petit au plus grand.
-const BAUME_CALENDULA_IDS = [92, 136, 94]
+// Produits déclinés en plusieurs formats : une seule fiche en boutique, le format se choisit
+// dans le détail. Chaque format garde un id distinct (prix fiable côté paiement).
+// Le 1er id de chaque groupe est celui affiché dans la grille.
+const VARIANT_GROUPS: number[][] = [
+  [92, 136, 94], // Baume calendula : 30 g · 60 g · 100 g
+  [79, 137],     // Fluidité articulation : 50 ml · 200 ml
+]
+const variantGroupFor = (id: number) => VARIANT_GROUPS.find(g => g.includes(id))
+const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))
 
 const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes', 'Savons', 'Miellerie', 'Création laines']
 
@@ -916,12 +924,12 @@ function PageAccueil({ setPage, onRdv }: { setPage: (p:string)=>void, onRdv: ()=
       {TESTIMONIALS.length > 0 && <TestimonialsCarousel/>}
 
       {/* ── CTA strip ─────────────────────────────────────────────────────── */}
-      <section style={{ background:'var(--forest-dark)', padding:'96px 32px', textAlign:'center' }}>
+      <section style={{ background:'oklch(0.50 0.075 150)', padding:'96px 32px', textAlign:'center' }}>
         <div className="fade-up">
-          <h2 style={{ fontFamily:'Vollkorn,serif', fontSize:'clamp(32px,4vw,58px)', color:'var(--ink)', fontWeight:400, letterSpacing:'-0.02em', marginBottom:20 }}>
-            Consultation découverte<br/><em style={{ color:'var(--primary)', fontWeight:400 }}>offerte — 15 minutes</em>
+          <h2 style={{ fontFamily:'Vollkorn,serif', fontSize:'clamp(32px,4vw,58px)', color:'var(--cream)', fontWeight:400, letterSpacing:'-0.02em', marginBottom:20 }}>
+            Consultation découverte<br/><em style={{ color:'oklch(0.90 0.085 85)', fontWeight:400 }}>offerte — 15 minutes</em>
           </h2>
-          <p style={{ fontFamily:'Barlow,sans-serif', color:'var(--ink-muted)', fontSize:16, fontWeight:300, maxWidth:580, margin:'0 auto 48px', lineHeight:1.7 }}>
+          <p style={{ fontFamily:'Barlow,sans-serif', color:'rgba(245,240,232,0.88)', fontSize:16, fontWeight:300, maxWidth:580, margin:'0 auto 48px', lineHeight:1.7 }}>
             Partagez vos besoins avec Agnès. Sans engagement, en visio ou en présentiel à la ferme.
           </p>
           <button onClick={onRdv} className="btn-primary" style={{ fontSize:13, letterSpacing:'2px' }}>
@@ -976,7 +984,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
   const [drawerQty, setDrawerQty] = useState(1)
   const [peloteColor, setPeloteColor] = useState(0)
   const [peloteAuto, setPeloteAuto] = useState(true)
-  const [baumeVariant, setBaumeVariant] = useState(0)
+  const [variantIdx, setVariantIdx] = useState(0)
   const [lightboxImg, setLightboxImg] = useState<string|null>(null)
   const [stock, setStock] = useState<Record<number, number>>({})
 
@@ -1020,7 +1028,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
 
   const filtered = (activeCategory === 'Tout' ? PRODUCTS : PRODUCTS.filter(p => p.category === activeCategory))
     // Baume calendula : on ne montre que la variante représentative (les autres grammages se choisissent dans le détail)
-    .filter(p => !BAUME_CALENDULA_IDS.slice(1).includes(p.id))
+    .filter(p => !HIDDEN_VARIANT_IDS.includes(p.id))
     // Produits avec photo en premier, sans photo ensuite (ordre d'origine conservé dans chaque groupe)
     .map((p, i) => ({ p, i }))
     .sort((a, b) => (PRODUCT_IMAGES[b.p.id] ? 1 : 0) - (PRODUCT_IMAGES[a.p.id] ? 1 : 0) || a.i - b.i)
@@ -1035,7 +1043,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
     addToast(`✓ ${product.name} ajouté au panier`)
   }, [setCart, addToast])
 
-  const openDrawer = (p: Product) => { setDrawerProduct(p); setDrawerQty(1); setPeloteColor(0); setPeloteAuto(true); setBaumeVariant(0); setDrawerOpen(true) }
+  const openDrawer = (p: Product) => { setDrawerProduct(p); setDrawerQty(1); setPeloteColor(0); setPeloteAuto(true); setVariantIdx(0); setDrawerOpen(true) }
   const isPelote = !!drawerProduct && drawerProduct.id === PELOTE_ID
   const drawerImg = drawerProduct ? (isPelote ? PELOTE_COLORS[peloteColor].img : PRODUCT_IMAGES[drawerProduct.id]) : undefined
 
@@ -1046,11 +1054,11 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
     return () => clearInterval(t)
   }, [drawerOpen, isPelote, peloteAuto])
 
-  // Baume calendula : variantes de grammage. Le produit "à acheter" suit le grammage sélectionné
+  // Produits à formats multiples : le produit "à acheter" suit le format sélectionné
   // (prix/unité + ajout au panier), tandis que le reste du détail (nom, description, ingrédients) reste unifié.
-  const isBaumeCalendula = !!drawerProduct && BAUME_CALENDULA_IDS.includes(drawerProduct.id)
-  const baumeVariants = BAUME_CALENDULA_IDS.map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean) as Product[]
-  const buyProduct = ((isBaumeCalendula ? baumeVariants[baumeVariant] : drawerProduct) || drawerProduct) as Product
+  const variantGroup = drawerProduct ? variantGroupFor(drawerProduct.id) : undefined
+  const productVariants = (variantGroup ?? []).map(id => PRODUCTS.find(p => p.id === id)).filter(Boolean) as Product[]
+  const buyProduct = ((productVariants.length ? productVariants[variantIdx] : drawerProduct) || drawerProduct) as Product
 
   const cartTotal = cart.reduce((s,i) => s+i.price*i.qty, 0)
   const cartCount = cart.reduce((s,i) => s+i.qty, 0)
@@ -1287,16 +1295,16 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
               <p style={{ fontFamily:'Vollkorn,serif', fontSize:28, fontWeight:300, color:'var(--moss)', marginBottom:24 }}>
                 {buyProduct.price}€ <span style={{ fontSize:14, color:'var(--brown-light)' }}>{buyProduct.unit}</span>
               </p>
-              {isBaumeCalendula && (
+              {productVariants.length > 1 && (
                 <div style={{ marginBottom:26 }}>
                   <p style={{ fontFamily:'Barlow,sans-serif', fontWeight:600, fontSize:12, letterSpacing:1.5, textTransform:'uppercase', color:'var(--brown)', marginBottom:12 }}>
-                    Grammage
+                    {productVariants.some(v => /ml/i.test(v.unit)) ? 'Contenance' : 'Grammage'}
                   </p>
                   <div style={{ display:'flex', flexWrap:'wrap', gap:10 }}>
-                    {baumeVariants.map((v, i) => {
-                      const active = i === baumeVariant
+                    {productVariants.map((v, i) => {
+                      const active = i === variantIdx
                       return (
-                        <button key={v.id} onClick={() => setBaumeVariant(i)}
+                        <button key={v.id} onClick={() => setVariantIdx(i)}
                           style={{ padding:'10px 18px', cursor:'pointer', fontFamily:'Barlow,sans-serif', fontSize:14, fontWeight:600,
                             color: active ? 'white' : 'var(--brown)', background: active ? 'var(--moss)' : 'transparent',
                             border: `1.5px solid ${active ? 'var(--moss)' : 'var(--brown-light)'}`, borderRadius:8, transition:'all 0.15s' }}>
