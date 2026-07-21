@@ -1086,6 +1086,13 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
           'Synergies':'✨','Tisanes & Plantes':'🌿','Baumes':'🏺','Savons':'🧼','Miellerie':'🍯'
         }
         const emoji = emojis[activeCategory] || '🌿'
+        // « Mille Bulles » et « Naturels de la Source » en écriture manuscrite (équivalent Monotype Corsiva)
+        const scriptWords = (text: string): React.ReactNode =>
+          text.split(/(Mille Bulles|Naturels de la Source)/g).map((part, i) =>
+            part === 'Mille Bulles' || part === 'Naturels de la Source'
+              ? <span key={i} style={{ fontFamily:'"Petit Formal Script",cursive', fontStyle:'normal' }}>{part}</span>
+              : part
+          )
         return (
           <div style={{ background:'var(--surface-raised)', borderTop:`1px solid oklch(0.42 0.085 150 / 0.12)`, borderBottom:`1px solid oklch(0.42 0.085 150 / 0.12)` }}>
             <div style={{ maxWidth:860, margin:'0 auto', padding:'56px 32px' }}>
@@ -1094,7 +1101,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 <span>{activeCategory}</span>
               </p>
               <p style={{ fontFamily:'Vollkorn,serif', fontSize:'clamp(22px,2.6vw,30px)', fontStyle:'italic', fontWeight:400, color:'var(--ink)', lineHeight:1.7, marginBottom: rest ? 28 : 0 }}>
-                {accroche}
+                {scriptWords(accroche)}
               </p>
               {rest && (
                 <>
@@ -1111,7 +1118,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                     transitionProperty:'max-height, opacity' }}>
                     <div style={{ width:36, height:2, background:'var(--primary)', margin:'24px 0', opacity:0.7 }}/>
                     <p style={{ fontFamily:'Barlow,sans-serif', fontWeight:300, fontSize:18, lineHeight:1.95, color:'var(--lt-ink-muted)' }}>
-                      {rest}
+                      {scriptWords(rest)}
                     </p>
                   </div>
                 </>
