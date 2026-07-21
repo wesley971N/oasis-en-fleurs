@@ -25,6 +25,7 @@ src/assets/miellerie/
 src/assets/animaux/
 src/assets/produit/
 src/assets/atelier/
+src/assets/laine/
 
 # Vidéos sources (non utilisées par le site, et > 100 Mo = refusées par GitHub)
 *.MOV
