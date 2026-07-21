@@ -107,6 +107,9 @@ const VARIANT_GROUPS: number[][] = [
 const variantGroupFor = (id: number) => VARIANT_GROUPS.find(g => g.includes(id))
 const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))
 
+// Lien d'avis Google de la fiche d'établissement (ouvre directement le formulaire d'avis)
+const GOOGLE_REVIEW_URL = 'https://g.page/r/CfWaKtYsN4KdEBM/review'
+
 const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes', 'Savons', 'Miellerie', 'Création laines']
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
@@ -617,6 +620,17 @@ function TestimonialsCarousel() {
               transition:'all 0.2s' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background='var(--moss)'; (e.currentTarget as HTMLElement).style.color='white' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background='none'; (e.currentTarget as HTMLElement).style.color='var(--moss)' }}>›</button>
+        </div>
+
+        {/* Inviter à laisser un avis Google */}
+        <div style={{ textAlign:'center', marginTop:44 }}>
+          <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer"
+            className="btn-primary" style={{ textDecoration:'none' }}>
+            ★ Laisser un avis Google
+          </a>
+          <p style={{ fontFamily:'Barlow,sans-serif', fontSize:13, color:'var(--lt-ink-muted)', marginTop:14 }}>
+            Votre retour aide beaucoup Agnès — merci !
+          </p>
         </div>
       </div>
     </section>
@@ -2012,6 +2026,17 @@ function PageStages({ addToast, setPage }: { addToast: (m:string)=>void, setPage
             « à la carte » sont aussi possibles sur 3 jours maximum — contactez Agnès pour construire le programme
             qui vous ressemble.
           </p>
+
+          {/* Inviter les stagiaires à laisser un avis Google */}
+          <div style={{ textAlign:'center', marginTop:40 }}>
+            <p style={{ fontFamily:'Barlow,sans-serif', fontSize:14, color:'var(--brown-light)', marginBottom:16 }}>
+              Vous avez participé à un stage ?
+            </p>
+            <a href={GOOGLE_REVIEW_URL} target="_blank" rel="noopener noreferrer"
+              className="btn-primary" style={{ textDecoration:'none' }}>
+              ★ Laisser un avis Google
+            </a>
+          </div>
         </div>
       </section>
 
