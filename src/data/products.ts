@@ -165,17 +165,17 @@ export const PRODUCTS: Product[] = [
   // ── Laine ─────────────────────────────────────────────────────────────────
   // Prix réels repris de l'ancien site (loasisenfleurs.com). Créations = pièces uniques tricotées main.
   // Pelotes : 8 coloris au même prix, regroupés sur une fiche (photo = coloris Naturel).
-  {...P(113,'Pelote 25 g — Mohair & Soie','Laine',10.6,'25 g · 125 m','🧶','Fil à tricoter artisanal 77% mohair (Super Kids) et 23% soie — pelote de 25 g / 125 m. Coloris disponibles : Naturel, Rubis, Bordeaux, Potiron, Lagon, Émeraude.'), ingredients:['77% mohair (Super Kids)','23% soie']},
+  {...P(113,'Pelote 25 g — Mohair & Soie','Création laines',10.6,'25 g · 125 m','🧶','Fil à tricoter artisanal 77% mohair (Super Kids) et 23% soie — pelote de 25 g / 125 m. Coloris disponibles : Naturel, Rubis, Bordeaux, Potiron, Lagon, Émeraude.'), ingredients:['77% mohair (Super Kids)','23% soie']},
   // Créations avec photo :
-  P(114,'Étole mohair et soie','Laine',140,'Pièce unique','🧶','Étole tricotée main en double fil de mohair et soie, bord festonné au crochet. Légère, chaude et enveloppante.','Fait main'),
-  P(115,'Écharpe alpaga huacaya — Naturel','Laine',80,'Pièce unique','🧶','Écharpe tricotée main en alpaga huacaya, coloris naturel. Douce, chaude et légère.','Fait main'),
-  P(116,'Écharpe mohair et soie — Rouge & Fushia','Laine',110,'Pièce unique','🧶','Écharpe tricotée main en double fil de mohair et soie, tons rouge rubis et rose fushia. Chaude et légère.','Fait main'),
-  P(118,'Pull sans manche mohair et soie — Rubis','Laine',110,'Pièce unique','🧶','Pull sans manche tricoté main en mohair et soie, coloris rubis. Ouvert sur les côtés, se noue par cordelettes.','Fait main'),
-  P(119,'Pull mohair et soie','Laine',170,'Taille 36/38','🧶','Pull manches longues tricoté main en mohair et soie. Chaud, léger et aérien.','Fait main'),
-  P(120,'Pull tunique mohair et soie','Laine',118,'Taille 36 à 40','🧶','Pull tunique long tricoté main en mohair et soie, à porter en robe.','Fait main'),
+  P(114,'Étole mohair et soie','Création laines',140,'Pièce unique','🧶','Étole tricotée main en double fil de mohair et soie, bord festonné au crochet. Légère, chaude et enveloppante.','Fait main'),
+  P(115,'Écharpe alpaga huacaya — Naturel','Création laines',80,'Pièce unique','🧶','Écharpe tricotée main en alpaga huacaya, coloris naturel. Douce, chaude et légère.','Fait main'),
+  P(116,'Écharpe mohair et soie — Rouge & Fushia','Création laines',110,'Pièce unique','🧶','Écharpe tricotée main en double fil de mohair et soie, tons rouge rubis et rose fushia. Chaude et légère.','Fait main'),
+  P(118,'Pull sans manche mohair et soie — Rubis','Création laines',110,'Pièce unique','🧶','Pull sans manche tricoté main en mohair et soie, coloris rubis. Ouvert sur les côtés, se noue par cordelettes.','Fait main'),
+  P(119,'Pull mohair et soie','Création laines',170,'Taille 36/38','🧶','Pull manches longues tricoté main en mohair et soie. Chaud, léger et aérien.','Fait main'),
+  P(120,'Pull tunique mohair et soie','Création laines',118,'Taille 36 à 40','🧶','Pull tunique long tricoté main en mohair et soie, à porter en robe.','Fait main'),
   // Pièces du catalogue sans photo pour l'instant (emoji en attendant) :
-  P(121,'Écharpe à pointe poitrine — Naturel','Laine',110,'Pièce unique','🧶','Écharpe longue en Super Kids mohair et soie, avec pointe sur la poitrine. Coloris naturel.','Fait main'),
-  P(122,'Écharpe mohair, soie & mérinos — Rose poudrée','Laine',118,'Pièce unique','🧶','Écharpe à plastron, mélange mohair kids, soie et mérinos. Coloris rose poudrée.','Fait main'),
-  P(123,'Écharpe tissée main','Laine',139,'2 m × 40 cm','🧶','Écharpe en Super Kids mohair et soie, tissée main. Tons prune, potiron et anis.','Fait main'),
-  P(124,'Pull alpaga huacaya — Naturel','Laine',240,'Taille 36 à 40','🧶','Pull 100% alpaga huacaya, filé et tricoté main. Coloris naturel.','Fait main'),
+  P(121,'Écharpe à pointe poitrine — Naturel','Création laines',110,'Pièce unique','🧶','Écharpe longue en Super Kids mohair et soie, avec pointe sur la poitrine. Coloris naturel.','Fait main'),
+  P(122,'Écharpe mohair, soie & mérinos — Rose poudrée','Création laines',118,'Pièce unique','🧶','Écharpe à plastron, mélange mohair kids, soie et mérinos. Coloris rose poudrée.','Fait main'),
+  P(123,'Écharpe tissée main','Création laines',139,'2 m × 40 cm','🧶','Écharpe en Super Kids mohair et soie, tissée main. Tons prune, potiron et anis.','Fait main'),
+  P(124,'Pull alpaga huacaya — Naturel','Création laines',240,'Taille 36 à 40','🧶','Pull 100% alpaga huacaya, filé et tricoté main. Coloris naturel.','Fait main'),
 ]
