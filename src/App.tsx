@@ -103,6 +103,7 @@ const PELOTE_COLORS = [
 const VARIANT_GROUPS: number[][] = [
   [92, 136, 94], // Baume calendula : 30 g · 60 g · 100 g
   [79, 137],     // Fluidité articulation : 50 ml · 200 ml
+  [139, 138],    // AllergySyn : 30 ml · 50 ml
 ]
 const variantGroupFor = (id: number) => VARIANT_GROUPS.find(g => g.includes(id))
 const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))

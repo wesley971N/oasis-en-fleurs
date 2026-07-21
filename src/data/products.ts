@@ -105,11 +105,28 @@ export const PRODUCTS: Product[] = [
   {...P(74,'Synergie hydrolat équilibrante','Synergies',14,'Flacon 500ml','💧','Apaise, détend, équilibre le système nerveux et prépare au sommeil.','Synergie'), ingredients:['Hydrolat de lavande vraie','Hydrolat de grande camomille','Hydrolat de mélisse officinale','Hydrolat de géranium rosat']},
   {...P(75,'Synergie HE Verrue & Sarcoïde','Synergies',16,'Flacon 15ml','💧','Traitement des verrues et sarcoïdes. Déconseillé aux enfants de moins de 7 ans.','Synergie'), usage:'À appliquer directement sur la verrue, 2 à 3 fois par jour jusqu\'à disparition.'},
 
+  // ── Synergies ajoutées d'après la liste complète d'Agnès (prix et contenances confirmés).
+  // Descriptions volontairement neutres : à enrichir par Agnès — aucune allégation santé inventée.
+  P(139,'AllergySyn','Synergies',24,'30ml','💧','Synergie en flacon verre compte-gouttes. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(138,'AllergySyn','Synergies',32,'50ml','💧','Synergie en flacon verre compte-gouttes. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(140,'Complexe AllergImm','Synergies',24,'Flacon','💧','Complexe préparé à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(141,'DouxSomm\'','Synergies',24,'50ml','🌙','Synergie en flacon verre. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(142,'Drainer','Synergies',24,'50ml','💧','Synergie en flacon verre ambré. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(143,'Huile Jambes légères','Synergies',18,'50ml','🌿','Huile de massage pour les jambes. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(144,'Huile stimulante Lymphe','Synergies',18,'Flacon','💧','Huile de massage. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(145,'Huile stimulante Surrénales','Synergies',18,'Flacon','💧','Huile de massage. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(146,'Lotion Anti-chute cheveux','Synergies',20.9,'50ml','🌿','Lotion à appliquer sur le cuir chevelu. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(147,'Sérum anti-âge','Synergies',28,'50ml','✨','Sérum visage en flacon verre ambré. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(148,'Stimulant Immun','Synergies',28,'Flacon','🛡️','Synergie préparée à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(149,'Synergie « Fleurs »','Synergies',24,'Flacon','🌸','Synergie préparée à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(150,'Synergie Fleurs 2','Synergies',24,'Flacon','🌸','Synergie préparée à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(151,'Synergie Foie n°2','Synergies',19.6,'Flacon','💧','Synergie préparée à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(152,'Synergie Jolie peau','Synergies',24,'Flacon','🌸','Synergie préparée à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+
   // ── Tisanes & Plantes ─────────────────────────────────────────────────────
   P(76,'Achillée millefeuille','Tisanes & Plantes',5,'25g','🌿','Stimule l\'appétit, soulage les troubles digestifs, les douleurs menstruelles et les spasmes abdominaux. Cicatrisant en usage externe.'),
   P(77,'Alchémille','Tisanes & Plantes',5,'25g','🌿','Propriétés dites lutéiniques, proche de la progestérone. Astringente, antihémorragique, cicatrisante, anti-oxydante.'),
   P(79,'Fluidité articulation','Synergies',19.6,'50ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
-  P(137,'Fluidité articulation','Synergies',48,'200ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
   P(137,'Fluidité articulation','Synergies',48,'200ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
   P(80,'Bourrache','Tisanes & Plantes',5,'25g','🌿','Puissant dépuratif qui nettoie l\'organisme en profondeur en le débarrassant de ses toxines.'),
   P(81,'Camomille allemande','Tisanes & Plantes',5,'25g','🌼','Douce pour le foie et les intestins.'),
