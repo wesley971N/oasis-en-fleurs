@@ -2207,7 +2207,7 @@ function Footer({ setPage }: { setPage:(p:string)=>void }) {
             <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:20 }}>
               <LeafIcon size={24}/>
               <span style={{ fontFamily:'"Petit Formal Script",cursive', fontSize:28, color:'var(--cream)', fontWeight:400 }}>
-                L'Oasis en Fleurs
+                Les Naturels de la Source
               </span>
             </div>
             <p style={{ fontSize:14, color:'rgba(245,240,232,0.6)', lineHeight:1.8, maxWidth:300 }}>
@@ -2241,7 +2241,7 @@ function Footer({ setPage }: { setPage:(p:string)=>void }) {
         <div style={{ borderTop:'1px solid rgba(245,240,232,0.1)', paddingTop:28, display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:12 }}>
           <div style={{ display:'flex', gap:20, alignItems:'center', flexWrap:'wrap' }}>
             <p style={{ fontSize:12, color:'rgba(245,240,232,0.4)', margin:0 }}>
-              © 2026 L'Oasis en Fleurs — Agnès Gilliet. Tous droits réservés.
+              © 2026 Les Naturels de la Source — Agnès Gilliet. Tous droits réservés.
             </p>
             <button onClick={()=>setPage('mentions')}
               style={{ background:'none', border:'none', fontSize:12, color:'rgba(245,240,232,0.4)', textDecoration:'underline', fontFamily:'Barlow,sans-serif', padding:0, cursor:'pointer' }}>
