@@ -10,7 +10,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    assetsInlineLimit: 10000000, // inline ALL assets as base64 (no size limit)
-  },
+  // Les images sont émises en fichiers séparés (servis par Netlify), pas inline en base64 :
+  // JS léger (~1 Mo au lieu de 24 Mo), build plus fiable et site plus rapide.
 });
