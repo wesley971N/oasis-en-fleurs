@@ -172,8 +172,8 @@ export const PRODUCTS: Product[] = [
 
   // ── Miellerie ────────────────────────────────────────────────────────────
   {...P(109,'Traitement Anti varroa','Miellerie',9,'Flacon 50ml','🐝','Traitement naturel pour ruches. Correspond au traitement de 2 ruches.'), ingredients:['HE d\'eucalyptus smithii','Camphre','HE de menthe poivrée mitcham','HE de thym (thymol et thujanol)','Alcool']},
-  {...P(111,'Miel Toutes Fleurs','Miellerie',9,'Pot 500g','🍯','Miel toutes fleurs récolté auprès de nos 6 ruches Buckfast sédentaires. Non chauffé, il conserve tous ses enzymes, pollens et arômes.'), ingredients:['Miel toutes fleurs 100% pur'], usage:'À tartiner, à diluer dans une boisson chaude, ou tel quel à la cuillère.'},
-  {...P(112,'Miel Toutes Fleurs','Miellerie',16,'Pot 1kg','🍯','Le même miel toutes fleurs de la ferme, en grand format. Récolté auprès de nos 6 ruches Buckfast, reflet des floraisons sauvages et médicinales de la Bresse.'), ingredients:['Miel toutes fleurs 100% pur'], usage:'À tartiner, à diluer dans une boisson chaude, ou tel quel à la cuillère.'},
+  {...P(111,'Miel de la Source — Toutes fleurs','Miellerie',9,'Pot 500g','🍯','Miel toutes fleurs récolté auprès de nos 6 ruches Buckfast sédentaires. Non chauffé, il conserve tous ses enzymes, pollens et arômes.'), ingredients:['Miel toutes fleurs 100% pur'], usage:'À tartiner, à diluer dans une boisson chaude, ou tel quel à la cuillère.'},
+  {...P(112,'Miel de la Source — Toutes fleurs','Miellerie',16,'Pot 1kg','🍯','Le même miel toutes fleurs de la ferme, en grand format. Récolté auprès de nos 6 ruches Buckfast, reflet des floraisons sauvages et médicinales de la Bresse.'), ingredients:['Miel toutes fleurs 100% pur'], usage:'À tartiner, à diluer dans une boisson chaude, ou tel quel à la cuillère.'},
 
   // ── Tisanes (12ème produit manquant) ─────────────────────────────────────
   {...P(110,'Détente Elixirs','Tisanes & Plantes',24,'Flacon 50ml','💫','Apaise, combat le stress et les troubles du sommeil.'), ingredients:['Extrait d\'aubépine','Extrait de mélisse','Extrait de pavot de Californie','Macérat de bourgeons de tilleul']},
