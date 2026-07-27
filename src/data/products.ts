@@ -131,10 +131,10 @@ export const PRODUCTS: Product[] = [
   P(80,'Bourrache','Tisanes & Plantes',5,'25g','🌿','Puissant dépuratif qui nettoie l\'organisme en profondeur en le débarrassant de ses toxines.'),
   P(81,'Camomille allemande','Tisanes & Plantes',5,'25g','🌼','Douce pour le foie et les intestins.'),
   P(82,'Camomille romaine','Tisanes & Plantes',6.5,'25g','🌼','Tonique, stimulante, stomachique, antispasmodique, analgésique et fébrifuge. En externe : antiseptique et anti-inflammatoire.'),
-  {...P(83,'Synergie Détente','Synergies',6,'25g','💫','Mélange de plantes à visée relaxante.','Synergie'), ingredients:['Aubépine','Lavande','Rose de Provins','Tilleul']},
-  {...P(84,'Synergie Détente','Synergies',11,'50g','💫','Synergie de plantes pour favoriser la détente et éliminer le stress.','Synergie'), ingredients:['Aubépine','Lavande','Tilleul','et autres plantes']},
+  {...P(83,'Synergie Détente','Tisanes & Plantes',6,'25g','💫','Mélange de plantes à visée relaxante.','Synergie'), ingredients:['Aubépine','Lavande','Rose de Provins','Tilleul']},
+  {...P(84,'Synergie Détente','Tisanes & Plantes',11,'50g','💫','Synergie de plantes pour favoriser la détente et éliminer le stress.','Synergie'), ingredients:['Aubépine','Lavande','Tilleul','et autres plantes']},
   P(85,'Épilobe à petites fleurs','Tisanes & Plantes',5.9,'25g','🌿','Très efficace pour réguler les problèmes de prostate. Cultivée sur la propriété, sans pesticides. Récolte manuelle, séchage naturel.','Local'),
-  {...P(86,'Synergie Équilibre hormonal','Synergies',6,'25g','🌸','Équilibrant sur le système hormonal.','Synergie'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
+  {...P(86,'Synergie Équilibre hormonal','Tisanes & Plantes',6,'25g','🌸','Équilibrant sur le système hormonal.','Synergie'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
 
   // ── Baumes ────────────────────────────────────────────────────────────────
   {...P(87,'Baume à l\'arnica','Baumes',9.8,'30g','🏺','Apaise les coups, les bosses et les courbatures.'), ingredients:['Macérat oléique d\'arnica biologique','Cire d\'abeille','HE de cyprès biologique','HE de genévrier biologique']},
@@ -169,6 +169,7 @@ export const PRODUCTS: Product[] = [
   {...P(133,'Savon à l\'huile d\'avocat','Savons',5,'100g','🧼','Savon nourrissant à l\'huile d\'avocat. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Huile d\'avocat','Beurre de coco','Beurre de karité','Huile d\'olive']},
   {...P(134,'Savon huile de Nigelle & rosier musquée','Savons',5,'100g','🧼','Savon régénérant à l\'huile de nigelle et de rose musquée. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Huile de nigelle','Huile de rosier muscat','Beurre de coco','Beurre de karité','Huile d\'olive']},
   {...P(135,'Savon son d\'avoine & argile blanche','Savons',5,'100g','🧼','Savon doux et légèrement exfoliant au son d\'avoine et à l\'argile blanche. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Son d\'avoine','Argile blanche','Beurre de coco','Beurre de karité','Huile d\'olive']},
+  {...P(153,'Savon Azur','Savons',5,'100g','🧼','Savon à l\'huile de nigelle et au beurre de coco, parfumé à la lavande vraie, au lemongrass et au géranium d\'Égypte, teinté d\'un pigment minéral bleu. Mille Bulles, la savonnerie artisanale des Naturels de la Source.','Mille Bulles'), ingredients:['Huile de nigelle','Beurre de coco','HE de lavande vraie','HE de lemongrass','HE de géranium d\'Égypte','Pigment minéral bleu']},
 
   // ── Miellerie ────────────────────────────────────────────────────────────
   {...P(109,'Traitement Anti varroa','Miellerie',9,'Flacon 50ml','🐝','Traitement naturel pour ruches. Correspond au traitement de 2 ruches.'), ingredients:['HE d\'eucalyptus smithii','Camphre','HE de menthe poivrée mitcham','HE de thym (thymol et thujanol)','Alcool']},
@@ -176,7 +177,7 @@ export const PRODUCTS: Product[] = [
   {...P(112,'Miel de la Source — Toutes fleurs','Miellerie',16,'Pot 1kg','🍯','Le même miel toutes fleurs de la ferme, en grand format. Récolté auprès de nos 6 ruches Buckfast, reflet des floraisons sauvages et médicinales de la Bresse.'), ingredients:['Miel toutes fleurs 100% pur'], usage:'À tartiner, à diluer dans une boisson chaude, ou tel quel à la cuillère.'},
 
   // ── Tisanes (12ème produit manquant) ─────────────────────────────────────
-  {...P(110,'Détente Elixirs','Tisanes & Plantes',24,'Flacon 50ml','💫','Apaise, combat le stress et les troubles du sommeil.'), ingredients:['Extrait d\'aubépine','Extrait de mélisse','Extrait de pavot de Californie','Macérat de bourgeons de tilleul']},
+  {...P(110,'Détente Elixirs','Synergies',24,'Flacon 50ml','💫','Apaise, combat le stress et les troubles du sommeil.'), ingredients:['Extrait d\'aubépine','Extrait de mélisse','Extrait de pavot de Californie','Macérat de bourgeons de tilleul']},
 
   // ── Laine ─────────────────────────────────────────────────────────────────
   // Prix réels repris de l'ancien site (loasisenfleurs.com). Créations = pièces uniques tricotées main.

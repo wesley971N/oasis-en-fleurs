@@ -1030,6 +1030,8 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
     return cleanup
   }, [])
   const isSoldOut = (id: number) => stock[id] === 0
+  // Les savons ne sont pas encore fabriqués : on affiche « En fabrication » plutôt qu'« Épuisé »
+  const soldOutLabel = (p: Product) => p.category === 'Savons' ? 'En fabrication' : 'Épuisé'
 
   useEffect(() => { setExpandedDesc(false) }, [activeCategory])
 
@@ -1177,8 +1179,8 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                   <div style={{ position:'absolute', inset:0, background:'oklch(0.25 0.02 150 / 0.5)',
                     display:'flex', alignItems:'center', justifyContent:'center' }}>
                     <span style={{ background:'var(--brown)', color:'white', padding:'6px 16px',
-                      fontFamily:'Barlow,sans-serif', fontSize:12, fontWeight:700, letterSpacing:2, textTransform:'uppercase' }}>
-                      Épuisé
+                      fontFamily:'Barlow,sans-serif', fontSize:12, fontWeight:700, letterSpacing:2, textTransform:'uppercase', whiteSpace:'nowrap' }}>
+                      {soldOutLabel(p)}
                     </span>
                   </div>
                 )}
@@ -1387,7 +1389,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:10, marginBottom:16,
                   padding:'16px', background:'var(--cream-dark)', border:'1px solid var(--brown-light)' }}>
                   <span style={{ fontFamily:'Barlow,sans-serif', fontWeight:700, fontSize:13, letterSpacing:2,
-                    textTransform:'uppercase', color:'var(--brown)' }}>Épuisé — bientôt de retour</span>
+                    textTransform:'uppercase', color:'var(--brown)' }}>{buyProduct.category === 'Savons' ? 'En fabrication — bientôt disponible' : 'Épuisé — bientôt de retour'}</span>
                 </div>
               ) : (
                 <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:16 }}>
