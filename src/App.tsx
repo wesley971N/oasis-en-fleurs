@@ -111,7 +111,7 @@ const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))
 // Lien d'avis Google de la fiche d'établissement (ouvre directement le formulaire d'avis)
 const GOOGLE_REVIEW_URL = 'https://g.page/r/CfWaKtYsN4KdEBM/review'
 
-const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes', 'Savons', 'Miellerie', 'Création laines']
+const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes', 'Savons', 'Miellerie', 'Créations laines']
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   'Phytembryothérapie': `La phytoembryothérapie fait partie intégrante de la phytothérapie — à ne pas confondre avec la gemmothérapie, qui appartient à l'homéopathie.
@@ -880,6 +880,7 @@ function PageAccueil({ setPage, onRdv }: { setPage: (p:string)=>void, onRdv: ()=
           </p>
           <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
             {[
+              'Étude en médecine holistique pendant 12 ans',
               'Diplômée en psychothérapie',
               'Formée en phyto-aromathérapie',
               'Formée en équithérapie',
@@ -1714,14 +1715,14 @@ const FERME_SECTIONS: FermeSection[] = [
       'Cultivé sur 2 hectares sans engrais chimique ni pesticide, notre jardin médicinal rassemble une grande diversité de plantes aromatiques, médicinales et mellifères.',
       'Chaque plante est récoltée à maturité, au moment où sa concentration en principes actifs est la plus forte, puis séchée à l\'air libre ou transformée sur place — en tisanes, macérâts, hydrolats et huiles essentielles.',
     ] },
-  { key:'brebis', emoji:'🐑', name:'Brebis Sardes', count:'8 brebis', boutiqueCat:'Création laines',
+  { key:'brebis', emoji:'🐑', name:'Brebis Sardes', count:'8 brebis', boutiqueCat:'Créations laines',
     desc:'Laine utilisée dans nos soins et vendue brute ou filée. Tonte printanière, teinture aux plantes.',
     long:[
       'Nous élevons 8 brebis Sardes, une race rustique.',
       'Leur toison, tondue au printemps, est utilisée dans nos créations en laine et vendue brute ou filée. Nous la teignons avec les plantes du jardin.',
       'Le troupeau est veillé par Ninja, un berger de Bosnie-Herzégovine au poil soyeux, gardien attentif des animaux de la ferme.',
     ] },
-  { key:'laine', emoji:'🧶', name:'Laine & Créations', count:'Filature artisanale', boutiqueCat:'Création laines',
+  { key:'laine', emoji:'🧶', name:'Laine & Créations', count:'Filature artisanale', boutiqueCat:'Créations laines',
     desc:'Toisons transformées en fil puis en pulls, écharpes, plaids — au rouet, au tissage, au tricot main.',
     long:[
       'Le travail de la laine est une activité lancée en 2018, ouverte au public depuis l\'hiver 2019. Nous transformons les toisons de nos animaux — brebis Sardes, mérinos d\'Arles, alpaga suri, texel bleu, Gotland, Wensleydale et le mohair de nos chèvres — en fil, puis en créations.',
