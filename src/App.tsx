@@ -83,6 +83,19 @@ for (const path in PRODUCT_IMAGE_MODULES) {
   if (m) PRODUCT_IMAGES[Number(m[1])] = PRODUCT_IMAGE_MODULES[path]
 }
 
+// Diaporama de la savonnerie Mille Bulles (savons de Dany) — photos détourées sur fond #FAF7F1
+const SAVON_MODULES = import.meta.glob('./assets/photos/savonnerie/*.jpg', { eager: true, import: 'default' }) as Record<string, string>
+const SAVON_LABELS: Record<string, string> = {
+  patchou: 'Patchou', lavandou: 'Lavandou', menthus: 'Menthus', vulcano: 'Vulcano',
+  carotin: 'Carotin', 'douceur-miel': 'Douceur Miel', canelange: 'Canélange',
+}
+const SAVONNERIE_SOAPS = Object.keys(SAVON_LABELS)
+  .map(slug => {
+    const p = Object.keys(SAVON_MODULES).find(k => k.endsWith(`/${slug}.jpg`))
+    return p ? { slug, label: SAVON_LABELS[slug], img: SAVON_MODULES[p] } : null
+  })
+  .filter(Boolean) as { slug: string, label: string, img: string }[]
+
 // Pelote de mohair (produit #113) — coloris sélectionnables avec photo associée.
 const PELOTE_ID = 113
 const PELOTE_MODULES = import.meta.glob('./assets/photos/pelote/*.jpg', { eager: true, import: 'default' }) as Record<string, string>
@@ -988,6 +1001,82 @@ function PeloteCardCarousel() {
   )
 }
 
+// Diaporama des savons artisanaux de la savonnerie Mille Bulles
+function SavonnerieCarousel() {
+  const soaps = SAVONNERIE_SOAPS
+  const n = soaps.length
+  const [idx, setIdx] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const reduce = typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+  useEffect(() => {
+    if (paused || reduce || n <= 1) return
+    const t = setInterval(() => setIdx(i => (i + 1) % n), 3400)
+    return () => clearInterval(t)
+  }, [paused, reduce, n])
+  if (n === 0) return null
+  const go = (d: number) => setIdx(i => (i + d + n) % n)
+  const cur = soaps[idx]
+  const arrow = (side: 'left' | 'right'): React.CSSProperties => ({
+    position: 'absolute', top: '50%', [side]: 12, transform: 'translateY(-50%)',
+    width: 40, height: 40, borderRadius: '50%', border: 'none', cursor: 'pointer',
+    background: 'rgba(28,74,58,0.72)', color: '#F4EDDC', fontSize: 20, lineHeight: 1,
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    backdropFilter: 'blur(2px)', transition: 'background 0.25s',
+  })
+  return (
+    <div style={{ marginTop: 44 }}>
+      <p style={{ fontFamily: 'Barlow,sans-serif', fontSize: 14, fontWeight: 300, color: 'var(--lt-ink-muted)', marginBottom: 18 }}>
+        Chaque pain est façonné et découpé à la main. Découvrez quelques-unes de nos créations&nbsp;:
+      </p>
+      <div
+        onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
+        style={{
+          position: 'relative', width: '100%', height: 'clamp(280px, 44vw, 440px)',
+          borderRadius: 18, overflow: 'hidden', background: '#FAF7F1',
+          border: '1px solid oklch(0.42 0.085 150 / 0.14)',
+        }}>
+        <AnimatePresence initial={false}>
+          <motion.img
+            key={cur.slug} src={cur.img} alt={`Savon ${cur.label}`} loading="lazy"
+            initial={reduce ? false : { opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 1.03 }}
+            transition={{ duration: reduce ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
+            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        </AnimatePresence>
+        {/* Nom du savon */}
+        <div style={{
+          position: 'absolute', bottom: 16, left: 16,
+          background: 'rgba(28,74,58,0.86)', color: '#F4EDDC', padding: '8px 18px',
+          borderRadius: 20, fontFamily: 'Vollkorn,serif', fontSize: 18, fontWeight: 500, letterSpacing: 0.3,
+        }}>
+          {cur.label}
+        </div>
+        {n > 1 && (
+          <>
+            <button aria-label="Savon précédent" style={arrow('left')} onClick={() => go(-1)}
+              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(28,74,58,0.92)')}
+              onMouseLeave={e => (e.currentTarget.style.background = 'rgba(28,74,58,0.72)')}>‹</button>
+            <button aria-label="Savon suivant" style={arrow('right')} onClick={() => go(1)}
+              onMouseEnter={e => (e.currentTarget.style.background = 'rgba(28,74,58,0.92)')}
+              onMouseLeave={e => (e.currentTarget.style.background = 'rgba(28,74,58,0.72)')}>›</button>
+            <div style={{ position: 'absolute', bottom: 20, right: 18, display: 'flex', gap: 6 }}>
+              {soaps.map((s, i) => (
+                <button key={s.slug} aria-label={`Voir ${s.label}`} onClick={() => setIdx(i)}
+                  style={{
+                    width: i === idx ? 20 : 8, height: 8, borderRadius: 4, border: 'none', padding: 0, cursor: 'pointer',
+                    background: i === idx ? 'var(--gold)' : 'rgba(255,255,255,0.6)', transition: 'width 0.3s, background 0.3s',
+                  }}/>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, initialCategory }: {
   cart: CartItem[], setCart: React.Dispatch<React.SetStateAction<CartItem[]>>,
   addToast: (m:string)=>void, onOpenCart: ()=>void, onRdv: ()=>void, setPage: (p:string)=>void, initialCategory?: string
@@ -1149,6 +1238,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                   </div>
                 </>
               )}
+              {activeCategory === 'Savons' && <SavonnerieCarousel/>}
             </div>
           </div>
         )
