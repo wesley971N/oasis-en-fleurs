@@ -1476,6 +1476,16 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 </div>
               )}
 
+              {drawerProduct.category === 'Huiles Essentielles' && (
+                <div style={{ marginBottom:32 }}>
+                  <p style={{ fontFamily:'Barlow,sans-serif', fontWeight:600, fontSize:12, letterSpacing:1.5,
+                    textTransform:'uppercase', color:'var(--brown)', marginBottom:10 }}>Conditionnement</p>
+                  <p style={{ fontSize:14, lineHeight:1.8, color:'var(--brown-light)' }}>
+                    Flacon verre ambré de {drawerProduct.unit.replace(/(\d)\s*ml/i, '$1 ml')}
+                  </p>
+                </div>
+              )}
+
               {isSoldOut(buyProduct.id) ? (
                 <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:10, marginBottom:16,
                   padding:'16px', background:'var(--cream-dark)', border:'1px solid var(--brown-light)' }}>
