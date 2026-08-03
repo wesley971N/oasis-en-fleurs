@@ -2313,9 +2313,41 @@ function PageMentions({ setPage }: { setPage:(p:string)=>void }) {
   const sections = [
     { title:'1. Éditeur du site', content:`L'Oasis en Fleurs\nAgnès Gilliet — Phyto-aromathérapeute\n320 chemin des Boulatières, 01560 Curciat-Dongalon\nTél. : 06 64 34 86 87\nEmail : contact@lesnaturelsdelasource.com` },
     { title:'2. Hébergement', content:`Ce site est hébergé par Netlify, Inc.\n44 Montgomery Street, Suite 300, San Francisco, CA 94104 — USA\nwww.netlify.com` },
-    { title:'3. Propriété intellectuelle', content:`L'ensemble du contenu de ce site (textes, photos, descriptions, visuels) est la propriété exclusive d'Agnès Gilliet — L'Oasis en Fleurs. Toute reproduction, même partielle, est interdite sans autorisation écrite préalable.` },
+    { title:'3. Propriété intellectuelle', content:`L'ensemble du contenu de ce site (textes, photos, descriptions, visuels) est la propriété exclusive d'Agnès Gilliet — L'Oasis en Fleurs, à l'exception des photographies d'illustration créditées en section 6. Toute reproduction, même partielle, est interdite sans autorisation écrite préalable.` },
     { title:'4. Conditions générales de vente', content:`Les produits sont fabriqués artisanalement par Agnès Gilliet à la ferme. Les commandes sont passées via le formulaire en ligne et font l'objet d'une confirmation sous 24 h par email.\n\nLivraison : les produits sont expédiés en Colissimo ou remis en main propre à la ferme. Les frais de port sont communiqués lors de la confirmation de commande.\n\nDroit de rétractation : conformément à la législation en vigueur, vous disposez de 14 jours à compter de la réception pour exercer votre droit de rétractation, sauf pour les produits personnalisés ou les denrées périssables.\n\nRèglement des litiges : en cas de litige, une solution amiable sera recherchée avant tout recours judiciaire.` },
     { title:'5. Données personnelles (RGPD)', content:`Les données collectées via les formulaires du site (nom, email, téléphone, message) sont utilisées uniquement pour répondre à vos demandes, sur la base de l'intérêt légitime à traiter votre contact. Elles sont conservées 3 ans à compter de notre dernier échange, puis supprimées.\n\nLors d'une commande, votre nom, votre email et votre adresse de livraison sont transmis à nos prestataires techniques, nécessaires à l'exécution du contrat (article 6.1.b du RGPD) :\n— Stripe (paiement en ligne), société américaine certifiée PCI-DSS,\n— Resend (envoi de l'email de confirmation), société américaine.\nCes transferts hors Union Européenne sont encadrés par les clauses contractuelles types de la Commission européenne. Les données de commande sont conservées le temps nécessaire à la gestion de la commande et aux obligations comptables légales (10 ans).\n\nCe site est hébergé par Netlify, Inc. (États-Unis) — voir section 2.\n\nConformément au Règlement Général sur la Protection des Données (RGPD), vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données. Pour exercer ces droits : contact@lesnaturelsdelasource.com. Vous pouvez également introduire une réclamation auprès de la CNIL (www.cnil.fr).\n\nAucun cookie de traçage ou publicitaire n'est utilisé sur ce site. Le panier d'achat utilise le stockage local de votre navigateur, strictement nécessaire au fonctionnement du site.` },
+    { title:'6. Crédits photos', content:`Les photographies illustrant les plantes de la rubrique « Huiles essentielles » sont des images d'illustration temporaires, en attendant les photographies des produits réels. Elles proviennent de Wikimedia Commons, demeurent la propriété de leurs auteurs et sont utilisées selon leur licence respective :
+
+• Citron — André Karwath (CC BY-SA 2.5)
+• Poivre noir — Ragesoss (CC BY-SA 3.0)
+• Niaouli — John Robert McPherson (CC BY-SA 4.0)
+• Cèdre de l'Atlas — domaine public
+• Eucalyptus globulus — Jules Verne Times Two (CC BY-SA 4.0)
+• Romarin — Antonio, Mijas (CC BY-SA 2.0)
+• Sarriette des montagnes — Sten (CC BY-SA 3.0)
+• Serpolet — Sten (CC BY-SA 3.0)
+• Encens (Boswellia) — Mileli (CC BY-SA 3.0)
+• Eucalyptus citronné — Geekstreet (CC BY-SA 4.0)
+• Origan — Wilfredor (CC0)
+• Ylang-ylang — Forest & Kim Starr (CC BY 3.0)
+• Bois de Hô (camphrier) — Wikimedia Commons (CC BY 4.0)
+• Cajeput — Carlos A. Padrón P. (CC BY-SA 4.0)
+• Camphrier — Keisotyo (CC BY-SA 4.0)
+• Cannelle — Sten Porse (CC BY-SA 3.0)
+• Carotte sauvage — Alvesgaspar (CC BY-SA 3.0)
+• Cyprès — Stacey Meadwell (CC BY 2.0)
+• Gaulthérie — Wikimedia Commons (LGPL)
+• Genévrier — Javier Martin (domaine public)
+• Géranium rosat — Eric Hunt (CC BY-SA 2.5)
+• Laurier noble — Didier Descouens (CC BY-SA 4.0)
+• Lavande aspic — Jean-Luc Gorremans (CC BY-SA 2.0)
+• Lavande vraie — Hélène Rival (CC BY-SA 4.0)
+• Marjolaine — Schlaghecken Josef (CC BY-SA 4.0)
+• Menthe poivrée — Wikimedia Commons (CC BY 3.0)
+• Pin sylvestre — Didier Descouens (CC BY-SA 4.0)
+• Tea tree — Geoff Derrin (CC BY-SA 4.0)
+
+Sources complètes (liens vers chaque image) disponibles sur demande à contact@lesnaturelsdelasource.com.` },
   ]
   return (
     <div style={{ background:'var(--lt-bg)', minHeight:'100vh' }}>
