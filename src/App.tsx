@@ -1224,7 +1224,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                   <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
                     Conditionnées en flacons verre ambré de 15 ml
                     <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
-                      Photo d'illustration — étiquette à venir
+                      Photo d'illustration
                     </span>
                   </p>
                 </div>
