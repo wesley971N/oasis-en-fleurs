@@ -1217,13 +1217,13 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 <span>{activeCategory}</span>
               </p>
               {activeCategory === 'Huiles Essentielles' && (
-                <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:28, padding:'12px 18px',
+                <div style={{ display:'flex', alignItems:'center', gap:22, marginBottom:28, padding:'16px 22px',
                   background:'var(--surface)', border:'1px solid oklch(0.42 0.085 150 / 0.14)', borderRadius:14 }}>
-                  <img src={heFlaconExemple} alt="Flacon verre ambré de 15 ml" loading="lazy"
-                    style={{ width:56, height:56, objectFit:'contain', flexShrink:0 }}/>
-                  <p style={{ fontFamily:'Barlow,sans-serif', fontSize:15, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.4 }}>
+                  <img src={heFlaconExemple} alt="Flacon verre ambré de 15 ml — huile essentielle de romarin"
+                    style={{ height:140, width:'auto', objectFit:'contain', flexShrink:0 }}/>
+                  <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
                     Conditionnées en flacons verre ambré de 15 ml
-                    <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:3 }}>
+                    <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
                       Photo d'illustration — étiquette à venir
                     </span>
                   </p>
