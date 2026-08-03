@@ -1084,6 +1084,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
 }) {
   useScrollAnimation()
   const [activeCategory, setActiveCategory] = useState(initialCategory || 'Tout')
+  const [searchQuery, setSearchQuery] = useState('')
   const [expandedDesc, setExpandedDesc] = useState(false)
   const [drawerProduct, setDrawerProduct] = useState<Product|null>(null)
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -1134,7 +1135,12 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
     return () => window.removeEventListener('keydown', onKey)
   }, [lightboxImg])
 
-  const filtered = (activeCategory === 'Tout' ? PRODUCTS : PRODUCTS.filter(p => p.category === activeCategory))
+  const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+  const q = norm(searchQuery.trim())
+  const filtered = (q
+    // Recherche : sur tous les produits (nom + description), toutes catégories confondues
+    ? PRODUCTS.filter(p => norm(p.name + ' ' + p.description).includes(q))
+    : activeCategory === 'Tout' ? PRODUCTS : PRODUCTS.filter(p => p.category === activeCategory))
     // Baume calendula : on ne montre que la variante représentative (les autres grammages se choisissent dans le détail)
     .filter(p => !HIDDEN_VARIANT_IDS.includes(p.id))
     // Produits avec photo en premier, sans photo ensuite (ordre d'origine conservé dans chaque groupe)
@@ -1182,17 +1188,37 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
 
       {/* Filter bar */}
       <div className="filter-bar">
+        {/* Recherche */}
+        <div style={{ maxWidth:1280, margin:'0 auto 12px', padding:'0 32px' }}>
+          <div style={{ position:'relative', maxWidth:440 }}>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+              strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"
+              style={{ position:'absolute', left:15, top:'50%', transform:'translateY(-50%)', color:'var(--lt-ink-muted)', pointerEvents:'none' }}>
+              <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="search" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+              placeholder="Rechercher un produit…" aria-label="Rechercher un produit"
+              style={{ width:'100%', boxSizing:'border-box', padding:'11px 40px 11px 44px', borderRadius:999,
+                border:'1px solid oklch(0.42 0.018 68 / 0.20)', background:'var(--lt-bg)', color:'var(--ink)',
+                fontFamily:'Barlow,sans-serif', fontSize:14, outline:'none' }}/>
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} aria-label="Effacer la recherche"
+                style={{ position:'absolute', right:12, top:'50%', transform:'translateY(-50%)', border:'none',
+                  background:'none', cursor:'pointer', color:'var(--lt-ink-muted)', fontSize:18, lineHeight:1, padding:4 }}>×</button>
+            )}
+          </div>
+        </div>
         <div style={{ maxWidth:1280, margin:'0 auto', padding:'0 32px', display:'flex', gap:8, overflowX:'auto' }}>
           {CATEGORIES.map(c => (
-            <button key={c} className={`filter-tab ${activeCategory===c?'active':''}`}
-              onClick={() => { setActiveCategory(c); setExpandedDesc(false) }}>
+            <button key={c} className={`filter-tab ${activeCategory===c && !q ?'active':''}`}
+              onClick={() => { setActiveCategory(c); setSearchQuery(''); setExpandedDesc(false) }}>
               {c}
             </button>
           ))}
         </div>
       </div>
 
-      {activeCategory !== 'Tout' && CATEGORY_DESCRIPTIONS[activeCategory] && (() => {
+      {!q && activeCategory !== 'Tout' && CATEGORY_DESCRIPTIONS[activeCategory] && (() => {
         const full = CATEGORY_DESCRIPTIONS[activeCategory]
         const dotIdx = full.indexOf('. ')
         const accroche = dotIdx > -1 ? full.slice(0, dotIdx + 1) : full
@@ -1259,6 +1285,13 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
       })()}
 
       <div style={{ maxWidth:1280, margin:'0 auto', padding:'48px 32px' }}>
+        {q && (
+          <p style={{ fontFamily:'Barlow,sans-serif', fontSize:14, color:'var(--lt-ink-muted)', marginBottom:24 }}>
+            {filtered.length === 0
+              ? <>Aucun produit ne correspond à « <strong style={{ color:'var(--ink)' }}>{searchQuery}</strong> ».</>
+              : <>{filtered.length} produit{filtered.length > 1 ? 's' : ''} pour « <strong style={{ color:'var(--ink)' }}>{searchQuery}</strong> »</>}
+          </p>
+        )}
         {/* Product grid */}
         <div className="product-grid">
           {filtered.map((p, i) => (
