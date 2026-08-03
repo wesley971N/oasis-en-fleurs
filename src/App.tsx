@@ -28,6 +28,7 @@ import hydrolatPhoto from './assets/photos/hydrolat.jpg'
 import baumePhoto from './assets/photos/baume.jpg'
 import tisanePhoto from './assets/photos/tisane.jpg'
 import mielJarPhoto from './assets/photos/miel-jar.jpg'
+import heFlaconExemple from './assets/photos/he-flacon-exemple.jpg'
 import savonPhoto from './assets/photos/savon.jpg'
 import tricotPhoto from './assets/photos/tricot.jpg'
 import sprayPhoto from './assets/photos/spray.jpg'
@@ -1215,6 +1216,19 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 <span style={{ fontSize:20 }}>{emoji}</span>
                 <span>{activeCategory}</span>
               </p>
+              {activeCategory === 'Huiles Essentielles' && (
+                <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:28, padding:'12px 18px',
+                  background:'var(--surface)', border:'1px solid oklch(0.42 0.085 150 / 0.14)', borderRadius:14 }}>
+                  <img src={heFlaconExemple} alt="Flacon verre ambré de 15 ml" loading="lazy"
+                    style={{ width:56, height:56, objectFit:'contain', flexShrink:0 }}/>
+                  <p style={{ fontFamily:'Barlow,sans-serif', fontSize:15, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.4 }}>
+                    Conditionnées en flacons verre ambré de 15 ml
+                    <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:3 }}>
+                      Photo d'illustration — étiquette à venir
+                    </span>
+                  </p>
+                </div>
+              )}
               <p style={{ fontFamily:'Vollkorn,serif', fontSize:'clamp(22px,2.6vw,30px)', fontStyle:'italic', fontWeight:400, color:'var(--ink)', lineHeight:1.7, marginBottom: rest ? 28 : 0 }}>
                 {scriptWords(accroche)}
               </p>
@@ -2350,58 +2364,25 @@ function PageMentions({ setPage }: { setPage:(p:string)=>void }) {
 
 — Phytembryothérapie —
 • Bourgeons d'aubépine — Krzysztof Golik (CC BY-SA 4.0)
-• Bourgeons d'églantier — Hans Hillewaert (CC BY-SA 3.0)
-• Bourgeons de châtaignier — Benjamin Gimmel, BenHur (CC BY-SA 3.0)
-• Bourgeons de chêne — Emőke Dénes (CC BY-SA 4.0)
-• Bourgeons de frêne — Jebulon (CC0)
-• Détente Elixirs — Rosser1954 (CC BY-SA 4.0)
-• Extrait d'echinacea purpurea — C T Johansson (CC BY 3.0)
-• Macérât de bourgeons de cassissier — H. Zell (CC BY-SA 3.0)
-• Macérât de bourgeons de genévrier — W.carter (CC BY-SA 4.0)
-• Macérât de bourgeons de hêtre — Derek Ramsey, Ram-Man (GFDL 1.2)
-• Macérât de bourgeons de marronnier d'inde — Uroboros (CC BY-SA 4.0)
-• Macérât de bourgeons de myrtillier — W.carter (CC0)
-• Macérât de bourgeons de sapin pectiné — Crusier (CC BY-SA 3.0)
-• Macérât de bourgeons de Tilleul — Ivar Leidus (CC BY-SA 4.0)
 • Macérât de bourgeons de figuier — Lsoadrimak (CC BY-SA 3.0)
-• Macérât de bourgeons d'érable commun — Willow (CC BY-SA 2.5)
 • Macérât de bourgeons de cornouiller sanguin — Bartosz Cuber (CC BY-SA 3.0)
-• Macérât de bourgeons de framboisier — Fir0002 (GFDL 1.2)
-• Macérât de bourgeons de noisetier — Rosser1954 (CC BY-SA 4.0)
-• Macérât de bourgeons de noyer — H. Zell (CC BY-SA 3.0)
-• Macérât de bourgeons de pin sylvestre — Didier Descouens (CC BY-SA 4.0)
 • Macérât de bourgeons de ronce — AnemoneProjectors (CC BY-SA 2.0)
 • Macérât de bourgeons de vigne — eflon, Ithaca NY (CC BY 2.0)
-• Macérât de jeunes pousses d'olivier — Luis Fernández García (CC BY-SA 4.0)
 
 — Hydrolats —
-• Hydrolat d'hélichryse italienne — Fernando Losada Rodríguez (CC BY-SA 4.0)
 • Hydrolat de basilic sacré — Diamante Phi (CC BY-SA 4.0)
-• Hydrolat de bleuet — El Grafo (CC BY-SA 3.0)
 • Hydrolat de carotte sauvage — Dominicus Johannes Bergsma (CC BY-SA 4.0)
 • Hydrolat de cassis — Krzysztof Ziarnek, Kenraiz (CC BY-SA 4.0)
-• Hydrolat de Cataire citronnée — Matt Lavin, Bozeman MT (CC BY-SA 2.0)
 • Hydrolat de coriandre — H. Zell (CC BY-SA 3.0)
-• Hydrolat de géranium rosat — TMcB23 (CC BY-SA 4.0)
 • Hydrolat de grande camomille — Wikimedia Commons (CC BY 2.5)
-• Hydrolat de lavande vraie — Norbert Nagel (CC BY-SA 3.0)
 • Hydrolat de livèche — 4028mdk09 (CC BY-SA 3.0)
-• Hydrolat de menthe poivrée — Wikimedia Commons (CC BY 3.0)
-• Hydrolat de rose de Provins — Benjamin Zwittnig (CC BY 2.5)
 • Hydrolat de sauge officinale — Agnieszka Kwiecień, Nova (CC BY-SA 4.0)
 • Hydrolat de tanaisie annuelle — Wikimedia Commons (domaine public)
 
 — Synergies —
-• Synergie circulatoire — Etienne (CC BY-SA 3.0)
-• Synergie Immun'Air — C T Johansson (CC BY 3.0)
-• Synergie'Air — peganum, Small Dole England (CC BY-SA 2.0)
-• O'Verlin — Magnus Manske (CC BY-SA 3.0)
-• Sibo'Lin — Rob Hille (domaine public)
 • Synergie Aphtes & Mycoses — Stelian Kasabov (domaine public)
 • Synergie hydrolat équilibrante — Laslovarga (CC BY-SA 4.0)
 • Synergie HE Verrue & Sarcoïde — Alvesgaspar (CC BY-SA 3.0)
-• Fluidité articulation — Hans Hillewaert (CC BY-SA 3.0)
-• Détente Elixirs — Ivar Leidus (CC BY-SA 4.0)
 
 Sources complètes (liens vers chaque image) disponibles sur demande à contact@lesnaturelsdelasource.com.` },
   ]
