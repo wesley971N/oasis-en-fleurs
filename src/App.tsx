@@ -125,7 +125,7 @@ const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))
 // Lien d'avis Google de la fiche d'établissement (ouvre directement le formulaire d'avis)
 const GOOGLE_REVIEW_URL = 'https://g.page/r/CfWaKtYsN4KdEBM/review'
 
-const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes', 'Savons', 'Miellerie', 'Créations laines']
+const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes et lait corps', 'Savons', 'Miellerie', 'Créations laines']
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   'Phytembryothérapie': `La phytoembryothérapie fait partie intégrante de la phytothérapie — à ne pas confondre avec la gemmothérapie, qui appartient à l'homéopathie.
@@ -166,7 +166,7 @@ L'alcool (CH₃-CH₂-OH) extrait : alcaloïdes, hétérosides, glycosides.
 
 La glycérine végétale, extraite du colza (teneur en huile de 50 à 68 %), extrait : huiles essentielles (phénols…), flavonoïdes liposolubles, vitamines liposolubles, certains acides.`,
   'Hydrolats': `L'hydrolat est le sous-produit aqueux obtenu après distillation d'une plante : il s'agit de la vapeur d'eau condensée, chargée d'environ 1 à 2 % d'huile essentielle. Bien moins concentrés que les huiles essentielles, les hydrolats sont accessibles à tous, y compris aux enfants et aux personnes fragiles. Ils s'utilisent en cure, avec une action douce mais efficace, sur de longues périodes et sans aucun risque. Composés à 98 % d'eau, ils se prennent principalement par voie orale (1 c. à café dans un verre d'eau pour les enfants, 1 c. à soupe pour les adultes, 2 à 3 fois par jour pendant environ 1 mois), ou en cure minceur (5 c. à soupe dans 1,5 litre d'eau à boire dans la journée). Exemples : hydrolat de livèche, de cataire, de menthe poivrée, de carotte sauvage.`,
-  'Baumes': `Les baumes sont élaborés à base de macérés oléiques de fleurs, feuilles et racines récoltées dans des endroits de montagne préservés ou cultivées sans engrais chimiques ni pesticides. Ils contiennent de la cire d'abeilles et des huiles essentielles pour renforcer l'action et les propriétés des plantes. Parmi les plantes utilisées : fleurs de soucis, de plantain, d'arnica, consoude, achillée millefeuille, framboisier, et bien d'autres…`,
+  'Baumes et lait corps': `Les baumes sont élaborés à base de macérés oléiques de fleurs, feuilles et racines récoltées dans des endroits de montagne préservés ou cultivées sans engrais chimiques ni pesticides. Ils contiennent de la cire d'abeilles et des huiles essentielles pour renforcer l'action et les propriétés des plantes. Parmi les plantes utilisées : fleurs de soucis, de plantain, d'arnica, consoude, achillée millefeuille, framboisier, et bien d'autres…`,
   'Huiles Essentielles': `Les huiles essentielles sont obtenues par distillation à la vapeur d'eau des parties aromatiques d'une plante — fleurs, feuilles, écorces, racines ou graines. Extrêmement concentrées, elles contiennent toute l'essence de la plante et agissent en très petites quantités. Leur utilisation demande précaution et connaissance : elles ne conviennent pas à toutes les personnes sans avis préalable (femmes enceintes, jeunes enfants, personnes sous traitement). En aromathérapie, elles s'utilisent diluées dans une huile végétale par voie cutanée, par inhalation, ou pour certaines par voie orale sur recommandation d'un praticien.`,
   'Synergies': `Une synergie est un mélange soigneusement dosé de plusieurs huiles essentielles ou macérâts dont les propriétés se complètent et se renforcent mutuellement. Formulées pour répondre à un objectif précis — détente, immunité, circulation, sommeil… — elles permettent d'obtenir un effet plus ciblé et plus complet qu'une plante seule. Chaque synergie est composée à L'Oasis en Fleurs à partir de plantes rigoureusement sélectionnées, selon les besoins spécifiques rencontrés en consultation.`,
   'Tisanes & Plantes': `Les tisanes sont l'une des formes les plus anciennes et les plus douces d'utilisation des plantes médicinales. Préparées par infusion, décoction ou macération à froid, elles libèrent les principes actifs hydrosolubles de la plante : flavonoïdes, tanins, mucilages… Cultivées sur 2 hectares sans engrais chimiques ni pesticides, les plantes de L'Oasis en Fleurs sont récoltées à maturité, séchées à l'air libre et conditionnées avec soin pour préserver toute leur richesse aromatique et thérapeutique.`,
@@ -174,6 +174,16 @@ La glycérine végétale, extraite du colza (teneur en huile de 50 à 68 %), ext
 
 Nos savons sont réalisés selon le procédé traditionnel de saponification à froid, qui préserve la glycérine naturelle ainsi que les propriétés des huiles végétales. Enrichis de macérâts de plantes médicinales, d'huiles essentielles et de beurres végétaux, ils nourrissent, apaisent et protègent la peau en douceur. Sans conservateur, chaque pain est façonné et découpé à la main.`,
   'Miellerie': `Le miel de L'Oasis en Fleurs est un miel toutes fleurs, récolté auprès des 6 ruches Buckfast sédentaires installées sur la ferme. Les abeilles butinent librement les fleurs sauvages et médicinales du domaine et des prairies de la Bresse, produisant un miel d'une grande richesse aromatique. Non chauffé, il conserve l'ensemble de ses enzymes, pollens et propriétés naturelles. Conditionné directement à la ferme, disponible en pot de 500 g ou au kilo.`,
+}
+
+// Image représentative (produit) affichée à côté de l'intitulé de chaque rubrique.
+const CATEGORY_REP_IMAGE: Record<string, number> = {
+  'Phytembryothérapie': 2,
+  'Hydrolats': 65,
+  'Synergies': 25,
+  'Tisanes & Plantes': 85,
+  'Baumes et lait corps': 88,
+  'Miellerie': 111,
 }
 
 const STAGES = [
@@ -1225,7 +1235,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
         const rest = dotIdx > -1 ? full.slice(dotIdx + 2) : ''
         const emojis: Record<string,string> = {
           'Phytembryothérapie':'🌱','Huiles Essentielles':'💧','Hydrolats':'🫧',
-          'Synergies':'✨','Tisanes & Plantes':'🌿','Baumes':'🏺','Savons':'🧼','Miellerie':'🍯'
+          'Synergies':'✨','Tisanes & Plantes':'🌿','Baumes et lait corps':'🏺','Savons':'🧼','Miellerie':'🍯'
         }
         const emoji = emojis[activeCategory] || '🌿'
         // « Mille Bulles » et « Naturels de la Source » en écriture manuscrite (équivalent Monotype Corsiva)
@@ -1238,6 +1248,11 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
         return (
           <div style={{ background:'var(--surface-raised)', borderTop:`1px solid oklch(0.42 0.085 150 / 0.12)`, borderBottom:`1px solid oklch(0.42 0.085 150 / 0.12)` }}>
             <div style={{ maxWidth:860, margin:'0 auto', padding:'56px 32px' }}>
+              {CATEGORY_REP_IMAGE[activeCategory] && PRODUCT_IMAGES[CATEGORY_REP_IMAGE[activeCategory]] && (
+                <img src={PRODUCT_IMAGES[CATEGORY_REP_IMAGE[activeCategory]]} alt={activeCategory} loading="lazy"
+                  style={{ float:'right', width:130, height:130, objectFit:'contain', marginLeft:26, marginBottom:14,
+                    borderRadius:14, border:'1px solid oklch(0.42 0.085 150 / 0.14)', background:'var(--surface)' }}/>
+              )}
               <p style={{ fontFamily:'Barlow,sans-serif', fontSize:10, letterSpacing:2.5, textTransform:'uppercase', color:'var(--forest)', fontWeight:600, marginBottom:20, display:'flex', alignItems:'center', gap:10 }}>
                 <span style={{ fontSize:20 }}>{emoji}</span>
                 <span>{activeCategory}</span>
@@ -1295,7 +1310,8 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
         {/* Product grid */}
         <div className="product-grid">
           {filtered.map((p, i) => (
-            <div key={p.id} className="product-card fade-up" style={{ transitionDelay:`${(i%4)*0.1}s` }}>
+            <div key={p.id} className="product-card fade-up" style={{ transitionDelay:`${(i%4)*0.1}s`, cursor:'pointer' }}
+              onClick={() => openDrawer(p)}>
               {/* Image area */}
               <div style={{ background: i%3===0?'var(--moss)':i%3===1?'var(--brown)':'#6b5a3e',
                 height:180, display:'flex', alignItems:'center', justifyContent:'center',
@@ -1314,13 +1330,11 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                   </div>
                 )}
                 {isSoldOut(p.id) && (
-                  <div style={{ position:'absolute', inset:0, background:'oklch(0.25 0.02 150 / 0.5)',
-                    display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <span style={{ background:'var(--brown)', color:'white', padding:'6px 16px',
-                      fontFamily:'Barlow,sans-serif', fontSize:12, fontWeight:700, letterSpacing:2, textTransform:'uppercase', whiteSpace:'nowrap' }}>
-                      {soldOutLabel(p)}
-                    </span>
-                  </div>
+                  <span style={{ position:'absolute', top:12, right:12, background:'var(--brown)', color:'white',
+                    padding:'5px 14px', borderRadius:4, fontFamily:'Barlow,sans-serif', fontSize:11, fontWeight:700,
+                    letterSpacing:1.5, textTransform:'uppercase', whiteSpace:'nowrap' }}>
+                    {soldOutLabel(p)}
+                  </span>
                 )}
               </div>
               <div style={{ padding:'20px 20px 16px' }}>
@@ -1339,7 +1353,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                     </span>
                     <span style={{ fontSize:12, color:'var(--brown-light)', marginLeft:4 }}>{p.unit}</span>
                   </div>
-                  <button onClick={() => addToCart(p)} disabled={isSoldOut(p.id)}
+                  <button onClick={(e) => { e.stopPropagation(); addToCart(p) }} disabled={isSoldOut(p.id)}
                     style={{ width:36, height:36, background: isSoldOut(p.id)?'var(--brown-light)':'var(--moss)',
                       border:'none', color:'white', fontSize:22, display:'flex', alignItems:'center',
                       justifyContent:'center', borderRadius:10, transition:'all 0.2s',
@@ -2403,12 +2417,15 @@ function PageMentions({ setPage }: { setPage:(p:string)=>void }) {
 • Macérât de bourgeons de vigne — eflon, Ithaca NY (CC BY 2.0)
 
 — Hydrolats —
+• Hydrolat d'hélichryse italienne — Fernando Losada Rodríguez (CC BY-SA 4.0)
 • Hydrolat de basilic sacré — Diamante Phi (CC BY-SA 4.0)
 • Hydrolat de carotte sauvage — Dominicus Johannes Bergsma (CC BY-SA 4.0)
 • Hydrolat de cassis — Krzysztof Ziarnek, Kenraiz (CC BY-SA 4.0)
+• Hydrolat de Cataire citronnée — Matt Lavin, Bozeman MT (CC BY-SA 2.0)
 • Hydrolat de coriandre — H. Zell (CC BY-SA 3.0)
 • Hydrolat de grande camomille — Wikimedia Commons (CC BY 2.5)
 • Hydrolat de livèche — 4028mdk09 (CC BY-SA 3.0)
+• Hydrolat de menthe poivrée — Wikimedia Commons (CC BY 3.0)
 • Hydrolat de sauge officinale — Agnieszka Kwiecień, Nova (CC BY-SA 4.0)
 • Hydrolat de tanaisie annuelle — Wikimedia Commons (domaine public)
 
