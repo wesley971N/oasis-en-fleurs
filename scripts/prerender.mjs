@@ -1,82 +1,69 @@
-// Pré-rendu SEO : après `vite build`, on charge le site dans un navigateur headless,
-// on laisse React rendre tout le contenu, puis on réinjecte le HTML complet dans
-// dist/index.html. Google (et les réseaux sociaux) voient alors le texte directement,
-// au lieu d'une page vide qui dépend du JavaScript.
-import http from 'node:http'
+// Pré-rendu SEO SANS navigateur (100 % fiable sur Netlify).
+// Après `vite build`, on lit le catalogue produits et on injecte un contenu HTML
+// statique (titres, produits, ferme, contact) DANS <div id="root">…</div>.
+// React (createRoot) remplace ce contenu par l'app au chargement du JavaScript ;
+// mais Google — qui lit le HTML sans exécuter le JS — voit désormais tout le texte.
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import puppeteer from 'puppeteer'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
-const DIST = path.resolve(__dirname, '..', 'dist')
-const PORT = 4318
+const ROOT = path.resolve(__dirname, '..')
+const indexPath = path.join(ROOT, 'dist', 'index.html')
+const productsPath = path.join(ROOT, 'src', 'data', 'products.ts')
 
-const MIME = {
-  '.html': 'text/html', '.js': 'text/javascript', '.mjs': 'text/javascript',
-  '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml',
-  '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp',
-  '.woff': 'font/woff', '.woff2': 'font/woff2', '.ico': 'image/x-icon',
-  '.xml': 'application/xml', '.txt': 'text/plain',
-}
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const unesc = (s) => s.replace(/\\'/g, "'").replace(/\\"/g, '"')
 
-// Petit serveur statique du dossier dist (avec repli sur index.html)
-const server = http.createServer((req, res) => {
-  const urlPath = decodeURIComponent((req.url || '/').split('?')[0])
-  let filePath = path.join(DIST, urlPath)
-  try {
-    if (!fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-      filePath = path.join(DIST, 'index.html')
-    }
-  } catch { filePath = path.join(DIST, 'index.html') }
-  const ext = path.extname(filePath).toLowerCase()
-  res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' })
-  fs.createReadStream(filePath).pipe(res)
-})
-
-await new Promise((r) => server.listen(PORT, r))
-
-let browser
 try {
-  browser = await puppeteer.launch({
-    headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-  })
-  const page = await browser.newPage()
-  await page.setViewport({ width: 1366, height: 900 })
-  await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle0', timeout: 60000 })
+  let html = fs.readFileSync(indexPath, 'utf8')
+  const src = fs.readFileSync(productsPath, 'utf8')
 
-  // Attendre que React ait rendu le contenu
-  await page.waitForFunction(
-    () => { const r = document.getElementById('root'); return r && r.children.length > 0 },
-    { timeout: 30000 },
-  )
+  // Extraire les produits : P(id,'nom','catégorie',prix,'unité','emoji','description'…)
+  const re = /P\(\d+,'((?:[^'\\]|\\.)*)','((?:[^'\\]|\\.)*)',([\d.]+),'((?:[^'\\]|\\.)*)','((?:[^'\\]|\\.)*)','((?:[^'\\]|\\.)*)'/g
+  const cats = []
+  const byCat = {}
+  let m
+  while ((m = re.exec(src))) {
+    const p = { name: unesc(m[1]), category: unesc(m[2]), price: m[3], unit: unesc(m[4]), desc: unesc(m[6]) }
+    if (!byCat[p.category]) { byCat[p.category] = []; cats.push(p.category) }
+    byCat[p.category].push(p)
+  }
+  const total = Object.values(byCat).reduce((n, a) => n + a.length, 0)
 
-  // Faire défiler pour déclencher les animations d'apparition (IntersectionObserver)
-  await page.evaluate(async () => {
-    await new Promise((resolve) => {
-      let y = 0
-      const t = setInterval(() => {
-        window.scrollTo(0, y)
-        y += 400
-        if (y > document.body.scrollHeight) {
-          clearInterval(t)
-          window.scrollTo(0, 0)
-          setTimeout(resolve, 500)
-        }
-      }, 90)
-    })
-  })
-  await new Promise((r) => setTimeout(r, 1200)) // laisser les animations se stabiliser
+  let catalog = ''
+  for (const cat of cats) {
+    catalog += `<section><h3>${esc(cat)}</h3><ul>`
+    for (const p of byCat[cat]) {
+      catalog += `<li><strong>${esc(p.name)}</strong> — ${esc(p.desc)} <em>(${esc(p.price)} € · ${esc(p.unit)})</em></li>`
+    }
+    catalog += `</ul></section>`
+  }
 
-  const html = await page.content()
-  fs.writeFileSync(path.join(DIST, 'index.html'), html, 'utf8')
-  console.log(`✓ Pré-rendu OK — index.html = ${(html.length / 1024).toFixed(0)} Ko de HTML`)
+  const seo = `<div style="max-width:820px;margin:0 auto;padding:40px 24px;font-family:Georgia,serif;color:#2b2b2b;line-height:1.6">
+<h1>Les Naturels de la Source — L'Oasis en Fleurs</h1>
+<p>Ferme phytothérapeutique d'Agnès Gilliet à Curciat-Dongalon (01560), en Bresse (Bourgogne). Phytothérapie et aromathérapie artisanales : plantes médicinales, huiles essentielles, hydrolats, macérats de bourgeons (phytembryothérapie), synergies, baumes, savons artisanaux « Mille Bulles », miels de la miellerie, laines et créations. Consultations, soins naturels et stages immersifs à la ferme.</p>
+<h2>Boutique &amp; Soins</h2>
+${catalog}
+<h2>La Ferme</h2>
+<p>Sur place : jardin de plantes médicinales cultivé sans engrais chimiques ni pesticides, brebis sardes, chèvres angora et alpagas pour la laine, filature artisanale, miellerie avec six ruches Buckfast sédentaires, et chevaux. Un lieu d'accueil thérapeutique et de ressourcement en pleine nature.</p>
+<h2>Les Stages</h2>
+<p>Stages immersifs animés par Agnès Gilliet : plantes médicinales, fabrication de savons à froid, fabrication de baumes, initiation au jeûne et randonnées, laver et préparer la laine, cuisine crue et vivante, jardin en permaculture.</p>
+<h2>Consultation</h2>
+<p>Agnès Gilliet, phyto-aromathérapeute, reçoit en consultation à la ferme ou en visio pour un accompagnement personnalisé par les plantes. Consultation découverte offerte de 15 minutes.</p>
+<h2>Contact</h2>
+<address>L'Oasis en Fleurs — Agnès Gilliet, 320 chemin des Boulatières, 01560 Curciat-Dongalon, France. Téléphone : 06 64 34 86 87. Email : contact@lesnaturelsdelasource.com</address>
+</div>`
+
+  const before = html
+  html = html.replace(/<div id="root">\s*<\/div>/, `<div id="root">${seo}</div>`)
+  if (html === before) {
+    console.warn('⚠ Pré-rendu : balise <div id="root"></div> introuvable, index.html inchangé.')
+  } else {
+    fs.writeFileSync(indexPath, html, 'utf8')
+    console.log(`✓ Pré-rendu SEO injecté — ${total} produits, index.html = ${(html.length / 1024).toFixed(0)} Ko`)
+  }
 } catch (err) {
-  // Non bloquant : si le navigateur headless échoue (ex. environnement CI), on garde
-  // l'index.html tel quel et le build continue plutôt que d'échouer.
+  // Non bloquant : le build continue même si le pré-rendu échoue.
   console.warn('⚠ Pré-rendu ignoré (build poursuivi) :', err?.message || err)
-} finally {
-  if (browser) await browser.close()
-  server.close()
 }
