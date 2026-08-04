@@ -123,6 +123,9 @@ const VARIANT_GROUPS: number[][] = [
   [92, 136, 94], // Baume calendula : 30 g · 60 g · 100 g
   [79, 137],     // Fluidité articulation : 50 ml · 200 ml
   [139, 138],    // AllergySyn : 30 ml · 50 ml
+  [61, 155],     // Hydrolat cataire citronnée : 200 ml · 500 ml
+  [66, 156],     // Hydrolat livèche : 200 ml · 500 ml
+  [69, 157],     // Hydrolat sauge officinale : 200 ml · 500 ml
 ]
 const variantGroupFor = (id: number) => VARIANT_GROUPS.find(g => g.includes(id))
 const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))
@@ -184,7 +187,6 @@ Nos savons sont réalisés selon le procédé traditionnel de saponification à 
 // Image représentative (produit) affichée à côté de l'intitulé de chaque rubrique.
 const CATEGORY_REP_IMAGE: Record<string, number> = {
   'Phytembryothérapie': 2,
-  'Hydrolats': 65,
   'Synergies': 25,
   'Baumes et lait corps': 88,
   'Miellerie': 111,
@@ -1281,6 +1283,19 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                     style={{ height:140, width:'auto', objectFit:'contain', flexShrink:0 }}/>
                   <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
                     Conditionnées en sachet kraft de 25 g
+                    <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
+                      Photo d'illustration
+                    </span>
+                  </p>
+                </div>
+              )}
+              {activeCategory === 'Hydrolats' && PRODUCT_IMAGES[65] && (
+                <div style={{ display:'flex', alignItems:'center', gap:22, marginBottom:28, padding:'16px 22px',
+                  background:'var(--surface)', border:'1px solid oklch(0.42 0.085 150 / 0.14)', borderRadius:14 }}>
+                  <img src={PRODUCT_IMAGES[65]} alt="Flacon verre bleu d'hydrolat" loading="lazy"
+                    style={{ height:140, width:'auto', objectFit:'contain', flexShrink:0 }}/>
+                  <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
+                    Flacon verre bleu pour les 200 ml, flacon verre ambré pour les 500 ml
                     <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
                       Photo d'illustration
                     </span>
