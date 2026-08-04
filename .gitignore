@@ -35,6 +35,9 @@ src/assets/laine/
 *.MTS
 *.avi
 *.AVI
+# Exception : vidéos compressées utilisées par le site (rubrique Phytembryothérapie)
+!src/assets/videos/
+!src/assets/videos/*.mp4
 
 # Artefact généré (Netlify build depuis les sources, pas besoin de committer ce fichier de 19 Mo)
 bundle.html

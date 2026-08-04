@@ -97,6 +97,11 @@ const SAVONNERIE_SOAPS = Object.keys(SAVON_LABELS)
   })
   .filter(Boolean) as { slug: string, label: string, img: string }[]
 
+// Vidéos de la rubrique Phytembryothérapie (cliquer pour visualiser)
+const PHYTO_VIDEOS = Object.entries(import.meta.glob('./assets/videos/*.mp4', { eager: true, import: 'default' }) as Record<string, string>)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, url]) => url)
+
 // Pelote de mohair (produit #113) — coloris sélectionnables avec photo associée.
 const PELOTE_ID = 113
 const PELOTE_MODULES = import.meta.glob('./assets/photos/pelote/*.jpg', { eager: true, import: 'default' }) as Record<string, string>
@@ -181,7 +186,6 @@ const CATEGORY_REP_IMAGE: Record<string, number> = {
   'Phytembryothérapie': 2,
   'Hydrolats': 65,
   'Synergies': 25,
-  'Tisanes & Plantes': 85,
   'Baumes et lait corps': 88,
   'Miellerie': 111,
 }
@@ -1037,7 +1041,7 @@ function SavonnerieCarousel() {
   return (
     <div style={{ marginTop: 44 }}>
       <p style={{ fontFamily: 'Barlow,sans-serif', fontSize: 14, fontWeight: 300, color: 'var(--lt-ink-muted)', marginBottom: 18 }}>
-        Chaque pain est façonné et découpé à la main. Découvrez quelques-unes de nos créations&nbsp;:
+        Découvrez quelques-unes de nos créations&nbsp;:
       </p>
       <div
         onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}
@@ -1250,8 +1254,8 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
             <div style={{ maxWidth:860, margin:'0 auto', padding:'56px 32px' }}>
               {CATEGORY_REP_IMAGE[activeCategory] && PRODUCT_IMAGES[CATEGORY_REP_IMAGE[activeCategory]] && (
                 <img src={PRODUCT_IMAGES[CATEGORY_REP_IMAGE[activeCategory]]} alt={activeCategory} loading="lazy"
-                  style={{ float:'right', width:130, height:130, objectFit:'contain', marginLeft:26, marginBottom:14,
-                    borderRadius:14, border:'1px solid oklch(0.42 0.085 150 / 0.14)', background:'var(--surface)' }}/>
+                  style={{ float:'right', width:190, height:190, objectFit:'contain', marginLeft:28, marginBottom:16,
+                    borderRadius:16, border:'1px solid oklch(0.42 0.085 150 / 0.14)', background:'var(--surface)' }}/>
               )}
               <p style={{ fontFamily:'Barlow,sans-serif', fontSize:10, letterSpacing:2.5, textTransform:'uppercase', color:'var(--forest)', fontWeight:600, marginBottom:20, display:'flex', alignItems:'center', gap:10 }}>
                 <span style={{ fontSize:20 }}>{emoji}</span>
@@ -1264,6 +1268,19 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                     style={{ height:140, width:'auto', objectFit:'contain', flexShrink:0 }}/>
                   <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
                     Conditionnées en flacons verre ambré de 15 ml
+                    <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
+                      Photo d'illustration
+                    </span>
+                  </p>
+                </div>
+              )}
+              {activeCategory === 'Tisanes & Plantes' && PRODUCT_IMAGES[85] && (
+                <div style={{ display:'flex', alignItems:'center', gap:22, marginBottom:28, padding:'16px 22px',
+                  background:'var(--surface)', border:'1px solid oklch(0.42 0.085 150 / 0.14)', borderRadius:14 }}>
+                  <img src={PRODUCT_IMAGES[85]} alt="Sachet kraft de tisane de 25 g" loading="lazy"
+                    style={{ height:140, width:'auto', objectFit:'contain', flexShrink:0 }}/>
+                  <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
+                    Conditionnées en sachet kraft de 25 g
                     <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
                       Photo d'illustration
                     </span>
@@ -1294,6 +1311,20 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 </>
               )}
               {activeCategory === 'Savons' && <SavonnerieCarousel/>}
+              {activeCategory === 'Phytembryothérapie' && PHYTO_VIDEOS.length > 0 && (
+                <div style={{ marginTop: 44 }}>
+                  <p style={{ fontFamily:'Barlow,sans-serif', fontSize:14, fontWeight:300, color:'var(--lt-ink-muted)', marginBottom:18 }}>
+                    En vidéo — la préparation des macérats de bourgeons (cliquez pour lire)&nbsp;:
+                  </p>
+                  <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(230px, 1fr))', gap:16 }}>
+                    {PHYTO_VIDEOS.map((src, i) => (
+                      <video key={i} src={src} controls preload="metadata" playsInline
+                        style={{ width:'100%', maxHeight:'70vh', display:'block', borderRadius:14,
+                          border:'1px solid oklch(0.42 0.085 150 / 0.14)', background:'#000' }}/>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         )
