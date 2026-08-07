@@ -138,9 +138,13 @@ export const PRODUCTS: Product[] = [
   {...P(84,'Synergie Détente','Tisanes & Plantes',11,'50g','💫','Synergie de plantes pour favoriser la détente et éliminer le stress.','Synergie'), ingredients:['Aubépine','Lavande','Tilleul','et autres plantes']},
   P(85,'Épilobe à petites fleurs','Tisanes & Plantes',5.9,'25g','🌿','Très efficace pour réguler les problèmes de prostate. Cultivée sur la propriété, sans pesticides. Récolte manuelle, séchage naturel.','Local'),
   {...P(86,'Synergie Équilibre hormonal','Tisanes & Plantes',6,'25g','🌸','Équilibrant sur le système hormonal.','Synergie'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
-  {...P(158,'Je dors','Tisanes & Plantes',6,'25g','🌙','Mélange de plantes cultivées et cueillies à la main, pour accompagner l\'endormissement et un sommeil paisible.','Synergie'), ingredients:['Aubépine','Mélisse','Passiflore','Grande camomille']},
+  {...P(158,'Synergie Je dors','Tisanes & Plantes',6,'25g','🌙','Mélange de plantes cultivées et cueillies à la main, pour accompagner l\'endormissement et un sommeil paisible.','Synergie'), ingredients:['Aubépine','Mélisse','Passiflore','Grande camomille']},
   {...P(159,'Je respire','Tisanes & Plantes',6,'25g','🌿','Mélange de plantes pour la sphère respiratoire : soulage les poumons, adoucit les muqueuses.','Synergie'), ingredients:['Thym officinal','Mélisse','Serpolet','Aulnée','Camomille romaine','Rose de Provins']},
-  {...P(160,'Articulations','Tisanes & Plantes',6,'25g','🦴','Mélange de plantes pour les articulations : soulage, désenflamme, libère.','Synergie'), ingredients:['Chicorée','Reine des prés','Ortie','Sureau','Rose de Provins']},
+  {...P(160,'Synergie Articulations','Tisanes & Plantes',6,'25g','🦴','Mélange de plantes pour les articulations : soulage, désenflamme, libère.','Synergie'), ingredients:['Chicorée','Reine des prés','Ortie','Sureau','Rose de Provins']},
+  P(161,'Synergie Allergies','Tisanes & Plantes',6,'25g','🤧','Mélange de plantes préparé à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(162,'Synergie Immunité','Tisanes & Plantes',6,'25g','🛡️','Mélange de plantes préparé à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(163,'Synergie J\'élimine','Tisanes & Plantes',6,'25g','💧','Mélange de plantes préparé à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
+  P(164,'Synergie Je digère','Tisanes & Plantes',6,'25g','🌿','Mélange de plantes préparé à la ferme. Contactez Agnès pour un conseil personnalisé.','Synergie'),
 
   // ── Baumes ────────────────────────────────────────────────────────────────
   {...P(87,'Baume à l\'arnica','Baumes et lait corps',9.8,'30g','🏺','Apaise les coups, les bosses et les courbatures.'), ingredients:['Macérat oléique d\'arnica biologique','Cire d\'abeille','HE de cyprès biologique','HE de genévrier biologique']},
