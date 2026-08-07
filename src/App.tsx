@@ -1256,7 +1256,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
             <div style={{ maxWidth:860, margin:'0 auto', padding:'56px 32px' }}>
               {CATEGORY_REP_IMAGE[activeCategory] && PRODUCT_IMAGES[CATEGORY_REP_IMAGE[activeCategory]] && (
                 <img src={PRODUCT_IMAGES[CATEGORY_REP_IMAGE[activeCategory]]} alt={activeCategory} loading="lazy"
-                  style={{ float:'right', width:190, height:190, objectFit:'contain', marginLeft:28, marginBottom:16,
+                  style={{ float:'right', width:240, height:240, objectFit:'contain', marginLeft:30, marginBottom:16,
                     borderRadius:16, border:'1px solid oklch(0.42 0.085 150 / 0.14)', background:'var(--surface)' }}/>
               )}
               <p style={{ fontFamily:'Barlow,sans-serif', fontSize:10, letterSpacing:2.5, textTransform:'uppercase', color:'var(--forest)', fontWeight:600, marginBottom:20, display:'flex', alignItems:'center', gap:10 }}>
@@ -1267,39 +1267,27 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 <div style={{ display:'flex', alignItems:'center', gap:22, marginBottom:28, padding:'16px 22px',
                   background:'var(--surface)', border:'1px solid oklch(0.42 0.085 150 / 0.14)', borderRadius:14 }}>
                   <img src={heFlaconExemple} alt="Flacon verre ambré de 15 ml — huile essentielle de romarin"
-                    style={{ height:140, width:'auto', objectFit:'contain', flexShrink:0 }}/>
+                    style={{ height:180, width:'auto', objectFit:'contain', flexShrink:0 }}/>
                   <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
-                    Conditionnées en flacons verre ambré de 15 ml
-                    <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
-                      Photo d'illustration
-                    </span>
-                  </p>
+                    Conditionnées en flacons verre ambré de 15 ml                  </p>
                 </div>
               )}
               {activeCategory === 'Tisanes & Plantes' && PRODUCT_IMAGES[85] && (
                 <div style={{ display:'flex', alignItems:'center', gap:22, marginBottom:28, padding:'16px 22px',
                   background:'var(--surface)', border:'1px solid oklch(0.42 0.085 150 / 0.14)', borderRadius:14 }}>
                   <img src={PRODUCT_IMAGES[85]} alt="Sachet kraft de tisane de 25 g" loading="lazy"
-                    style={{ height:140, width:'auto', objectFit:'contain', flexShrink:0 }}/>
+                    style={{ height:180, width:'auto', objectFit:'contain', flexShrink:0 }}/>
                   <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
-                    Conditionnées en sachet kraft de 25 g
-                    <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
-                      Photo d'illustration
-                    </span>
-                  </p>
+                    Conditionnées en sachet kraft de 15, 25 ou 50 g                  </p>
                 </div>
               )}
               {activeCategory === 'Hydrolats' && PRODUCT_IMAGES[65] && (
                 <div style={{ display:'flex', alignItems:'center', gap:22, marginBottom:28, padding:'16px 22px',
                   background:'var(--surface)', border:'1px solid oklch(0.42 0.085 150 / 0.14)', borderRadius:14 }}>
                   <img src={PRODUCT_IMAGES[65]} alt="Flacon verre bleu d'hydrolat" loading="lazy"
-                    style={{ height:140, width:'auto', objectFit:'contain', flexShrink:0 }}/>
+                    style={{ height:180, width:'auto', objectFit:'contain', flexShrink:0 }}/>
                   <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:500, color:'var(--ink)', margin:0, lineHeight:1.5 }}>
-                    Flacon verre bleu pour les 200 ml, flacon verre ambré pour les 500 ml
-                    <span style={{ display:'block', fontSize:12, fontWeight:300, color:'var(--lt-ink-muted)', marginTop:4 }}>
-                      Photo d'illustration
-                    </span>
-                  </p>
+                    Flacon verre bleu pour les 200 ml, flacon verre ambré pour les 500 ml                  </p>
                 </div>
               )}
               <p style={{ fontFamily:'Vollkorn,serif', fontSize:'clamp(22px,2.6vw,30px)', fontStyle:'italic', fontWeight:400, color:'var(--ink)', lineHeight:1.7, marginBottom: rest ? 28 : 0 }}>
@@ -2473,7 +2461,7 @@ function PageMentions({ setPage }: { setPage:(p:string)=>void }) {
 • Hydrolat de livèche — 4028mdk09 (CC BY-SA 3.0)
 • Hydrolat de menthe poivrée — Wikimedia Commons (CC BY 3.0)
 • Hydrolat de sauge officinale — Agnieszka Kwiecień, Nova (CC BY-SA 4.0)
-• Hydrolat de tanaisie annuelle — Wikimedia Commons (domaine public)
+• Hydrolat de tanaisie annuelle — Stefan.lefnaer (CC BY-SA 4.0)
 
 — Synergies —
 • Synergie Aphtes & Mycoses — Stelian Kasabov (domaine public)
