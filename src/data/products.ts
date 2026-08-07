@@ -140,6 +140,7 @@ export const PRODUCTS: Product[] = [
   {...P(86,'Synergie Équilibre hormonal','Tisanes & Plantes',6,'25g','🌸','Équilibrant sur le système hormonal.','Synergie'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
   {...P(158,'Je dors','Tisanes & Plantes',6,'25g','🌙','Mélange de plantes cultivées et cueillies à la main, pour accompagner l\'endormissement et un sommeil paisible.','Synergie'), ingredients:['Aubépine','Mélisse','Passiflore','Grande camomille']},
   {...P(159,'Je respire','Tisanes & Plantes',6,'25g','🌿','Mélange de plantes pour la sphère respiratoire : soulage les poumons, adoucit les muqueuses.','Synergie'), ingredients:['Thym officinal','Mélisse','Serpolet','Aulnée','Camomille romaine','Rose de Provins']},
+  {...P(160,'Articulations','Tisanes & Plantes',6,'25g','🦴','Mélange de plantes pour les articulations : soulage, désenflamme, libère.','Synergie'), ingredients:['Chicorée','Reine des prés','Ortie','Sureau','Rose de Provins']},
 
   // ── Baumes ────────────────────────────────────────────────────────────────
   {...P(87,'Baume à l\'arnica','Baumes et lait corps',9.8,'30g','🏺','Apaise les coups, les bosses et les courbatures.'), ingredients:['Macérat oléique d\'arnica biologique','Cire d\'abeille','HE de cyprès biologique','HE de genévrier biologique']},
