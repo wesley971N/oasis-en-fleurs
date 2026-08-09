@@ -105,6 +105,8 @@ export const PRODUCTS: Product[] = [
   {...P(71,'O\'Verlin','Synergies',24,'Flacon 30ml','🌿','Synergie antiparasitaire.','Synergie'), ingredients:['HE de thym à thymol','HE de cannelle feuilles','HE de tea tree','HE de menthe poivrée','Coque de noix verte','Camomille allemande'], usage:'Voie orale.'},
   P(72,'Sibo\'Lin','Synergies',28,'Flacon 30ml','🌿','Complexe d\'huiles essentielles pour réguler la prolifération bactérienne dans l\'intestin grêle. Apaise les ballonnements et améliore la digestion.','Synergie'),
   {...P(179,'Synergie Transit','Synergies',9.8,'Flacon 8ml','🌿','Synergie d\'huiles essentielles 100% pures et naturelles biologiques, favorisant le transit.','Synergie'), ingredients:['HE de basilic','HE de badiane','HE de fenouil','HE de menthe poivrée','HE de muscade','HE d\'orange douce']},
+  P(79,'Fluidité articulation','Synergies',19.6,'50ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
+  P(137,'Fluidité articulation','Synergies',48,'200ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
   {...P(73,'Synergie Aphtes & Mycoses','Synergies',14,'Flacon 15ml','💧','Contre les aphtes et les mycoses.','Synergie'), usage:'À appliquer directement sur l\'aphte, 2 à 3 fois par jour.'},
   {...P(74,'Synergie hydrolat équilibrante','Synergies',14,'Flacon 500ml','💧','Apaise, détend, équilibre le système nerveux et prépare au sommeil.','Synergie'), ingredients:['Hydrolat de lavande vraie','Hydrolat de grande camomille','Hydrolat de mélisse officinale','Hydrolat de géranium rosat']},
   {...P(75,'Synergie HE Verrue & Sarcoïde','Synergies',16,'Flacon 15ml','💧','Traitement des verrues et sarcoïdes. Déconseillé aux enfants de moins de 7 ans.','Synergie'), usage:'À appliquer directement sur la verrue, 2 à 3 fois par jour jusqu\'à disparition.'},
@@ -127,16 +129,9 @@ export const PRODUCTS: Product[] = [
   {...P(152,'Synergie Jolie peau','Synergies',24,'Flacon 200ml','🌸','Purifie et assainit la peau, notamment en cas de dermite séborrhéique.','Synergie'), ingredients:['Macérât de calendula','HE de tea tree','HE de palmarosa','HE de géranium rosat','HE de lavande aspic'], usage:'Appliquer 2 fois par jour.'},
 
   // ── Tisanes & Plantes ─────────────────────────────────────────────────────
-  P(76,'Achillée millefeuille','Tisanes & Plantes',5,'25g','🌿','Stimule l\'appétit, soulage les troubles digestifs, les douleurs menstruelles et les spasmes abdominaux. Cicatrisant en usage externe.'),
-  P(77,'Alchémille','Tisanes & Plantes',5,'25g','🌿','Propriétés dites lutéiniques, proche de la progestérone. Astringente, antihémorragique, cicatrisante, anti-oxydante.'),
-  P(79,'Fluidité articulation','Synergies',19.6,'50ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
-  P(137,'Fluidité articulation','Synergies',48,'200ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
-  P(80,'Bourrache','Tisanes & Plantes',5,'25g','🌿','Puissant dépuratif qui nettoie l\'organisme en profondeur en le débarrassant de ses toxines.'),
-  P(81,'Camomille allemande','Tisanes & Plantes',5,'25g','🌼','Douce pour le foie et les intestins.'),
-  P(82,'Camomille romaine','Tisanes & Plantes',6.5,'25g','🌼','Tonique, stimulante, stomachique, antispasmodique, analgésique et fébrifuge. En externe : antiseptique et anti-inflammatoire.'),
+  // 1) Mélanges de plantes (sachets synergie) affichés en premier.
   {...P(83,'Synergie Détente','Tisanes & Plantes',6,'25g','💫','Mélange de plantes à visée relaxante.','Synergie'), ingredients:['Aubépine','Lavande','Rose de Provins','Tilleul']},
   {...P(84,'Synergie Détente','Tisanes & Plantes',11,'50g','💫','Synergie de plantes pour favoriser la détente et éliminer le stress.','Synergie'), ingredients:['Aubépine','Lavande','Tilleul','et autres plantes']},
-  P(85,'Épilobe à petites fleurs','Tisanes & Plantes',5.9,'25g','🌿','Très efficace pour réguler les problèmes de prostate. Cultivée sur la propriété, sans pesticides. Récolte manuelle, séchage naturel.','Local'),
   {...P(86,'Synergie Équilibre hormonal','Tisanes & Plantes',6,'25g','🌸','Équilibrant sur le système hormonal.','Synergie'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
   {...P(158,'Synergie Je dors','Tisanes & Plantes',6,'25g','🌙','Mélange de plantes cultivées et cueillies à la main, pour accompagner l\'endormissement et un sommeil paisible.','Synergie'), ingredients:['Aubépine','Mélisse','Passiflore','Grande camomille']},
   {...P(159,'Je respire','Tisanes & Plantes',6,'25g','🌿','Mélange de plantes pour la sphère respiratoire : soulage les poumons, adoucit les muqueuses.','Synergie'), ingredients:['Thym officinal','Mélisse','Serpolet','Aulnée','Camomille romaine','Rose de Provins']},
@@ -144,7 +139,14 @@ export const PRODUCTS: Product[] = [
   {...P(161,'Synergie Allergies','Tisanes & Plantes',6,'25g','🤧','Synergie de plantes à action apaisante des réactions allergiques.','Synergie'), ingredients:['Cassis','Souci','Ortie','Plantain','Echinacea purpurea','Sureau']},
   {...P(162,'Synergie Immunité','Tisanes & Plantes',6,'25g','🛡️','Stimule le système immunitaire et combat les frilosités.','Synergie'), ingredients:['Pensée sauvage','Capucine','Camomille allemande']},
   {...P(163,'Synergie J\'élimine','Tisanes & Plantes',6,'25g','💧','Mélange de plantes médicinales.','Synergie'), ingredients:['Sureau','Reine des prés','Ortie','Bruyère','Gaillet jaune']},
-  // ── Plantes médicinales (reprise ancien site) ──
+  {...P(180,'Synergie Jolie peau','Tisanes & Plantes',6,'25g','🌸','Mélange de plantes en infusion pour les problèmes de peau (eczéma, dermites).','Synergie'), ingredients:['Mélisse citronnée','Grande camomille','Rose de Provins']},
+  // 2) Tisanes d'une seule plante.
+  P(76,'Achillée millefeuille','Tisanes & Plantes',5,'25g','🌿','Stimule l\'appétit, soulage les troubles digestifs, les douleurs menstruelles et les spasmes abdominaux. Cicatrisant en usage externe.'),
+  P(77,'Alchémille','Tisanes & Plantes',5,'25g','🌿','Propriétés dites lutéiniques, proche de la progestérone. Astringente, antihémorragique, cicatrisante, anti-oxydante.'),
+  P(80,'Bourrache','Tisanes & Plantes',5,'25g','🌿','Puissant dépuratif qui nettoie l\'organisme en profondeur en le débarrassant de ses toxines.'),
+  P(81,'Camomille allemande','Tisanes & Plantes',5,'25g','🌼','Douce pour le foie et les intestins.'),
+  P(82,'Camomille romaine','Tisanes & Plantes',6.5,'25g','🌼','Tonique, stimulante, stomachique, antispasmodique, analgésique et fébrifuge. En externe : antiseptique et anti-inflammatoire.'),
+  P(85,'Épilobe à petites fleurs','Tisanes & Plantes',5.9,'25g','🌿','Très efficace pour réguler les problèmes de prostate. Cultivée sur la propriété, sans pesticides. Récolte manuelle, séchage naturel.','Local'),
   P(165,'Feuilles d\'olivier','Tisanes & Plantes',5,'25g','🫒','Feuilles d\'olivier (Olea europaea folium). Diminue l\'hypertension et améliore la circulation sanguine. Diurétiques (diurèse, œdèmes), diminuent l\'urée sanguine. Action antioxydante, protègent la paroi artérielle, antibactériennes et antivirales.'),
   P(166,'Grande camomille','Tisanes & Plantes',6,'25g','🌼','Bénéfique pour le foie et les intestins, elle calme les irritations de la paroi intestinale et combat les flatulences. Contribue à faire descendre la fièvre et soulage les maux de tête. Plus douce en goût que les autres camomilles. En externe : éclaircit les cheveux clairs en infusion ou hydrolat.'),
   P(167,'Grémil','Tisanes & Plantes',6,'25g','🌿','Grémil (Lithospermum officinale). Traditionnellement utilisé pour les problèmes de règles (dysménorrhées), l\'hypothyroïdie légère et pour aider à réguler un taux de sucre sanguin élevé (effet hypoglycémiant).'),
@@ -158,7 +160,6 @@ export const PRODUCTS: Product[] = [
   P(175,'Souci officinal','Tisanes & Plantes',5,'25g','🌼','Souci officinal (Calendula officinalis). Usage interne : calmant, décongestionnant, anti-inflammatoire, cicatrisant gastro-intestinal, sudorifique. Usage externe : cicatrisant et anti-inflammatoire, notamment contre les hématomes (en baume). Excellent antirides.'),
   P(176,'Verveine citronnelle','Tisanes & Plantes',5,'25g','🌿','Verveine citronnelle (Lippia citriodora). Digestive et calmante. Réputée pour aider à l\'endormissement, favoriser le sommeil et calmer les angoisses.'),
   P(177,'Feuille de framboisier','Tisanes & Plantes',5,'25g','🌿','Feuilles de framboisier sauvage, astringentes : diarrhées, maux de gorge, aphtes, ulcères. Le framboisier favorise et accélère le travail lors de l\'accouchement. La framboise est laxative et diurétique.'),
-  {...P(180,'Synergie Jolie peau','Tisanes & Plantes',6,'25g','🌸','Mélange de plantes en infusion pour les problèmes de peau (eczéma, dermites).','Synergie'), ingredients:['Mélisse citronnée','Grande camomille','Rose de Provins']},
 
   // ── Baumes ────────────────────────────────────────────────────────────────
   {...P(87,'Baume à l\'arnica','Baumes et lait corps',9.8,'30g','🏺','Apaise les coups, les bosses et les courbatures.'), ingredients:['Macérat oléique d\'arnica biologique','Cire d\'abeille','HE de cyprès biologique','HE de genévrier biologique']},
@@ -174,7 +175,7 @@ export const PRODUCTS: Product[] = [
   {...P(97,'Baume féminité','Baumes et lait corps',24,'30g','🌸','Irritation, sécheresse vaginale, pertes blanches.'), ingredients:['Beurre de karité','Macérat de calendula','Beurre de cacao cru','Huile de calophyllum','HE de tea tree','HE de bois de Hô','HE de sauge sclarée','HE d\'origan compact','HE de thym à thymol','HE de palmarosa'], usage:'Usage interne.'},
   {...P(98,'Baume Karité calendula','Baumes et lait corps',16,'30g','🏺','Nourrit et protège les peaux sèches et sensibles. Idéal pour les lèvres sèches.'), ingredients:['Beurre de karité','Macérat de fleurs de calendula','Cire d\'abeille','HE d\'Ylang ylang']},
   {...P(99,'Baume verrue sarcoïde','Baumes et lait corps',16,'30g','🏺','Très concentré en huiles essentielles. Déconseillé aux femmes enceintes et aux enfants de moins de 7 ans.'), usage:'À appliquer chaque jour sur la verrue jusqu\'à disparition.'},
-  {...P(154,'Lait corporel onctueux','Baumes et lait corps',21.60,'500 ml','🧴','Lait corps onctueux et nourrissant au macérât de lavande vraie, aux hydrolats apaisants de grande camomille et de lavande, et à l\'huile essentielle d\'ylang-ylang.'), ingredients:['Macérât de lavande vraie sur huile d\'olive','Fécule d\'arrow-root','Hydrolat de grande camomille','Hydrolat de lavande','Cire d\'abeille','HE d\'ylang-ylang']},
+  {...P(154,'Lait corporel onctueux','Baumes et lait corps',24,'500 ml','🧴','Lait corps onctueux et nourrissant au macérât de lavande vraie, aux hydrolats apaisants de grande camomille et de lavande, et à l\'huile essentielle d\'ylang-ylang.'), ingredients:['Macérât de lavande vraie sur huile d\'olive','Fécule d\'arrow-root','Hydrolat de grande camomille','Hydrolat de lavande','Cire d\'abeille','HE d\'ylang-ylang']},
   {...P(178,'Baume anti-âge','Baumes et lait corps',28,'30ml','✨','Baume anti-âge à l\'huile de rose musquée, l\'un des plus puissants régénérateurs naturels de la peau. Action antirides, sur les poches et les cernes ; lutte contre le vieillissement cutané, adoucit et tonifie. Aussi utilisée sur les vergetures, les cicatrices et les zones très sèches (coudes, talons, genoux).'), ingredients:['Huile de rose musquée']},
 
   // ── Savons — Mille Bulles, la savonnerie artisanale des Naturels de la Source ──

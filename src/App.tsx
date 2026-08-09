@@ -1225,7 +1225,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
             )}
           </div>
         </div>
-        <div style={{ maxWidth:1280, margin:'0 auto', padding:'0 32px', display:'flex', gap:8, overflowX:'auto' }}>
+        <div style={{ maxWidth:1280, margin:'0 auto', padding:'0 32px', display:'flex', flexWrap:'wrap', gap:10, justifyContent:'center' }}>
           {CATEGORIES.map(c => (
             <button key={c} className={`filter-tab ${activeCategory===c && !q ?'active':''}`}
               onClick={() => { setActiveCategory(c); setSearchQuery(''); setExpandedDesc(false) }}>
