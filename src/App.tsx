@@ -134,7 +134,7 @@ const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))
 // Lien d'avis Google de la fiche d'établissement (ouvre directement le formulaire d'avis)
 const GOOGLE_REVIEW_URL = 'https://g.page/r/CfWaKtYsN4KdEBM/review'
 
-const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes et lait corps', 'Savons', 'Miellerie', 'Créations laines']
+const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Créations laines', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes et lait corps', 'Savons', 'Miellerie']
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   'Phytembryothérapie': `La phytoembryothérapie fait partie intégrante de la phytothérapie — à ne pas confondre avec la gemmothérapie, qui appartient à l'homéopathie.
