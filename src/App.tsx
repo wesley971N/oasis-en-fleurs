@@ -7,6 +7,7 @@ import agnesPhoto from './assets/agnes.jpg'
 import agnesBureauPhoto from './assets/agnes-bureau.jpg'
 import fermeHeroPhoto from './assets/ferme-hero.jpg'
 import stagesHeroPhoto from './assets/stages-hero.jpg'
+import flyerDetox from './assets/flyer-stage-detox.jpeg'
 import boutiqueHeroPhoto from './assets/boutique-hero.jpg'
 import logoNaturels from './assets/logo-naturels-dore.png'
 // Photos réelles de la ferme (Agnès Gilliet — Curciat-Dongalon)
@@ -2191,6 +2192,49 @@ function PageStages({ addToast, setPage }: { addToast: (m:string)=>void, setPage
         title="Stages & Formations"
         subtitle="Des journées et week-ends pour apprendre à connaître les plantes, les ruches et les savoir-faire de la ferme, avec Agnès."
       />
+
+      {/* Événement à venir — Cure Détox (Naturopathie Eden × Agnès Gillet) */}
+      <section style={{ padding:'72px 32px 8px', background:'var(--cream)' }}>
+        <div style={{ maxWidth:1100, margin:'0 auto' }}>
+          <div className="fade-up" style={{ textAlign:'center', marginBottom:40 }}>
+            <span style={{ display:'inline-block', background:'var(--moss)', color:'#F4EDDC', padding:'6px 16px', borderRadius:20,
+              fontFamily:'Barlow,sans-serif', fontSize:12, fontWeight:600, letterSpacing:1, textTransform:'uppercase' }}>Événement à venir</span>
+            <h2 style={{ fontFamily:'Vollkorn,serif', fontSize:32, color:'var(--brown)', marginTop:16, lineHeight:1.25 }}>Cure Détox — Stop à l'inflammation</h2>
+            <p style={{ fontFamily:'Barlow,sans-serif', fontSize:13, color:'var(--brown-light)', marginTop:8, fontStyle:'italic' }}>Organisée par Naturopathie Eden</p>
+          </div>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap:44, alignItems:'center' }}>
+            <a href={flyerDetox} target="_blank" rel="noopener noreferrer" className="fade-up" style={{ display:'block' }}>
+              <img src={flyerDetox}
+                alt="Flyer de la Cure Détox anti-inflammation, du 26 mars au 2 avril 2027 au gîte de Colondannes"
+                style={{ width:'100%', maxWidth:440, margin:'0 auto', display:'block', borderRadius:16, boxShadow:'0 16px 44px rgba(0,0,0,0.18)' }} />
+            </a>
+            <div className="fade-up">
+              <p style={{ fontFamily:'Barlow,sans-serif', fontSize:16, color:'var(--brown-light)', lineHeight:1.8, marginBottom:28 }}>
+                Une semaine pour purifier votre corps, apaiser votre esprit et retrouver vitalité et équilibre :
+                conseils nutritionnels, espace spa, massages, activité physique et bien-être global.
+              </p>
+              <div style={{ display:'flex', flexDirection:'column', gap:14, marginBottom:28 }}>
+                {[
+                  ['📅','Du 26 mars au 2 avril 2027'],
+                  ['📍','Gîte — 46 Grande Rue, 23800 Colondannes'],
+                  ['👐','Animée par Guylène Ambroise (naturopathe) & Agnès Gillet (phytothérapeute)'],
+                  ['💶','650 € — tarif unique'],
+                  ['✉️','06 42 85 05 52 · naturoeden03@gmail.com'],
+                ].map(([icon,txt]) => (
+                  <div key={txt} style={{ display:'flex', gap:12, alignItems:'flex-start' }}>
+                    <span style={{ fontSize:18, lineHeight:1.4 }}>{icon}</span>
+                    <span style={{ fontFamily:'Barlow,sans-serif', fontSize:14.5, color:'var(--brown)', lineHeight:1.5 }}>{txt}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ background:'var(--moss)', color:'#F4EDDC', padding:'16px 20px', borderRadius:14 }}>
+                <p style={{ fontFamily:'Vollkorn,serif', fontSize:18, fontWeight:600, marginBottom:2 }}>Pré-réservation jusqu'au 20 septembre</p>
+                <p style={{ fontFamily:'Barlow,sans-serif', fontSize:13, opacity:0.9 }}>Ne ratez pas votre place !</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section style={{ padding:'80px 32px', background:'var(--lt-bg)' }}>
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
