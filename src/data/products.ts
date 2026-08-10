@@ -211,7 +211,8 @@ export const PRODUCTS: Product[] = [
   P(114,'Étole mohair et soie','Créations laines',140,'Pièce unique','🧶','Étole tricotée main en double fil de mohair et soie, bord festonné au crochet. Légère, chaude et enveloppante.','Fait main'),
   P(115,'Écharpe alpaga huacaya — Naturel','Créations laines',80,'Pièce unique','🧶','Écharpe tricotée main en alpaga huacaya, coloris naturel. Douce, chaude et légère.','Fait main'),
   P(116,'Écharpe mohair et soie — Rouge & Fushia','Créations laines',110,'Pièce unique','🧶','Écharpe tricotée main en double fil de mohair et soie, tons rouge rubis et rose fushia. Chaude et légère.','Fait main'),
-  P(118,'Pull sans manche mohair et soie — Rubis','Créations laines',110,'Pièce unique','🧶','Pull sans manche tricoté main en mohair et soie, coloris rubis. Ouvert sur les côtés, se noue par cordelettes.','Fait main'),
+  P(118,'Pull sans manche mohair et soie — Corail','Créations laines',110,'Taille 36 à 40','🧶','Pull sans manche tricoté main en mohair et soie, coloris corail. Ouvert sur les côtés, se noue par cordelettes.','Fait main'),
+  P(181,'Pull sans manche mohair et soie — Écru','Créations laines',110,'Taille 36 à 40','🧶','Pull sans manche tricoté main en mohair et soie, coloris écru, col volanté. Léger, chaud et aérien.','Fait main'),
   P(119,'Pull mohair et soie','Créations laines',170,'Taille 36/38','🧶','Pull manches longues tricoté main en mohair et soie. Chaud, léger et aérien.','Fait main'),
   P(120,'Pull tunique mohair et soie','Créations laines',118,'Taille 36 à 40','🧶','Pull tunique long tricoté main en mohair et soie, à porter en robe.','Fait main'),
   // Pièces du catalogue sans photo pour l'instant (emoji en attendant) :
