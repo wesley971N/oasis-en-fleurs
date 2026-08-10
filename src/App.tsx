@@ -1572,6 +1572,41 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 </div>
               )}
 
+              {(() => {
+                const compIds = new Set<number>()
+                ;(drawerProduct.complements || []).forEach(id => compIds.add(id))
+                PRODUCTS.forEach(q => { if (q.complements?.includes(drawerProduct.id)) compIds.add(q.id) })
+                const comps = [...compIds]
+                  .map(id => PRODUCTS.find(p => p.id === id))
+                  .filter((p): p is Product => !!p && p.id !== drawerProduct.id)
+                if (comps.length === 0) return null
+                return (
+                  <div style={{ marginBottom:32 }}>
+                    <p style={{ fontFamily:'Barlow,sans-serif', fontWeight:600, fontSize:12, letterSpacing:1.5,
+                      textTransform:'uppercase', color:'var(--brown)', marginBottom:10 }}>Se complète bien avec…</p>
+                    <div style={{ display:'flex', flexDirection:'column', gap:8 }}>
+                      {comps.map(c => (
+                        <button key={c.id} onClick={() => openDrawer(c)}
+                          style={{ display:'flex', alignItems:'center', gap:12, width:'100%', textAlign:'left',
+                            background:'var(--cream-dark)', border:'none', padding:8, borderRadius:10, cursor:'pointer' }}>
+                          <span style={{ width:44, height:44, flexShrink:0, borderRadius:8, overflow:'hidden',
+                            background:'#EDE6D6', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                            {PRODUCT_IMAGES[c.id]
+                              ? <img src={PRODUCT_IMAGES[c.id]} alt={c.name} loading="lazy" style={{ width:'100%', height:'100%', objectFit:'cover' }}/>
+                              : <span style={{ fontSize:22 }}>{c.emoji}</span>}
+                          </span>
+                          <span style={{ flex:1, minWidth:0 }}>
+                            <span style={{ display:'block', fontFamily:'Vollkorn,serif', fontSize:15, color:'var(--brown)', lineHeight:1.3 }}>{c.name}</span>
+                            <span style={{ fontSize:12, color:'var(--brown-light)' }}>{c.price}€ · {c.unit}</span>
+                          </span>
+                          <span style={{ color:'var(--moss)', fontSize:18, flexShrink:0 }}>→</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )
+              })()}
+
               {drawerProduct.category === 'Huiles Essentielles' && (
                 <div style={{ marginBottom:32 }}>
                   <p style={{ fontFamily:'Barlow,sans-serif', fontWeight:600, fontSize:12, letterSpacing:1.5,
