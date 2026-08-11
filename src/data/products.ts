@@ -222,4 +222,5 @@ export const PRODUCTS: Product[] = [
   P(122,'Écharpe mohair, soie & mérinos — Rose poudrée','Créations laines',118,'Pièce unique','🧶','Écharpe à plastron, mélange mohair kids, soie et mérinos. Coloris rose poudrée.','Fait main'),
   P(123,'Écharpe tissée main','Créations laines',139,'2 m × 40 cm','🧶','Écharpe en Super Kids mohair et soie, tissée main. Tons prune, potiron et anis.','Fait main'),
   P(124,'Pull alpaga huacaya — Naturel','Créations laines',240,'Taille 36 à 40','🧶','Pull 100% alpaga huacaya, filé et tricoté main. Coloris naturel.','Fait main'),
+  P(183,'Robe mohair — Saumon','Créations laines',180,'Taille 36-38','🧶','Robe longue tricotée main en mohair et soie, coloris saumon. Légère, chaude et enveloppante.','Fait main'),
 ]
