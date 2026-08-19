@@ -183,12 +183,14 @@ La glycérine végétale, extraite du colza (teneur en huile de 50 à 68 %), ext
 
 Nos savons sont réalisés selon le procédé traditionnel de saponification à froid, qui préserve la glycérine naturelle ainsi que les propriétés des huiles végétales. Enrichis de macérâts de plantes médicinales, d'huiles essentielles et de beurres végétaux, ils nourrissent, apaisent et protègent la peau en douceur. Sans conservateur, chaque pain est façonné et découpé à la main.`,
   'Miellerie': `Le miel de L'Oasis en Fleurs est un miel toutes fleurs, récolté auprès des 6 ruches Buckfast sédentaires installées sur la ferme. Les abeilles butinent librement les fleurs sauvages et médicinales du domaine et des prairies de la Bresse, produisant un miel d'une grande richesse aromatique. Non chauffé, il conserve l'ensemble de ses enzymes, pollens et propriétés naturelles. Conditionné directement à la ferme, disponible en pot de 500 g ou au kilo.`,
+  'Créations laines': `Création de pièce unique — pour plus de demandes, contactez Agnès. Écharpes, étoles, châles, pulls et plaids tricotés et tissés main à la ferme, à partir des toisons de nos brebis, alpagas et chèvres mohair. Chaque pièce est façonnée artisanalement, du filage au rouet au tricot main.`,
 }
 
 // Image représentative (produit) affichée à côté de l'intitulé de chaque rubrique.
 const CATEGORY_REP_IMAGE: Record<string, number> = {
   'Phytembryothérapie': 2,
   'Synergies': 25,
+  'Créations laines': 114,
   'Baumes et lait corps': 88,
   'Miellerie': 111,
 }
@@ -1241,7 +1243,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
         const accroche = dotIdx > -1 ? full.slice(0, dotIdx + 1) : full
         const rest = dotIdx > -1 ? full.slice(dotIdx + 2) : ''
         const emojis: Record<string,string> = {
-          'Phytembryothérapie':'🌱','Huiles Essentielles':'💧','Hydrolats':'🫧',
+          'Phytembryothérapie':'🌱','Huiles Essentielles':'💧','Hydrolats':'🫧','Créations laines':'🧶',
           'Synergies':'✨','Tisanes & Plantes':'🌿','Baumes et lait corps':'🏺','Savons':'🧼','Miellerie':'🍯'
         }
         const emoji = emojis[activeCategory] || '🌿'
@@ -1315,13 +1317,25 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 </>
               )}
               {activeCategory === 'Savons' && <SavonnerieCarousel/>}
-              {activeCategory === 'Phytembryothérapie' && PHYTO_VIDEOS.length > 0 && (
+              {activeCategory === 'Tisanes & Plantes' && PHYTO_VIDEOS.length > 0 && (
+                <div style={{ marginTop: 44 }}>
+                  <p style={{ fontFamily:'Barlow,sans-serif', fontSize:14, fontWeight:300, color:'var(--lt-ink-muted)', marginBottom:18 }}>
+                    En vidéo (cliquez pour lire)&nbsp;:
+                  </p>
+                  <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(230px, 1fr))', gap:16 }}>
+                    <video src={PHYTO_VIDEOS[0]} controls preload="metadata" playsInline
+                      style={{ width:'100%', maxHeight:'70vh', display:'block', borderRadius:14,
+                        border:'1px solid oklch(0.42 0.085 150 / 0.14)', background:'#000' }}/>
+                  </div>
+                </div>
+              )}
+              {activeCategory === 'Phytembryothérapie' && PHYTO_VIDEOS.length > 1 && (
                 <div style={{ marginTop: 44 }}>
                   <p style={{ fontFamily:'Barlow,sans-serif', fontSize:14, fontWeight:300, color:'var(--lt-ink-muted)', marginBottom:18 }}>
                     En vidéo — la préparation des macérats de bourgeons (cliquez pour lire)&nbsp;:
                   </p>
                   <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(230px, 1fr))', gap:16 }}>
-                    {PHYTO_VIDEOS.map((src, i) => (
+                    {PHYTO_VIDEOS.slice(1).map((src, i) => (
                       <video key={i} src={src} controls preload="metadata" playsInline
                         style={{ width:'100%', maxHeight:'70vh', display:'block', borderRadius:14,
                           border:'1px solid oklch(0.42 0.085 150 / 0.14)', background:'#000' }}/>
@@ -2266,6 +2280,10 @@ function PageStages({ addToast, setPage }: { addToast: (m:string)=>void, setPage
                 <p style={{ fontFamily:'Vollkorn,serif', fontSize:18, fontWeight:600, marginBottom:2 }}>Pré-réservation jusqu'au 20 septembre</p>
                 <p style={{ fontFamily:'Barlow,sans-serif', fontSize:13, opacity:0.9 }}>Ne ratez pas votre place !</p>
               </div>
+              <a href="mailto:naturoeden03@gmail.com?subject=Réservation Cure Détox — Stop à l'inflammation"
+                className="btn-moss" style={{ display:'inline-block', marginTop:18, textDecoration:'none', padding:'13px 28px', fontSize:14 }}>
+                Réserver ma place
+              </a>
             </div>
           </div>
         </div>

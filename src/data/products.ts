@@ -29,7 +29,7 @@ export const PRODUCTS: Product[] = [
   {...P(3,'Bourgeons de châtaignier','Phytembryothérapie',24,'Flacon 30ml','🌿','Macérât glycériné de bourgeons de châtaignier concentré. Stimule le système lymphatique.'), ingredients:BOURGEON_INGREDIENTS},
   {...P(4,'Bourgeons de chêne','Phytembryothérapie',24,'Flacon 30ml','🌿','Macérât glycériné de bourgeons de chêne concentré. Tonique général, favorise la circulation.'), ingredients:BOURGEON_INGREDIENTS},
   {...P(5,'Bourgeons de frêne','Phytembryothérapie',24,'Flacon 30ml','🌿','Puissant stimulant du système rénal, draineur. Soulage le système ostéoarticulaire et élimine les toxines, notamment l\'acide urique.'), ingredients:BOURGEON_INGREDIENTS},
-  {...P(6,'Détente Elixirs','Phytembryothérapie',24,'Flacon 50ml','💫','Apaise, combat le stress et les troubles du sommeil.','Bestseller'), ingredients:['Extrait d\'aubépine','Extrait de mélisse','Extrait de pavot de Californie','Macérat de bourgeons de tilleul']},
+  {...P(6,'Complexe Détente','Synergies',24,'Flacon 50ml','💫','Apaise, combat le stress et les troubles du sommeil.','Bestseller'), ingredients:['Extrait d\'aubépine','Extrait de mélisse','Extrait de pavot de Californie','Macérat de bourgeons de tilleul']},
   {...P(7,'Extrait d\'echinacea purpurea','Phytembryothérapie',18.9,'Flacon 30ml','🌸','Immunostimulant reconnu, actif sur les affections virales et bactériennes. Sans alcool.'), ingredients:['Fleurs et feuilles d\'echinacea purpurea','Eau de source','Glycérine végétale biologique']},
   {...P(8,'Macérât de bourgeons de cassissier','Phytembryothérapie',24,'Flacon 50ml','🫐','Le plus grand des draineurs. Renforce les défenses immunitaires, aide à lutter contre les allergies et la fatigue.','Bestseller'), ingredients:BOURGEON_INGREDIENTS},
   {...P(9,'Macérât de bourgeons de genévrier','Phytembryothérapie',24,'Flacon 30ml','🌿','Draine, purifie, régénère le foie, désinfecte les voies urinaires.'), ingredients:BOURGEON_INGREDIENTS},
@@ -105,7 +105,7 @@ export const PRODUCTS: Product[] = [
   // ── Synergies ─────────────────────────────────────────────────────────────
   {...P(71,'O\'Verlin','Synergies',24,'Flacon 30ml','🌿','Synergie antiparasitaire.','Synergie'), ingredients:['HE de thym à thymol','HE de cannelle feuilles','HE de tea tree','HE de menthe poivrée','Coque de noix verte','Camomille allemande'], usage:'Voie orale.'},
   P(72,'Sibo\'Lin','Synergies',28,'Flacon 30ml','🌿','Complexe d\'huiles essentielles pour réguler la prolifération bactérienne dans l\'intestin grêle. Apaise les ballonnements et améliore la digestion.','Synergie'),
-  {...P(179,'Synergie Transit','Synergies',9.8,'Flacon 8ml','🌿','Synergie d\'huiles essentielles 100% pures et naturelles biologiques, favorisant le transit.','Synergie'), ingredients:['HE de basilic','HE de badiane','HE de fenouil','HE de menthe poivrée','HE de muscade','HE d\'orange douce']},
+  {...P(179,'Synergie Transit','Synergies',18,'Flacon 15ml','🌿','Synergie d\'huiles essentielles 100% pures et naturelles biologiques, favorisant le transit.','Synergie'), ingredients:['HE de basilic','HE de badiane','HE de fenouil','HE de menthe poivrée','HE de muscade','HE d\'orange douce']},
   P(79,'Fluidité articulation','Synergies',19.6,'50ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
   P(137,'Fluidité articulation','Synergies',48,'200ml','🦴','Soulage, désenflamme, libère les articulations douloureuses et entretient la bonne mobilité.','Synergie'),
   {...P(73,'Synergie Aphtes & Mycoses','Synergies',14,'Flacon 15ml','💧','Contre les aphtes et les mycoses.','Synergie'), usage:'À appliquer directement sur l\'aphte, 2 à 3 fois par jour.'},
@@ -131,16 +131,16 @@ export const PRODUCTS: Product[] = [
 
   // ── Tisanes & Plantes ─────────────────────────────────────────────────────
   // 1) Mélanges de plantes (sachets synergie) affichés en premier.
-  {...P(83,'Synergie Détente','Tisanes & Plantes',6,'25g','💫','Mélange de plantes à visée relaxante.','Synergie'), ingredients:['Aubépine','Lavande','Rose de Provins','Tilleul'], complements:[74]},
-  {...P(84,'Synergie Détente','Tisanes & Plantes',11,'50g','💫','Synergie de plantes pour favoriser la détente et éliminer le stress.','Synergie'), ingredients:['Aubépine','Lavande','Tilleul','et autres plantes']},
-  {...P(86,'Synergie Équilibre hormonal','Tisanes & Plantes',6,'25g','🌸','Équilibrant sur le système hormonal.','Synergie'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
-  {...P(158,'Synergie Je dors','Tisanes & Plantes',6,'25g','🌙','Mélange de plantes cultivées et cueillies à la main, pour accompagner l\'endormissement et un sommeil paisible.','Synergie'), ingredients:['Aubépine','Mélisse','Passiflore','Grande camomille'], complements:[141]},
-  {...P(159,'Je respire','Tisanes & Plantes',6,'25g','🌿','Mélange de plantes pour la sphère respiratoire : soulage les poumons, adoucit les muqueuses.','Synergie'), ingredients:['Thym officinal','Mélisse','Serpolet','Aulnée','Camomille romaine','Rose de Provins'], complements:[32]},
-  {...P(160,'Synergie Articulations','Tisanes & Plantes',6,'25g','🦴','Mélange de plantes pour les articulations : soulage, désenflamme, libère.','Synergie'), ingredients:['Chicorée','Reine des prés','Ortie','Sureau','Rose de Provins'], complements:[79]},
-  {...P(161,'Synergie Allergies','Tisanes & Plantes',6,'25g','🤧','Synergie de plantes à action apaisante des réactions allergiques.','Synergie'), ingredients:['Cassis','Souci','Ortie','Plantain','Echinacea purpurea','Sureau'], complements:[139]},
-  {...P(162,'Synergie Immunité','Tisanes & Plantes',6,'25g','🛡️','Stimule le système immunitaire et combat les frilosités.','Synergie'), ingredients:['Pensée sauvage','Capucine','Camomille allemande']},
-  {...P(163,'Synergie J\'élimine','Tisanes & Plantes',6,'25g','💧','Mélange de plantes médicinales.','Synergie'), ingredients:['Sureau','Reine des prés','Ortie','Bruyère','Gaillet jaune']},
-  {...P(180,'Synergie Jolie peau','Tisanes & Plantes',6,'25g','🌸','Mélange de plantes en infusion pour les problèmes de peau (eczéma, dermites).','Synergie'), ingredients:['Mélisse citronnée','Grande camomille','Rose de Provins']},
+  {...P(83,'Détente','Tisanes & Plantes',6,'25g','💫','Mélange de plantes à visée relaxante.'), ingredients:['Aubépine','Lavande','Rose de Provins','Tilleul'], complements:[74]},
+  {...P(84,'Détente','Tisanes & Plantes',11,'50g','💫','Synergie de plantes pour favoriser la détente et éliminer le stress.'), ingredients:['Aubépine','Lavande','Tilleul','et autres plantes']},
+  {...P(86,'Équilibre hormonal','Tisanes & Plantes',6,'25g','🌸','Équilibrant sur le système hormonal.'), ingredients:['Alchémille des Alpes','Achillée millefeuille','Feuille de framboisier','Sauge','Bourrache','Rose de Provins']},
+  {...P(158,'Je dors','Tisanes & Plantes',6,'25g','🌙','Mélange de plantes cultivées et cueillies à la main, pour accompagner l\'endormissement et un sommeil paisible.'), ingredients:['Aubépine','Mélisse','Passiflore','Grande camomille'], complements:[141]},
+  {...P(159,'Je respire','Tisanes & Plantes',6,'25g','🌿','Mélange de plantes pour la sphère respiratoire : soulage les poumons, adoucit les muqueuses.'), ingredients:['Thym officinal','Mélisse','Serpolet','Aulnée','Camomille romaine','Rose de Provins'], complements:[32]},
+  {...P(160,'Articulations','Tisanes & Plantes',6,'25g','🦴','Mélange de plantes pour les articulations : soulage, désenflamme, libère.'), ingredients:['Chicorée','Reine des prés','Ortie','Sureau','Rose de Provins'], complements:[79]},
+  {...P(161,'Allergies','Tisanes & Plantes',6,'25g','🤧','Synergie de plantes à action apaisante des réactions allergiques.'), ingredients:['Cassis','Souci','Ortie','Plantain','Echinacea purpurea','Sureau'], complements:[139]},
+  {...P(162,'Immunité','Tisanes & Plantes',6,'25g','🛡️','Stimule le système immunitaire et combat les frilosités.'), ingredients:['Pensée sauvage','Capucine','Camomille allemande']},
+  {...P(163,'J\'élimine','Tisanes & Plantes',6,'25g','💧','Mélange de plantes médicinales.'), ingredients:['Sureau','Reine des prés','Ortie','Bruyère','Gaillet jaune']},
+  {...P(180,'Jolie peau','Tisanes & Plantes',6,'25g','🌸','Mélange de plantes en infusion pour les problèmes de peau (eczéma, dermites).'), ingredients:['Mélisse citronnée','Grande camomille','Rose de Provins']},
   // 2) Tisanes d'une seule plante.
   P(76,'Achillée millefeuille','Tisanes & Plantes',5,'25g','🌿','Stimule l\'appétit, soulage les troubles digestifs, les douleurs menstruelles et les spasmes abdominaux. Cicatrisant en usage externe.'),
   P(77,'Alchémille','Tisanes & Plantes',5,'25g','🌿','Propriétés dites lutéiniques, proche de la progestérone. Astringente, antihémorragique, cicatrisante, anti-oxydante.'),
@@ -223,4 +223,5 @@ export const PRODUCTS: Product[] = [
   P(123,'Écharpe tissée main','Créations laines',139,'2 m × 40 cm','🧶','Écharpe en Super Kids mohair et soie, tissée main. Tons prune, potiron et anis.','Fait main'),
   P(124,'Pull alpaga huacaya — Naturel','Créations laines',240,'Taille 36 à 40','🧶','Pull 100% alpaga huacaya, filé et tricoté main. Coloris naturel.','Fait main'),
   P(183,'Robe mohair — Saumon','Créations laines',180,'Taille 36-38','🧶','Robe longue tricotée main en mohair et soie, coloris saumon. Légère, chaude et enveloppante.','Fait main'),
+  P(184,'Pull parme mohair et soie','Créations laines',110,'Taille 36 à 40','🧶','Pull tricoté main en mohair et soie, coloris parme, fermé par un nœud de ruban. Léger, chaud et aérien.','Fait main'),
 ]
