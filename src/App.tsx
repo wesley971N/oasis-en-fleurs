@@ -127,6 +127,9 @@ const VARIANT_GROUPS: number[][] = [
   [61, 155],     // Hydrolat cataire citronnée : 200 ml · 500 ml
   [66, 156],     // Hydrolat livèche : 200 ml · 500 ml
   [69, 157],     // Hydrolat sauge officinale : 200 ml · 500 ml
+  [83, 84],      // Détente : 25 g · 50 g
+  [172, 173],    // Reine des prés : 25 g · 50 g
+  [111, 112],    // Miel de la Source Toutes fleurs : Pot 500 g · Pot 1 kg
 ]
 const variantGroupFor = (id: number) => VARIANT_GROUPS.find(g => g.includes(id))
 const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))
