@@ -145,6 +145,9 @@ const VARIANT_GROUPS: number[][] = [
 const variantGroupFor = (id: number) => VARIANT_GROUPS.find(g => g.includes(id))
 const HIDDEN_VARIANT_IDS = VARIANT_GROUPS.flatMap(g => g.slice(1))
 
+// Produits « hauts » (flacons, etc.) affichés en entier dans la grille (objectFit contain) plutôt que rognés.
+const CONTAIN_PRODUCT_IDS = new Set<number>([154]) // Lait corporel onctueux
+
 // Lien d'avis Google de la fiche d'établissement (ouvre directement le formulaire d'avis)
 const GOOGLE_REVIEW_URL = 'https://g.page/r/CfWaKtYsN4KdEBM/review'
 
@@ -1377,8 +1380,9 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
           {filtered.map((p, i) => (
             <div key={p.id} className="product-card fade-up" style={{ transitionDelay:`${(i%4)*0.1}s`, cursor:'pointer' }}
               onClick={() => openDrawer(p)}>
-              {/* Image area — Créations laines : image entière (contain) sur fond neutre pour voir le vêtement de haut en bas */}
-              <div style={{ background: p.category==='Créations laines' ? '#EDE6D6' : (i%3===0?'var(--moss)':i%3===1?'var(--brown)':'#6b5a3e'),
+              {/* Image area — image entière (contain) sur fond neutre pour les vêtements (laine) et les produits « hauts » (flacons) */}
+              {(() => { const showContain = p.category==='Créations laines' || CONTAIN_PRODUCT_IDS.has(p.id); return (
+              <div style={{ background: showContain ? '#EDE6D6' : (i%3===0?'var(--moss)':i%3===1?'var(--brown)':'#6b5a3e'),
                 height:180, display:'flex', alignItems:'center', justifyContent:'center',
                 position:'relative', cursor:'pointer', overflow:'hidden' }}
                 onClick={() => openDrawer(p)}>
@@ -1386,7 +1390,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                   ? <PeloteCardCarousel/>
                   : PRODUCT_IMAGES[p.id]
                   ? <img src={PRODUCT_IMAGES[p.id]} alt={p.name} loading="lazy"
-                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit: p.category==='Créations laines' ? 'contain' : 'cover' }}/>
+                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit: showContain ? 'contain' : 'cover' }}/>
                   : <span style={{ fontSize:56 }}>{p.emoji}</span>}
                 {p.badge && !isSoldOut(p.id) && (
                   <div style={{ position:'absolute', top:12, left:12, background:'var(--gold)',
@@ -1402,6 +1406,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                   </span>
                 )}
               </div>
+              ) })()}
               <div style={{ padding:'20px 20px 16px' }}>
                 <p style={{ fontFamily:'Barlow,sans-serif', fontSize:10, letterSpacing:2, color:'var(--gold)',
                   textTransform:'uppercase', marginBottom:6 }}>{p.category}</p>
