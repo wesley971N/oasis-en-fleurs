@@ -1377,8 +1377,8 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
           {filtered.map((p, i) => (
             <div key={p.id} className="product-card fade-up" style={{ transitionDelay:`${(i%4)*0.1}s`, cursor:'pointer' }}
               onClick={() => openDrawer(p)}>
-              {/* Image area */}
-              <div style={{ background: i%3===0?'var(--moss)':i%3===1?'var(--brown)':'#6b5a3e',
+              {/* Image area — Créations laines : image entière (contain) sur fond neutre pour voir le vêtement de haut en bas */}
+              <div style={{ background: p.category==='Créations laines' ? '#EDE6D6' : (i%3===0?'var(--moss)':i%3===1?'var(--brown)':'#6b5a3e'),
                 height:180, display:'flex', alignItems:'center', justifyContent:'center',
                 position:'relative', cursor:'pointer', overflow:'hidden' }}
                 onClick={() => openDrawer(p)}>
@@ -1386,7 +1386,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                   ? <PeloteCardCarousel/>
                   : PRODUCT_IMAGES[p.id]
                   ? <img src={PRODUCT_IMAGES[p.id]} alt={p.name} loading="lazy"
-                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}/>
+                      style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit: p.category==='Créations laines' ? 'contain' : 'cover' }}/>
                   : <span style={{ fontSize:56 }}>{p.emoji}</span>}
                 {p.badge && !isSoldOut(p.id) && (
                   <div style={{ position:'absolute', top:12, left:12, background:'var(--gold)',
