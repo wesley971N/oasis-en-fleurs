@@ -224,6 +224,5 @@ export const PRODUCTS: Product[] = [
   P(124,'Pull alpaga huacaya — Naturel','Créations laines',240,'Taille 36 à 40','🧶','Pull 100% alpaga huacaya, filé et tricoté main. Coloris naturel.','Fait main'),
   P(183,'Robe mohair — Saumon','Créations laines',180,'Taille 36-38','🧶','Robe longue tricotée main en mohair et soie, coloris saumon. Légère, chaude et enveloppante.','Fait main'),
   P(184,'Pull parme mohair et soie','Créations laines',110,'Taille 36 à 40','🧶','Pull tricoté main en mohair et soie, coloris parme, fermé par un nœud de ruban. Léger, chaud et aérien.','Fait main'),
-  P(185,'Écharpe tricotée main alpaga','Créations laines',110,'Pièce unique','🧶','Écharpe tricotée main en alpaga huacaya.','Fait main'),
   P(186,'Écharpe mohair et soie — trame brebis','Créations laines',110,'Pièce unique','🧶','Écharpe tricotée main en mohair et soie, trame de laine de brebis.','Fait main'),
 ]
