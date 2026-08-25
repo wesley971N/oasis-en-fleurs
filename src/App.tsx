@@ -31,6 +31,8 @@ import tisanePhoto from './assets/photos/tisane.jpg'
 import mielJarPhoto from './assets/photos/miel-jar.jpg'
 import heFlaconExemple from './assets/photos/he-flacon-exemple.jpg'
 import savonPhoto from './assets/photos/savon.jpg'
+import universBaumesPhoto from './assets/photos/univers-baumes.jpg'
+import universSavonAvocatPhoto from './assets/photos/univers-savon-avocat.jpg'
 import tricotPhoto from './assets/photos/tricot.jpg'
 import sprayPhoto from './assets/photos/spray.jpg'
 import { PRODUCTS, type Product } from './data/products'
@@ -51,12 +53,12 @@ const IMG = {
   ],
   // Univers produits (ordre : Phyto · Huiles/Hydrolats · Baumes · Savons · Miellerie · Animaux)
   univers: [
-    flaconMaceratPhoto,
-    hydrolatPhoto,
-    baumePhoto,
-    savonPhoto,
-    mielJarPhoto,
-    chevalBlancPhoto,
+    flaconMaceratPhoto,       // Phytothérapie — inchangé (photo d'origine, pas de tisane)
+    hydrolatPhoto,            // Huiles & Hydrolats — inchangé (pas de photo produit avec étiquette)
+    universBaumesPhoto,       // Baumes & Synergies — pot calendula (nouvelle étiquette)
+    universSavonAvocatPhoto,  // Savonnerie — savon à l'huile d'avocat (nouvelle étiquette)
+    mielJarPhoto,             // Miellerie — inchangé
+    chevalBlancPhoto,         // Soins Animaux — inchangé
   ],
   // Produits boutique
   products: [
@@ -2745,11 +2747,11 @@ function CartDrawer({ open, onClose, cart, setCart }: {
                   {cart.map(item => (
                     <div key={item.id} style={{ display:'flex', gap:16, paddingBottom:20, marginBottom:20,
                       borderBottom:'1px solid rgba(74,103,65,0.12)', alignItems:'flex-start' }}>
-                      {/* Emoji vignette */}
-                      <div style={{ width:64, height:64, background:'var(--moss)', flexShrink:0,
-                        display:'flex', alignItems:'center', justifyContent:'center', fontSize:28 }}>
-                        {item.emoji}
-                      </div>
+                      {/* Vignette produit : image associée si elle existe, sinon rien (pas d'emoji) */}
+                      {PRODUCT_IMAGES[item.id] && (
+                        <img src={PRODUCT_IMAGES[item.id]} alt={item.name}
+                          style={{ width:64, height:64, objectFit:'cover', flexShrink:0 }}/>
+                      )}
                       <div style={{ flex:1, minWidth:0 }}>
                         <p style={{ fontFamily:'Vollkorn,serif', fontSize:17, fontWeight:500,
                           color:'var(--brown)', marginBottom:2, lineHeight:1.3 }}>{item.name}</p>
