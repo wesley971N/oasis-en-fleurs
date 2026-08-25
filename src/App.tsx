@@ -1476,6 +1476,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
       <AnimatePresence>
         {lightboxImg && (
           <motion.div
+            className="native-cursor"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
             onClick={() => setLightboxImg(null)}
@@ -2175,7 +2176,7 @@ function PageFerme({ addToast, setPage }: { addToast: (m:string)=>void, setPage:
       {/* Visionneuse plein écran — photo entière, navigable */}
       <AnimatePresence>
         {lightbox && (
-          <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} transition={{ duration:0.2 }}
+          <motion.div className="native-cursor" initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} transition={{ duration:0.2 }}
             onClick={() => setLightbox(null)}
             style={{ position:'fixed', inset:0, zIndex:100000, background:'rgba(20,14,8,0.93)',
               display:'flex', alignItems:'center', justifyContent:'center', padding:'4vh 4vw', cursor:'zoom-out' }}>

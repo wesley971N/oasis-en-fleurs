@@ -84,6 +84,14 @@ p { margin: 0; }
   }
   body.cursor-hover #cursor-dot { transform: translate(-50%, -50%) scale(0.4); }
   body.cursor-hover #cursor-ring { width: 50px; height: 50px; opacity: 1; background: oklch(0.74 0.11 78 / 0.14); }
+
+  /* Visionneuse plein écran (images agrandies) : le curseur perso passe derrière
+     l'overlay (z-index) → on rétablit le curseur natif pour savoir où cliquer. */
+  .native-cursor { cursor: zoom-out !important; }
+  .native-cursor img { cursor: default !important; }
+  .native-cursor button, .native-cursor a { cursor: pointer !important; }
+  /* Vidéos en plein écran natif : curseur natif visible aussi. */
+  :fullscreen, :fullscreen * { cursor: auto !important; }
 }
 
 /* ─── Navbar ─────────────────────────────────────────────────────────────── */
