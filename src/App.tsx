@@ -81,10 +81,19 @@ const IMG = {
 // Glob Vite : tout fichier src/assets/photos/products/p<id>.jpg est repris automatiquement,
 // sans toucher à data/products.ts (partagé avec les Netlify Functions de paiement).
 const PRODUCT_IMAGE_MODULES = import.meta.glob('./assets/photos/products/*.jpg', { eager: true, import: 'default' }) as Record<string, string>
-const PRODUCT_IMAGES: Record<number, string> = {}
+// Un produit peut avoir plusieurs photos : p<id>.jpg (principale) puis p<id>-2.jpg, p<id>-3.jpg…
+// PRODUCT_IMAGES = photo principale (grille + panier) ; PRODUCT_GALLERY = toutes les photos (fiche).
+const PRODUCT_GALLERY: Record<number, string[]> = {}
 for (const path in PRODUCT_IMAGE_MODULES) {
-  const m = path.match(/p(\d+)\.jpg$/)
-  if (m) PRODUCT_IMAGES[Number(m[1])] = PRODUCT_IMAGE_MODULES[path]
+  const m = path.match(/p(\d+)(?:-(\d+))?\.jpg$/)
+  if (!m) continue
+  const id = Number(m[1]); const pos = m[2] ? Number(m[2]) - 1 : 0
+  ;(PRODUCT_GALLERY[id] = PRODUCT_GALLERY[id] || [])[pos] = PRODUCT_IMAGE_MODULES[path]
+}
+const PRODUCT_IMAGES: Record<number, string> = {}
+for (const id in PRODUCT_GALLERY) {
+  PRODUCT_GALLERY[id] = PRODUCT_GALLERY[id].filter(Boolean)  // compacter d'éventuels trous
+  PRODUCT_IMAGES[Number(id)] = PRODUCT_GALLERY[id][0]
 }
 
 // Diaporama de la savonnerie Mille Bulles (savons de Dany) — photos détourées sur fond #FAF7F1
@@ -1116,6 +1125,7 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
   const [peloteColor, setPeloteColor] = useState(0)
   const [peloteAuto, setPeloteAuto] = useState(true)
   const [variantIdx, setVariantIdx] = useState(0)
+  const [imgIdx, setImgIdx] = useState(0)
   const [lightboxImg, setLightboxImg] = useState<string|null>(null)
   const [stock, setStock] = useState<Record<number, number>>({})
 
@@ -1181,9 +1191,10 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
     addToast(`✓ ${product.name} ajouté au panier`)
   }, [setCart, addToast])
 
-  const openDrawer = (p: Product) => { setDrawerProduct(p); setDrawerQty(1); setPeloteColor(0); setPeloteAuto(true); setVariantIdx(0); setDrawerOpen(true) }
+  const openDrawer = (p: Product) => { setDrawerProduct(p); setDrawerQty(1); setPeloteColor(0); setPeloteAuto(true); setVariantIdx(0); setImgIdx(0); setDrawerOpen(true) }
   const isPelote = !!drawerProduct && drawerProduct.id === PELOTE_ID
-  const drawerImg = drawerProduct ? (isPelote ? PELOTE_COLORS[peloteColor].img : PRODUCT_IMAGES[drawerProduct.id]) : undefined
+  const galleryImgs = drawerProduct && !isPelote ? (PRODUCT_GALLERY[drawerProduct.id] || []) : []
+  const drawerImg = drawerProduct ? (isPelote ? PELOTE_COLORS[peloteColor].img : (galleryImgs[imgIdx] || PRODUCT_IMAGES[drawerProduct.id])) : undefined
 
   // Défilement automatique des coloris de la pelote dans le détail, tant qu'on n'a pas choisi une couleur
   useEffect(() => {
@@ -1509,6 +1520,17 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 ×
               </button>
             </div>
+            {galleryImgs.length > 1 && (
+              <div style={{ display:'flex', gap:8, padding:'12px 32px 0', flexWrap:'wrap' }}>
+                {galleryImgs.map((src, i) => (
+                  <button key={i} onClick={() => setImgIdx(i)}
+                    style={{ width:54, height:54, padding:0, cursor:'pointer', flexShrink:0, overflow:'hidden',
+                      borderRadius:6, border: i===imgIdx ? '2px solid var(--moss)' : '2px solid rgba(74,103,65,0.2)' }}>
+                    <img src={src} alt="" style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}/>
+                  </button>
+                ))}
+              </div>
+            )}
             <div style={{ padding:'32px 32px 120px' }}>
               <p style={{ fontFamily:'Barlow,sans-serif', fontSize:11, letterSpacing:2, color:'var(--gold)',
                 textTransform:'uppercase', marginBottom:8 }}>{drawerProduct.category}</p>
