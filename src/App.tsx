@@ -151,7 +151,7 @@ const CONTAIN_PRODUCT_IDS = new Set<number>([154]) // Lait corporel onctueux
 // Lien d'avis Google de la fiche d'établissement (ouvre directement le formulaire d'avis)
 const GOOGLE_REVIEW_URL = 'https://g.page/r/CfWaKtYsN4KdEBM/review'
 
-const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Huiles Essentielles', 'Créations laines', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes et lait corps', 'Savons', 'Miellerie']
+const CATEGORIES = ['Tout', 'Phytembryothérapie', 'Macérats hydroalcooliques', 'Macérats oléiques', 'Huiles Essentielles', 'Créations laines', 'Hydrolats', 'Synergies', 'Tisanes & Plantes', 'Baumes et lait corps', 'Savons', 'Miellerie']
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   'Phytembryothérapie': `La phytoembryothérapie fait partie intégrante de la phytothérapie — à ne pas confondre avec la gemmothérapie, qui appartient à l'homéopathie.
@@ -201,6 +201,8 @@ La glycérine végétale, extraite du colza (teneur en huile de 50 à 68 %), ext
 Nos savons sont réalisés selon le procédé traditionnel de saponification à froid, qui préserve la glycérine naturelle ainsi que les propriétés des huiles végétales. Enrichis de macérâts de plantes médicinales, d'huiles essentielles et de beurres végétaux, ils nourrissent, apaisent et protègent la peau en douceur. Sans conservateur, chaque pain est façonné et découpé à la main.`,
   'Miellerie': `Le miel de L'Oasis en Fleurs est un miel toutes fleurs, récolté auprès des 6 ruches Buckfast sédentaires installées sur la ferme. Les abeilles butinent librement les fleurs sauvages et médicinales du domaine et des prairies de la Bresse, produisant un miel d'une grande richesse aromatique. Non chauffé, il conserve l'ensemble de ses enzymes, pollens et propriétés naturelles. Conditionné directement à la ferme, disponible en pot de 500 g ou au kilo.`,
   'Créations laines': `Créations de pièce unique — pour plus de demandes, contactez Agnès. Écharpes, étoles, châles, pulls et plaids tricotés et tissés main à la ferme, à partir des toisons de nos brebis, alpagas et chèvres mohair. Chaque pièce est façonnée artisanalement, du filage au rouet au tricot main.`,
+  'Macérats hydroalcooliques': `Les alcoolatures — ou macérats de plantes fraîches concentrés — sont obtenues en faisant macérer des plantes fraîches (feuilles, fleurs, racines ou fruits) dans un mélange d'eau de source et d'alcool biologique. Ce solvant hydroalcoolique extrait un large spectre de principes actifs, aussi bien hydrosolubles que liposolubles, pour un extrait concentré et non dilué. Récoltées à maturité sur la ferme ou cueillies dans des milieux préservés, les plantes sont mises à macérer fraîches afin de préserver toute leur vitalité. Elles se prennent généralement en cure, quelques gouttes diluées dans un peu d'eau.`,
+  'Macérats oléiques': `Le macérat oléique est obtenu en laissant macérer des plantes (fleurs, feuilles ou racines) dans une huile végétale, qui se charge peu à peu de leurs principes actifs liposolubles. Doux et nourrissants, ces macérats huileux s'utilisent en application externe — en massage ou en soin de la peau — seuls ou comme base de baumes et de sérums. Les plantes sont récoltées dans des endroits de montagne préservés ou cultivées sans engrais chimiques ni pesticides.`,
 }
 
 // Image représentative (produit) affichée à côté de l'intitulé de chaque rubrique.
@@ -1263,7 +1265,8 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
         const rest = dotIdx > -1 ? full.slice(dotIdx + 2) : ''
         const emojis: Record<string,string> = {
           'Phytembryothérapie':'🌱','Huiles Essentielles':'💧','Hydrolats':'🫧','Créations laines':'🧶',
-          'Synergies':'✨','Tisanes & Plantes':'🌿','Baumes et lait corps':'🏺','Savons':'🧼','Miellerie':'🍯'
+          'Synergies':'✨','Tisanes & Plantes':'🌿','Baumes et lait corps':'🏺','Savons':'🧼','Miellerie':'🍯',
+          'Macérats hydroalcooliques':'⚗️','Macérats oléiques':'🫗'
         }
         const emoji = emojis[activeCategory] || '🌿'
         // « Mille Bulles » et « Naturels de la Source » en écriture manuscrite (équivalent Monotype Corsiva)
