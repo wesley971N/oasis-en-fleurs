@@ -114,6 +114,11 @@ const PHYTO_VIDEOS = Object.entries(import.meta.glob('./assets/videos/*.mp4', { 
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, url]) => url)
 
+// Photos des marchés — galerie de la rubrique Stages (cliquer pour agrandir)
+const MARCHE_PHOTOS = Object.entries(import.meta.glob('./assets/photos/marche/*.jpg', { eager: true, import: 'default' }) as Record<string, string>)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, url]) => url)
+
 // Pelote de mohair (produit #113) — coloris sélectionnables avec photo associée.
 const PELOTE_ID = 113
 const PELOTE_MODULES = import.meta.glob('./assets/photos/pelote/*.jpg', { eager: true, import: 'default' }) as Record<string, string>
@@ -2371,6 +2376,32 @@ function PageStages({ addToast, setPage }: { addToast: (m:string)=>void, setPage
           </div>
         </div>
       </section>
+
+      {/* Galerie — Agnès sur les marchés */}
+      {MARCHE_PHOTOS.length > 0 && (
+        <section style={{ padding:'80px 32px', background:'var(--cream)' }}>
+          <div style={{ maxWidth:1200, margin:'0 auto' }}>
+            <div className="fade-up" style={{ textAlign:'center', marginBottom:40 }}>
+              <h2 style={{ fontFamily:'Vollkorn,serif', fontSize:32, color:'var(--brown)' }}>En images</h2>
+              <p style={{ fontFamily:'Barlow,sans-serif', fontSize:14, color:'var(--brown-light)', marginTop:8 }}>
+                Retrouvez Agnès et les plantes de la ferme sur les marchés.
+              </p>
+            </div>
+            <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap:16 }}>
+              {MARCHE_PHOTOS.map((src,i) => (
+                <a key={i} href={src} target="_blank" rel="noopener noreferrer" className="fade-up"
+                  style={{ display:'block', borderRadius:14, overflow:'hidden', boxShadow:'0 8px 24px rgba(0,0,0,0.12)',
+                    aspectRatio:'1', transitionDelay:`${i*0.05}s` }}>
+                  <img src={src} alt={`Agnès sur le marché — ${i+1}`} loading="lazy"
+                    style={{ width:'100%', height:'100%', objectFit:'cover', transition:'transform 0.5s ease' }}
+                    onMouseEnter={e => { e.currentTarget.style.transform='scale(1.06)' }}
+                    onMouseLeave={e => { e.currentTarget.style.transform='scale(1)' }} />
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Stage Form Modal */}
       <div className={`modal-overlay ${stageForm!==null?'open':''}`} onClick={()=>setStageForm(null)}>
