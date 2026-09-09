@@ -2976,13 +2976,6 @@ export default function App() {
   const [toasts, setToasts] = useState<string[]>([])
   const [rdvOpen, setRdvOpen] = useState(false)
   const [cartOpen, setCartOpen] = useState(false)
-  const [showConstruction, setShowConstruction] = useState(() => {
-    try { return !sessionStorage.getItem('construction_seen') } catch { return true }
-  })
-  const dismissConstruction = () => {
-    setShowConstruction(false)
-    try { sessionStorage.setItem('construction_seen', '1') } catch {}
-  }
   const [showThanks, setShowThanks] = useState(false)
   const [boutiqueCat, setBoutiqueCat] = useState('Tout')
   const navigate = (p: string, cat: string = 'Tout') => { setBoutiqueCat(cat); setPage(p); window.scrollTo(0,0) }
@@ -3068,38 +3061,6 @@ export default function App() {
 
   return (
     <>
-      {/* Pop-up : site en construction */}
-      <AnimatePresence>
-        {showConstruction && (
-          <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} transition={{ duration:0.25 }}
-            onClick={dismissConstruction}
-            style={{ position:'fixed', inset:0, zIndex:5000, background:'rgba(20,14,8,0.6)', backdropFilter:'blur(4px)',
-              display:'flex', alignItems:'center', justifyContent:'center', padding:'24px' }}>
-            <motion.div initial={{ opacity:0, y:20, scale:0.97 }} animate={{ opacity:1, y:0, scale:1 }} exit={{ opacity:0, y:16, scale:0.97 }}
-              transition={{ duration:0.3, ease:[0.22,1,0.36,1] }} onClick={e => e.stopPropagation()}
-              style={{ background:'var(--cream, #F4EDDC)', borderRadius:18, maxWidth:440, width:'100%', overflow:'hidden',
-                boxShadow:'0 30px 80px rgba(0,0,0,0.4)', textAlign:'center' }}>
-              <div style={{ background:'#1C4A3A', padding:'26px 28px 22px' }}>
-                <div style={{ fontSize:38, marginBottom:8 }}>🚧</div>
-                <h2 style={{ fontFamily:'Vollkorn,serif', fontSize:24, fontWeight:500, color:'#F4EDDC', margin:0 }}>Site en construction</h2>
-              </div>
-              <div style={{ padding:'26px 28px 30px' }}>
-                <p style={{ fontFamily:'Barlow,sans-serif', fontSize:15.5, lineHeight:1.7, color:'var(--brown, #4E4636)', marginBottom:20 }}>
-                  Notre site est encore en cours de construction. Pour toute information, n'hésitez pas à contacter Agnès directement — elle se fera un plaisir de vous répondre.
-                </p>
-                <div style={{ background:'rgba(28,74,58,0.06)', borderRadius:12, padding:'16px 18px', marginBottom:22 }}>
-                  <a href="tel:+33664348687" style={{ display:'block', fontFamily:'Barlow,sans-serif', fontSize:16, fontWeight:600, color:'var(--forest, #1C4A3A)', textDecoration:'none', marginBottom:8 }}>📞 06 64 34 86 87</a>
-                  <a href="mailto:contact@lesnaturelsdelasource.com" style={{ display:'block', fontFamily:'Barlow,sans-serif', fontSize:15, color:'var(--forest, #1C4A3A)', textDecoration:'none' }}>✉️ contact@lesnaturelsdelasource.com</a>
-                </div>
-                <button onClick={dismissConstruction} className="btn-primary" style={{ width:'100%' }}>
-                  Continuer la visite
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Pop-up : merci + demande d'avis après paiement */}
       <AnimatePresence>
         {showThanks && (
@@ -3120,7 +3081,7 @@ export default function App() {
                   Votre commande est confirmée — vous allez recevoir un email de confirmation.
                 </p>
                 <p style={{ fontFamily:'Barlow,sans-serif', fontSize:15.5, lineHeight:1.7, color:'var(--brown, #4E4636)', marginBottom:24 }}>
-                  Le site est encore en construction et <strong>votre avis compte énormément</strong>. Une suggestion, un détail à améliorer, quelque chose qui manque&nbsp;? Dites-le-nous, ça nous aide à faire mieux.
+                  <strong>Votre avis compte énormément</strong>. Une suggestion, un détail à améliorer, quelque chose qui manque&nbsp;? Dites-le-nous, ça nous aide à faire mieux.
                 </p>
                 <a href="mailto:contact@lesnaturelsdelasource.com?subject=Mon%20avis%20sur%20le%20site&body=Bonjour%20Agn%C3%A8s%2C%0A%0AVoici%20mes%20suggestions%20pour%20le%20site%20%3A%0A%0A"
                   className="btn-primary" style={{ display:'block', width:'100%', textDecoration:'none', boxSizing:'border-box', marginBottom:12 }}
