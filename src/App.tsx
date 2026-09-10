@@ -1166,8 +1166,11 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
     return cleanup
   }, [])
   const isSoldOut = (id: number) => stock[id] === 0
-  // Les savons ne sont pas encore fabriqués : on affiche « En fabrication » plutôt qu'« Épuisé »
-  const soldOutLabel = (p: Product) => p.category === 'Savons' ? 'En fabrication' : 'Épuisé'
+  const isSavon = (p: Product) => p.category === 'Savons'
+  // Rupture bloquante : seuls les savons (longs à fabriquer) ne sont pas commandables à stock 0.
+  // Les autres produits, rapides à produire, restent commandables « sur commande » même à 0.
+  const orderBlocked = (p: Product) => isSoldOut(p.id) && isSavon(p)
+  const stockBadge = (p: Product) => !isSoldOut(p.id) ? '' : (isSavon(p) ? 'En fabrication' : 'Sur commande')
 
   useEffect(() => { setExpandedDesc(false) }, [activeCategory])
 
@@ -1407,10 +1410,11 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                   </div>
                 )}
                 {isSoldOut(p.id) && (
-                  <span style={{ position:'absolute', top:12, right:12, background:'var(--brown)', color:'white',
+                  <span style={{ position:'absolute', top:12, right:12,
+                    background: isSavon(p)?'var(--brown)':'var(--gold)', color: isSavon(p)?'white':'var(--brown)',
                     padding:'5px 14px', borderRadius:4, fontFamily:'Barlow,sans-serif', fontSize:11, fontWeight:700,
                     letterSpacing:1.5, textTransform:'uppercase', whiteSpace:'nowrap' }}>
-                    {soldOutLabel(p)}
+                    {stockBadge(p)}
                   </span>
                 )}
               </div>
@@ -1431,13 +1435,13 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                     </span>
                     <span style={{ fontSize:12, color:'var(--brown-light)', marginLeft:4 }}>{p.unit}</span>
                   </div>
-                  <button onClick={(e) => { e.stopPropagation(); addToCart(p) }} disabled={isSoldOut(p.id)}
-                    style={{ width:36, height:36, background: isSoldOut(p.id)?'var(--brown-light)':'var(--moss)',
+                  <button onClick={(e) => { e.stopPropagation(); addToCart(p) }} disabled={orderBlocked(p)}
+                    style={{ width:36, height:36, background: orderBlocked(p)?'var(--brown-light)':'var(--moss)',
                       border:'none', color:'white', fontSize:22, display:'flex', alignItems:'center',
                       justifyContent:'center', borderRadius:10, transition:'all 0.2s',
-                      cursor: isSoldOut(p.id)?'not-allowed':'pointer', opacity: isSoldOut(p.id)?0.5:1 }}
-                    onMouseEnter={e=>{ if(!isSoldOut(p.id)) (e.target as HTMLElement).style.background='var(--moss-light)' }}
-                    onMouseLeave={e=>{ if(!isSoldOut(p.id)) (e.target as HTMLElement).style.background='var(--moss)' }}>
+                      cursor: orderBlocked(p)?'not-allowed':'pointer', opacity: orderBlocked(p)?0.5:1 }}
+                    onMouseEnter={e=>{ if(!orderBlocked(p)) (e.target as HTMLElement).style.background='var(--moss-light)' }}
+                    onMouseLeave={e=>{ if(!orderBlocked(p)) (e.target as HTMLElement).style.background='var(--moss)' }}>
                     +
                   </button>
                 </div>
@@ -1672,24 +1676,32 @@ function PageBoutique({ cart, setCart, addToast, onOpenCart, onRdv, setPage, ini
                 </div>
               )}
 
-              {isSoldOut(buyProduct.id) ? (
+              {orderBlocked(buyProduct) ? (
                 <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:10, marginBottom:16,
                   padding:'16px', background:'var(--cream-dark)', border:'1px solid var(--brown-light)' }}>
                   <span style={{ fontFamily:'Barlow,sans-serif', fontWeight:700, fontSize:13, letterSpacing:2,
-                    textTransform:'uppercase', color:'var(--brown)' }}>{buyProduct.category === 'Savons' ? 'En fabrication — bientôt disponible' : 'Épuisé — bientôt de retour'}</span>
+                    textTransform:'uppercase', color:'var(--brown)' }}>En fabrication — bientôt disponible</span>
                 </div>
               ) : (
-                <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:16 }}>
-                  <div style={{ display:'flex', alignItems:'center', gap:0 }}>
-                    <button className="qty-btn" onClick={()=>setDrawerQty(q=>Math.max(1,q-1))}>−</button>
-                    <span style={{ width:44, textAlign:'center', fontFamily:'Vollkorn,serif', fontSize:20 }}>{drawerQty}</span>
-                    <button className="qty-btn" onClick={()=>setDrawerQty(q=>q+1)}>+</button>
+                <>
+                  {isSoldOut(buyProduct.id) && (
+                    <div style={{ marginBottom:12, padding:'10px 14px', background:'var(--cream-dark)', borderRadius:8,
+                      fontFamily:'Barlow,sans-serif', fontSize:12.5, color:'var(--brown)', textAlign:'center', lineHeight:1.5 }}>
+                      Sur commande — fabriqué à la commande, expédié sous un court délai.
+                    </div>
+                  )}
+                  <div style={{ display:'flex', alignItems:'center', gap:16, marginBottom:16 }}>
+                    <div style={{ display:'flex', alignItems:'center', gap:0 }}>
+                      <button className="qty-btn" onClick={()=>setDrawerQty(q=>Math.max(1,q-1))}>−</button>
+                      <span style={{ width:44, textAlign:'center', fontFamily:'Vollkorn,serif', fontSize:20 }}>{drawerQty}</span>
+                      <button className="qty-btn" onClick={()=>setDrawerQty(q=>q+1)}>+</button>
+                    </div>
+                    <button className="btn-moss" style={{ flex:1, textAlign:'center' }}
+                      onClick={() => { addToCart(buyProduct, drawerQty); setDrawerOpen(false) }}>
+                      Ajouter au panier — {buyProduct.price * drawerQty}€
+                    </button>
                   </div>
-                  <button className="btn-moss" style={{ flex:1, textAlign:'center' }}
-                    onClick={() => { addToCart(buyProduct, drawerQty); setDrawerOpen(false) }}>
-                    Ajouter au panier — {buyProduct.price * drawerQty}€
-                  </button>
-                </div>
+                </>
               )}
             </div>
           </div>
@@ -2265,11 +2277,24 @@ function PageStages({ addToast, setPage }: { addToast: (m:string)=>void, setPage
   useScrollAnimation()
   const [stageForm, setStageForm] = useState<number|null>(null)
   const [formData, setFormData] = useState({ nom:'', email:'', tel:'', message:'' })
+  const [detoxOpen, setDetoxOpen] = useState(false)
 
   const handleSubmit = (stageId: number) => {
     if (!formData.nom || !formData.email) return
     addToast(`✓ Inscription au stage reçue ! Agnès vous contactera sous 48h.`)
     setStageForm(null)
+    setFormData({ nom:'', email:'', tel:'', message:'' })
+  }
+
+  const openDetox = () => { setFormData({ nom:'', email:'', tel:'', message:'' }); setDetoxOpen(true) }
+  // La Cure Détox est organisée par Naturopathie Eden : la réservation part vers leur email,
+  // depuis la messagerie du visiteur (pré-remplie), faute de serveur de formulaire.
+  const handleDetoxSubmit = () => {
+    if (!formData.nom || !formData.email) return
+    const body = `Bonjour,\n\nJe souhaite réserver ma place pour la Cure Détox « Stop à l'inflammation » (du 26 mars au 2 avril 2027, gîte de Colondannes).\n\nNom : ${formData.nom}\nEmail : ${formData.email}\nTéléphone : ${formData.tel || '—'}\n\nMessage :\n${formData.message || '—'}\n`
+    window.location.href = `mailto:naturoeden03@gmail.com?subject=${encodeURIComponent("Réservation Cure Détox — Stop à l'inflammation")}&body=${encodeURIComponent(body)}`
+    addToast('✓ Votre réservation est prête à être envoyée depuis votre messagerie.')
+    setDetoxOpen(false)
     setFormData({ nom:'', email:'', tel:'', message:'' })
   }
 
@@ -2321,10 +2346,10 @@ function PageStages({ addToast, setPage }: { addToast: (m:string)=>void, setPage
                 <p style={{ fontFamily:'Vollkorn,serif', fontSize:18, fontWeight:600, marginBottom:2 }}>Pré-réservation jusqu'au 20 septembre</p>
                 <p style={{ fontFamily:'Barlow,sans-serif', fontSize:13, opacity:0.9 }}>Ne ratez pas votre place !</p>
               </div>
-              <a href="mailto:naturoeden03@gmail.com?subject=Réservation Cure Détox — Stop à l'inflammation"
-                className="btn-moss" style={{ display:'inline-block', marginTop:18, textDecoration:'none', padding:'13px 28px', fontSize:14 }}>
+              <button onClick={openDetox}
+                className="btn-moss" style={{ display:'inline-block', marginTop:18, padding:'13px 28px', fontSize:14, border:'none', cursor:'pointer' }}>
                 Réserver ma place
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -2453,6 +2478,52 @@ function PageStages({ addToast, setPage }: { addToast: (m:string)=>void, setPage
               </div>
             </>)
           })()}
+        </div>
+      </div>
+
+      {/* Modal — Réservation Cure Détox « Stop à l'inflammation » */}
+      <div className={`modal-overlay ${detoxOpen?'open':''}`} onClick={()=>setDetoxOpen(false)}>
+        <div className="modal-box" onClick={e=>e.stopPropagation()} style={{ padding:48 }}>
+          <h2 style={{ fontFamily:'Vollkorn,serif', fontSize:28, color:'var(--brown)', marginBottom:4 }}>
+            Réservation — Cure Détox
+          </h2>
+          <p style={{ fontSize:13, color:'var(--brown-light)', marginBottom:32 }}>
+            Stop à l'inflammation · 26 mars → 2 avril 2027 · 650 €
+          </p>
+          {(['nom','email','tel'] as const).map(field => (
+            <div key={field} style={{ marginBottom:20 }}>
+              <label style={{ fontFamily:'Barlow,sans-serif', fontSize:11, letterSpacing:1.5, textTransform:'uppercase',
+                color:'var(--brown-light)', display:'block', marginBottom:6 }}>
+                {field==='nom'?'Nom complet *':field==='email'?'Email *':'Téléphone'}
+              </label>
+              <input type={field==='email'?'email':'text'} value={(formData as any)[field]}
+                onChange={e=>setFormData(p=>({...p,[field]:e.target.value}))}
+                style={{ width:'100%', background:'transparent', padding:'10px 0', fontSize:15,
+                  color:'var(--brown)', outline:'none', boxSizing:'border-box',
+                  border:'none', borderBottom:'1.5px solid rgba(74,103,65,0.3)' }}/>
+            </div>
+          ))}
+          <div style={{ marginBottom:28 }}>
+            <label style={{ fontFamily:'Barlow,sans-serif', fontSize:11, letterSpacing:1.5, textTransform:'uppercase',
+              color:'var(--brown-light)', display:'block', marginBottom:6 }}>Message / Questions</label>
+            <textarea value={formData.message} onChange={e=>setFormData(p=>({...p,message:e.target.value}))}
+              rows={3} style={{ width:'100%', background:'var(--cream-dark)', border:'none', padding:12,
+                fontSize:14, color:'var(--brown)', outline:'none', resize:'none', boxSizing:'border-box' }}/>
+          </div>
+          <p style={{ fontSize:11, color:'var(--brown-light)', lineHeight:1.6, marginBottom:16 }}>
+            Événement organisé par <strong>Naturopathie Eden</strong> : votre réservation leur est transmise
+            par email. Vos données ne servent qu'au traitement de cette réservation.
+          </p>
+          <div style={{ display:'flex', gap:12 }}>
+            <button className="btn-moss" style={{ flex:1 }} onClick={handleDetoxSubmit}>
+              Envoyer ma réservation
+            </button>
+            <button onClick={()=>setDetoxOpen(false)}
+              style={{ padding:'13px 20px', border:'1.5px solid var(--moss)', background:'transparent',
+                color:'var(--moss)', fontSize:12, fontWeight:600, letterSpacing:1, cursor:'pointer' }}>
+              Annuler
+            </button>
+          </div>
         </div>
       </div>
     </div>
