@@ -40,7 +40,10 @@ try {
     catalog += `</ul></section>`
   }
 
-  const seo = `<div style="max-width:820px;margin:0 auto;padding:40px 24px;font-family:Georgia,serif;color:#2b2b2b;line-height:1.6">
+  // Bloc SEO présent dans le HTML pour les moteurs de recherche, mais placé hors écran
+  // pour ne PAS être visible par les visiteurs (React le remplace dès le chargement du JS).
+  // → supprime le « flash » de texte brut au chargement, sans perdre le référencement.
+  const seo = `<div aria-hidden="true" style="position:absolute;left:-99999px;top:0;width:1px;height:1px;overflow:hidden">
 <h1>Les Naturels de la Source — L'Oasis en Fleurs</h1>
 <p>Ferme phytothérapeutique d'Agnès Gilliet à Curciat-Dongalon (01560), en Bresse (Bourgogne). Phytothérapie et aromathérapie artisanales : plantes médicinales, huiles essentielles, hydrolats, macérats de bourgeons (phytembryothérapie), synergies, baumes, savons artisanaux « Mille Bulles », miels de la miellerie, laines et créations. Consultations, soins naturels et stages immersifs à la ferme.</p>
 <h2>Boutique &amp; Soins</h2>
